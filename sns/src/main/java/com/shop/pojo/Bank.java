@@ -1,10 +1,18 @@
 package com.shop.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Bank {
-    private Integer id;
+public class Bank implements Serializable{
+	            
+	
+    /**
+	 * 序列化版本号
+	 */
+	private static final long serialVersionUID = -7970537641371459611L;
+
+	private Integer id;
 
     private String customerName;
 

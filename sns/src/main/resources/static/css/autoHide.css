@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.hide_bar{
+	height:30px;
+	background-color:red;
+	position: fixed;
+	left: 0px;
+	top:-30px;
+}
