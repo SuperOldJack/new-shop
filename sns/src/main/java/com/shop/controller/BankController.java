@@ -35,7 +35,7 @@ public class BankController {
 	@ResponseBody
 	@RequestMapping("/validate")
 	public String ajaxTest(String id) {
-		System.out.println(id);//{\"a\":1}
+		System.out.println(id);//{\"a\":1}aaa
 		return "adadaadad";
 	}
 	
