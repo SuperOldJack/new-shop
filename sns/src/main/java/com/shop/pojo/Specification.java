@@ -5,9 +5,17 @@ import java.math.BigDecimal;
 public class Specification {
     private Integer id;
 
-    private Integer specification_type;
+    private String specificationType;
 
-    private BigDecimal info;
+    public String getSpecificationType() {
+		return specificationType;
+	}
+
+	public void setSpecificationType(String specificationType) {
+		this.specificationType = specificationType;
+	}
+
+	private BigDecimal info;
 
     public Integer getId() {
         return id;
@@ -17,13 +25,6 @@ public class Specification {
         this.id = id;
     }
 
-    public Integer getSpecification_type() {
-        return specification_type;
-    }
-
-    public void setSpecification_type(Integer specification_type) {
-        this.specification_type = specification_type;
-    }
 
     public BigDecimal getInfo() {
         return info;

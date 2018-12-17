@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.document.SellReturnMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.document.SellReturn">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="client_id" jdbcType="INTEGER" property="client_id" />
+    <result column="returntime" jdbcType="TIMESTAMP" property="returntime" />
+    <result column="amount_money" jdbcType="DECIMAL" property="amount_money" />
+    <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
+    <result column="card_id" jdbcType="INTEGER" property="card_id" />
+    <result column="manage_work_id" jdbcType="INTEGER" property="manage_work_id" />
+    <result column="cause" jdbcType="VARCHAR" property="cause" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    
+    <association property="goodsDocument" javaType="com.shop.pojo.GoodsDocument">   
+        <id property="code" column="code"/>
+        <result column="manage_lib_id" jdbcType="INTEGER" property="manage_lib_id" />
+	    <result column="manage_man_id" jdbcType="INTEGER" property="manage_man_id" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+	    <result column="create_man" jdbcType="INTEGER" property="create_man" />
+	    <result column="document_type" jdbcType="VARCHAR" property="document_type" />
+	    <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
+	    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_document_code, client_id, `returntime`, amount_money, actual_money, card_id, 
+    manage_work_id, cause, `comment`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sell_return
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_sell_return
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shop.pojo.GoodsDocument">
+    insert into tb_sell_return (id, goods_document_code, client_id, 
+      returntime, amount_money, actual_money, 
+      card_id, manage_work_id, cause, 
+      comment)
+    values (#{id,jdbcType=INTEGER}, #{goods_document_code,jdbcType=VARCHAR}, #{client_id,jdbcType=INTEGER}, 
+      #{returntime,jdbcType=TIMESTAMP}, #{amount_money,jdbcType=DECIMAL}, #{actual_money,jdbcType=DECIMAL}, 
+      #{card_id,jdbcType=INTEGER}, #{manage_work_id,jdbcType=INTEGER}, #{cause,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shop.pojo.GoodsDocument">
+    insert into tb_sell_return
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goods_document_code != null">
+        goods_document_code,
+      </if>
+      <if test="client_id != null">
+        client_id,
+      </if>
+      <if test="returntime != null">
+        returntime,
+      </if>
+      <if test="amount_money != null">
+        amount_money,
+      </if>
+      <if test="actual_money != null">
+        actual_money,
+      </if>
+      <if test="card_id != null">
+        card_id,
+      </if>
+      <if test="manage_work_id != null">
+        manage_work_id,
+      </if>
+      <if test="cause != null">
+        cause,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_document_code != null">
+        #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="client_id != null">
+        #{client_id,jdbcType=INTEGER},
+      </if>
+      <if test="returntime != null">
+        #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount_money != null">
+        #{amount_money,jdbcType=DECIMAL},
+      </if>
+      <if test="actual_money != null">
+        #{actual_money,jdbcType=DECIMAL},
+      </if>
+      <if test="card_id != null">
+        #{card_id,jdbcType=INTEGER},
+      </if>
+      <if test="manage_work_id != null">
+        #{manage_work_id,jdbcType=INTEGER},
+      </if>
+      <if test="cause != null">
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.GoodsDocument">
+    update tb_sell_return
+    <set>
+      <if test="goods_document_code != null">
+        goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="client_id != null">
+        client_id = #{client_id,jdbcType=INTEGER},
+      </if>
+      <if test="returntime != null">
+        returntime = #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount_money != null">
+        amount_money = #{amount_money,jdbcType=DECIMAL},
+      </if>
+      <if test="actual_money != null">
+        actual_money = #{actual_money,jdbcType=DECIMAL},
+      </if>
+      <if test="card_id != null">
+        card_id = #{card_id,jdbcType=INTEGER},
+      </if>
+      <if test="manage_work_id != null">
+        manage_work_id = #{manage_work_id,jdbcType=INTEGER},
+      </if>
+      <if test="cause != null">
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.GoodsDocument">
+    update tb_sell_return
+    set goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      client_id = #{client_id,jdbcType=INTEGER},
+      returntime = #{returntime,jdbcType=TIMESTAMP},
+      amount_money = #{amount_money,jdbcType=DECIMAL},
+      actual_money = #{actual_money,jdbcType=DECIMAL},
+      card_id = #{card_id,jdbcType=INTEGER},
+      manage_work_id = #{manage_work_id,jdbcType=INTEGER},
+      cause = #{cause,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -9,11 +9,13 @@ import java.math.BigDecimal;
 public class GoodsInfo {
     private Integer id;
 
-    private String goods_document_code;
+    private GoodsDocument goodsDocument;
+    
+    private String unit;
+    
+	private Shop shop;
 
-    private Integer shop_id;
-
-    private Integer specification_id;
+    private Specification specification;
 
     private BigDecimal price;
 
@@ -26,30 +28,36 @@ public class GoodsInfo {
     public void setId(Integer id) {
         this.id = id;
     }
+    public String getUnit() {
+		return unit;
+	}
 
-    public String getGoods_document_code() {
-        return goods_document_code;
-    }
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+    public GoodsDocument getGoodsDocument() {
+		return goodsDocument;
+	}
 
-    public void setGoods_document_code(String goods_document_code) {
-        this.goods_document_code = goods_document_code == null ? null : goods_document_code.trim();
-    }
+	public void setGoodsDocument(GoodsDocument goodsDocument) {
+		this.goodsDocument = goodsDocument;
+	}
+	
+    public Shop getShop() {
+		return shop;
+	}
 
-    public Integer getShop_id() {
-        return shop_id;
-    }
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
 
-    public void setShop_id(Integer shop_id) {
-        this.shop_id = shop_id;
-    }
+	public Specification getSpecification() {
+		return specification;
+	}
 
-    public Integer getSpecification_id() {
-        return specification_id;
-    }
-
-    public void setSpecification_id(Integer specification_id) {
-        this.specification_id = specification_id;
-    }
+	public void setSpecification(Specification specification) {
+		this.specification = specification;
+	}
 
     public BigDecimal getPrice() {
         return price;
