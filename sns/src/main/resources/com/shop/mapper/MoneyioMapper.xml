@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.MoneyioMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.Moneyio">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="this_code" jdbcType="VARCHAR" property="this_code" />
+    <result column="card_id" jdbcType="INTEGER" property="card_id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="manage_work_id" jdbcType="INTEGER" property="manage_work_id" />
+    <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="io_type" jdbcType="INTEGER" property="io_type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, this_code, card_id, create_time, manage_work_id, actual_money, `comment`, io_type
+  </sql>
+  <select id="selectByID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_moneyio
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByKeyword"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_moneyio
+    where this_code like  %#{keyword}% and io_type = #{ioType}
+  </select>
+  <select id="selectByCode"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_moneyio
+    where this_code =  #{keyword}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_moneyio
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.shop.pojo.Moneyio">
+    insert into tb_moneyio
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="this_code != null">
+        this_code,
+      </if>
+      <if test="card_id != null">
+        card_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="manage_work_id != null">
+        manage_work_id,
+      </if>
+      <if test="actual_money != null">
+        actual_money,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="io_type != null">
+        io_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="this_code != null">
+        #{this_code,jdbcType=VARCHAR},
+      </if>
+      <if test="card_id != null">
+        #{card_id,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manage_work_id != null">
+        #{manage_work_id,jdbcType=INTEGER},
+      </if>
+      <if test="actual_money != null">
+        #{actual_money,jdbcType=DECIMAL},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="io_type != null">
+        #{io_type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.Moneyio">
+    update tb_moneyio
+    <set>
+      <if test="this_code != null">
+        this_code = #{this_code,jdbcType=VARCHAR},
+      </if>
+      <if test="card_id != null">
+        card_id = #{card_id,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manage_work_id != null">
+        manage_work_id = #{manage_work_id,jdbcType=INTEGER},
+      </if>
+      <if test="actual_money != null">
+        actual_money = #{actual_money,jdbcType=DECIMAL},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="io_type != null">
+        io_type = #{io_type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,58 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>测试页面</title>
-<script type="text/javascript" src="/js/jquery-1.8.3.js"></script>
-
-<link href="/css/autoHide.css" rel="stylesheet" type="text/css">
-</head>
-<body  onmousemove="moveTest(event)">
-	<div class="hide_bar" style="width: 100%; z-index: 0" ></div>
-	<a href="#">aaaaaaaaa</a>
-	<c:forEach items="${bankList}" var="bank">
-		<p>${bank.customerName}</p>
-	</c:forEach>
-	<a href="out">输出--序列化对象</a>
-	<a href="input">输入--反序列化对象</a>
-	
-	
-	<script type="text/javascript">
-	//需要放在元素后面
-	var flag = true;
-	var hide_node = $(".hide_bar")
-	var node_hight = parseInt(hide_node.css("height"));
-	function moveTest(mouse){
-		if(flag && mouse.clientY <= node_hight){
-			hide_node.stop();
-			hide_node.animate({top:"0px"},50);
-			flage = false;
-		}
-		if(flag && mouse.clientY > node_hight){
-			$(".hide_bar").stop();
-			$(".hide_bar").animate({top:(-1*node_hight)+"px"},50);
-			flage = true;
-		}
-	}
-</script>
-=======
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>测试页面</title>
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" >
+<link rel="stylesheet" href="/css/font-awesome.min.css" >
 <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/hullabaloo.js"></script>
 </head>
 <body>
+	<script>
+		$.hulla = new hullabaloo();
+	</script>
 	<div class="container">
-		<button type="button" class="btn">基本按钮</button>
+		<button type="button" class="btn" onclick="$.hulla.send('这是一则成功信息', 'success')">基本按钮</button>
 	</div>
->>>>>>> branch 'master' of https://github.com/SuperOldJack/new-shop.git
 </body>
 </html>
