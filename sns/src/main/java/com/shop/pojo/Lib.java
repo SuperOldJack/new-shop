@@ -9,6 +9,9 @@ public class Lib {
 
     private String lib_phone;
 
+    /**
+     * 仓库管理员姓名
+     */
     private String lib_manage_man;
 
     private String manage_phone;

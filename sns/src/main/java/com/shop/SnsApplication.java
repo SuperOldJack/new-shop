@@ -15,16 +15,6 @@ public class SnsApplication {
 		SpringApplication.run(SnsApplication.class, args);
 		
 		
-		/*new Thread(()-> {
-			try {
-				TimeUnit.MILLISECONDS.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Test test = new Test();
-			test.run();
-		}).start();*/
 	}
 }
 

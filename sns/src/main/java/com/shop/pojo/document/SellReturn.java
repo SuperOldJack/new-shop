@@ -9,9 +9,7 @@ public class SellReturn {
     private Integer id;
 
     private GoodsDocument goodsDocument;
-
-   
-
+    
 	private Integer client_id;
 
     private Date returntime;

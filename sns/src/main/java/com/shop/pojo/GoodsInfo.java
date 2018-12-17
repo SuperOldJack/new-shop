@@ -11,6 +11,9 @@ public class GoodsInfo {
 
     private GoodsDocument goodsDocument;
     
+    /**
+     * 单位名称 --需要修改xml
+     */
     private String unit;
     
 	private Shop shop;
@@ -22,6 +25,7 @@ public class GoodsInfo {
     private Integer count;
 
     public Integer getId() {
+    	
         return id;
     }
 

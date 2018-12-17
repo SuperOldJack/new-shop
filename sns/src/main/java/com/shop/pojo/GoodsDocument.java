@@ -16,9 +16,11 @@ public class GoodsDocument {
 
     private Date create_time;
 
-    private Integer create_man;
+    private Worker createMan;
 
-    private String document_type;
+    
+
+	private String document_type;
 
     private Integer isEffective;
 
@@ -31,7 +33,13 @@ public class GoodsDocument {
     public void setCode(String code) {
         this.code = code == null ? null : code.trim();
     }
+    public Worker getCreateMan() {
+		return createMan;
+	}
 
+	public void setCreateMan(Worker createMan) {
+		this.createMan = createMan;
+	}
     public Integer getManage_lib_id() {
         return manage_lib_id;
     }
@@ -56,13 +64,6 @@ public class GoodsDocument {
         this.create_time = create_time;
     }
 
-    public Integer getCreate_man() {
-        return create_man;
-    }
-
-    public void setCreate_man(Integer create_man) {
-        this.create_man = create_man;
-    }
 
     public String getDocument_type() {
         return document_type;
