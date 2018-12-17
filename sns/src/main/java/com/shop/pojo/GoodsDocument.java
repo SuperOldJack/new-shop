@@ -15,13 +15,18 @@ public class GoodsDocument {
      */
     private Lib manageLib;
 
-    
+    /**
+     * 负责人
+     */
 	private Worker manageMan;
 
     
 
 	private Date create_time;
 
+	/**
+     * 制单人
+     */
     private Worker createMan;
 
     
@@ -85,7 +90,10 @@ public class GoodsDocument {
     public void setIsEffective(Integer isEffective) {
         this.isEffective = isEffective;
     }
-
+    public void setIsEffective(boolean isEffective) {
+        this.isEffective = isEffective ? 1:0;
+    }
+    
     public String getComment() {
         return comment;
     }

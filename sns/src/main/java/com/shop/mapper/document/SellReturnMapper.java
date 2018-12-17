@@ -1,9 +1,10 @@
 package com.shop.mapper.document;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.Test;
 
 import com.shop.pojo.document.SellReturn;
+
 
 @Mapper
 public interface SellReturnMapper {

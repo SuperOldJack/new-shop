@@ -14,13 +14,14 @@
     
     <association property="goodsDocument" javaType="com.shop.pojo.GoodsDocument">   
         <id property="code" column="code"/>
+        <!-- 如何实现嵌套关系 
         <result column="manage_lib_id" jdbcType="INTEGER" property="manageLib" />
 	    <result column="manage_man_id" jdbcType="INTEGER" property="manageMan" />
 	    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
 	    <result column="create_man" jdbcType="INTEGER" property="createMan" />
 	    <result column="document_type" jdbcType="VARCHAR" property="document_type" />
 	    <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
-	    <result column="comment" jdbcType="VARCHAR" property="comment" />
+	    <result column="comment" jdbcType="VARCHAR" property="comment" /> -->
     </association>
   </resultMap>
   <sql id="Base_Column_List">

@@ -5,7 +5,6 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="card_number" jdbcType="CHAR" property="card_number" />
-    <result column="type_name" jdbcType="String" property="typeName" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, card_number, type_id

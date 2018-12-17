@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.shop.service.SellReturnService;
 
 @Controller
-public class SellReturnComtroller {
+public class SellReturnController {
 	
 	@Autowired
 	SellReturnService sellReturnService; 
