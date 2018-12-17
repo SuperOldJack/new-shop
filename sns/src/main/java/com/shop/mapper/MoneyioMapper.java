@@ -2,6 +2,8 @@ package com.shop.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.shop.pojo.Moneyio;
 
 /**
@@ -9,6 +11,7 @@ import com.shop.pojo.Moneyio;
  * @author Administrator
  *
  */
+@Mapper
 public interface MoneyioMapper {
 	
 	/*增删改*/

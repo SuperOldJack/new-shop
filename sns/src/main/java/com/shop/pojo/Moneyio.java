@@ -6,8 +6,10 @@ import java.util.Date;
 public class Moneyio {
 	private Integer id;
 
-	private GoodsDocument goodsDocument;
+	private String thisCode;
 	
+	
+
 	private Card card;
 
 	private Date createTime;
@@ -40,12 +42,12 @@ public class Moneyio {
 	public Worker getManageWork() {
 		return manageWork;
 	}
-	public GoodsDocument getGoodsDocument() {
-		return goodsDocument;
+	public String getThisCode() {
+		return thisCode;
 	}
 
-	public void setGoodsDocument(GoodsDocument goodsDocument) {
-		this.goodsDocument = goodsDocument;
+	public void setThisCode(String thisCode) {
+		this.thisCode = thisCode;
 	}
 	public void setManageWork(Worker manageWork) {
 		this.manageWork = manageWork;

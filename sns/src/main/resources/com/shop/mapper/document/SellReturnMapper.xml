@@ -10,30 +10,44 @@
     <result column="card_id" jdbcType="INTEGER" property="card_id" />
     <result column="manage_work_id" jdbcType="INTEGER" property="manage_work_id" />
     <result column="cause" jdbcType="VARCHAR" property="cause" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="goodsComment" jdbcType="VARCHAR" property="comment" />
     
-    <association property="goodsDocument" javaType="com.shop.pojo.GoodsDocument">   
+    <association  column="goods_document_code" property="goodsDocument" javaType="com.shop.pojo.GoodsDocument" select="equeryGoodsDocument">   
         <id property="code" column="code"/>
-        <!-- 如何实现嵌套关系 
-        <result column="manage_lib_id" jdbcType="INTEGER" property="manageLib" />
-	    <result column="manage_man_id" jdbcType="INTEGER" property="manageMan" />
+        
 	    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
-	    <result column="create_man" jdbcType="INTEGER" property="createMan" />
 	    <result column="document_type" jdbcType="VARCHAR" property="document_type" />
 	    <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
-	    <result column="comment" jdbcType="VARCHAR" property="comment" /> -->
+	    <result column="comment" jdbcType="VARCHAR" property="comment" />
     </association>
   </resultMap>
-  <sql id="Base_Column_List">
+  
+   <!-- 查询单据 -->
+  <select id="equeryGoodsDocument" resultType="com.shop.pojo.GoodsDocument" >
+		select
+		code, manage_lib_id, manage_man_id, create_time, create_man, document_type, isEffective, `comment`
+		from tb_goods_document
+    	where code = #{code,jdbcType=VARCHAR}
+  </select>
+	
+  
+  <sql id="Base_Column_List" >
     id, goods_document_code, client_id, `returntime`, amount_money, actual_money, card_id, 
     manage_work_id, cause, `comment`
   </sql>
+  
+	
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_sell_return
-    where id = #{id,jdbcType=INTEGER}
+    
+    select gd.*,sr.*,sr.`comment` as goodsComment from tb_sell_return as sr LEFT JOIN
+	tb_goods_document as gd ON sr.goods_document_code=gd.code 
+	where id = #{id,jdbcType=INTEGER}
   </select>
+  
+ 
+	
+	
+	
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_sell_return
     where id = #{id,jdbcType=INTEGER}
