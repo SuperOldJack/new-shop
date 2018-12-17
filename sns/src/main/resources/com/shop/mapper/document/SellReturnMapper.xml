@@ -14,10 +14,10 @@
     
     <association property="goodsDocument" javaType="com.shop.pojo.GoodsDocument">   
         <id property="code" column="code"/>
-        <result column="manage_lib_id" jdbcType="INTEGER" property="manage_lib_id" />
-	    <result column="manage_man_id" jdbcType="INTEGER" property="manage_man_id" />
+        <result column="manage_lib_id" jdbcType="INTEGER" property="manageLib" />
+	    <result column="manage_man_id" jdbcType="INTEGER" property="manageMan" />
 	    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
-	    <result column="create_man" jdbcType="INTEGER" property="create_man" />
+	    <result column="create_man" jdbcType="INTEGER" property="createMan" />
 	    <result column="document_type" jdbcType="VARCHAR" property="document_type" />
 	    <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
 	    <result column="comment" jdbcType="VARCHAR" property="comment" />
