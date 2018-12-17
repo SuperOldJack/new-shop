@@ -19,7 +19,7 @@ public class Worker {
 
 	private Date birthday;
 
-	private String vip_code;
+	private VipInfo vipCode;
 
 	public Integer getId() {
 		return id;
@@ -75,11 +75,12 @@ public class Worker {
 		this.birthday = birthday;
 	}
 
-	public String getVip_code() {
-		return vip_code;
+	public VipInfo getVipCode() {
+		return vipCode;
 	}
 
-	public void setVip_code(String vip_code) {
-		this.vip_code = vip_code == null ? null : vip_code.trim();
+	public void setVipCode(VipInfo vipCode) {
+		this.vipCode = vipCode;
 	}
+	
 }

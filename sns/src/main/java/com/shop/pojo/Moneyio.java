@@ -7,20 +7,18 @@ public class Moneyio {
 	private Integer id;
 
 	private GoodsDocument goodsDocument;
-
 	
-
 	private Card card;
 
-	private Date create_time;
+	private Date createTime;
 
 	private Worker manageWork;
 
-	private BigDecimal actual_money;
+	private BigDecimal actualMoney;
 
 	private String comment;
 
-	private Integer io_type;
+	private Integer ioType;
 
 	public Integer getId() {
 		return id;
@@ -53,21 +51,12 @@ public class Moneyio {
 		this.manageWork = manageWork;
 	}
 
-	public Date getCreate_time() {
-		return create_time;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
-	}
-
-
-	public BigDecimal getActual_money() {
-		return actual_money;
-	}
-
-	public void setActual_money(BigDecimal actual_money) {
-		this.actual_money = actual_money;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	public String getComment() {
@@ -78,11 +67,20 @@ public class Moneyio {
 		this.comment = comment == null ? null : comment.trim();
 	}
 
-	public Integer getIo_type() {
-		return io_type;
+	public BigDecimal getActualMoney() {
+		return actualMoney;
 	}
 
-	public void setIo_type(Integer io_type) {
-		this.io_type = io_type;
+	public void setActualMoney(BigDecimal actualMoney) {
+		this.actualMoney = actualMoney;
 	}
+
+	public Integer getIoType() {
+		return ioType;
+	}
+
+	public void setIoType(Integer ioType) {
+		this.ioType = ioType;
+	}
+
 }

@@ -3,13 +3,13 @@
 <mapper namespace="com.shop.mapper.VipInfoMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.VipInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="vip_number" jdbcType="VARCHAR" property="vip_number" />
+    <result column="vip_number" jdbcType="VARCHAR" property="vipNumber" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="up_time" jdbcType="TIMESTAMP" property="up_time" />
-    <result column="down_time" jdbcType="TIMESTAMP" property="down_time" />
-    <result column="vip_code" jdbcType="VARCHAR" property="vip_code" />
-    <result column="company_id" jdbcType="INTEGER" property="company_id" />
+    <result column="up_time" jdbcType="TIMESTAMP" property="upTime" />
+    <result column="down_time" jdbcType="TIMESTAMP" property="downTime" />
+    <result column="vip_code" jdbcType="VARCHAR" property="vipCode" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, vip_number, password, createtime, up_time, down_time, vip_code, company_id

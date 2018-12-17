@@ -10,11 +10,17 @@ import java.util.Date;
 public class GoodsDocument {
     private String code;
 
-    private Integer manage_lib_id;
+    /**
+     * 处理仓库
+     */
+    private Lib manageLib;
 
-    private Integer manage_man_id;
+    
+	private Worker manageMan;
 
-    private Date create_time;
+    
+
+	private Date create_time;
 
     private Worker createMan;
 
@@ -40,22 +46,21 @@ public class GoodsDocument {
 	public void setCreateMan(Worker createMan) {
 		this.createMan = createMan;
 	}
-    public Integer getManage_lib_id() {
-        return manage_lib_id;
-    }
+	public Lib getManageLib() {
+		return manageLib;
+	}
 
-    public void setManage_lib_id(Integer manage_lib_id) {
-        this.manage_lib_id = manage_lib_id;
-    }
+	public void setManageLib(Lib manageLib) {
+		this.manageLib = manageLib;
+	}
 
-    public Integer getManage_man_id() {
-        return manage_man_id;
-    }
+	public Worker getManageMan() {
+		return manageMan;
+	}
 
-    public void setManage_man_id(Integer manage_man_id) {
-        this.manage_man_id = manage_man_id;
-    }
-
+	public void setManageMan(Worker manageMan) {
+		this.manageMan = manageMan;
+	}
     public Date getCreate_time() {
         return create_time;
     }

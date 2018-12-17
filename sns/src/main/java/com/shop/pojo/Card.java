@@ -7,7 +7,10 @@ public class Card {
 
     private String card_number;
 
-    private Integer type_id;
+    /**
+     * 卡类型
+     */
+    private String typeName;
 
     public Integer getId() {
         return id;
@@ -33,11 +36,12 @@ public class Card {
         this.card_number = card_number == null ? null : card_number.trim();
     }
 
-    public Integer getType_id() {
-        return type_id;
-    }
+	public String getTypeName() {
+		return typeName;
+	}
 
-    public void setType_id(Integer type_id) {
-        this.type_id = type_id;
-    }
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
 }

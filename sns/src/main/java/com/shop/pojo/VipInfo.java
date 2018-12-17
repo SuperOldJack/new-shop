@@ -5,19 +5,19 @@ import java.util.Date;
 public class VipInfo {
     private Integer id;
 
-    private String vip_number;
+    private String vipNumber;
 
     private String password;
 
     private Date createtime;
 
-    private Date up_time;
+    private Date upTime;
 
-    private Date down_time;
+    private Date downTime;
 
-    private String vip_code;
+    private String vipCode;
 
-    private Integer company_id;
+    private Company companyId;
 
     public Integer getId() {
         return id;
@@ -25,14 +25,6 @@ public class VipInfo {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getVip_number() {
-        return vip_number;
-    }
-
-    public void setVip_number(String vip_number) {
-        this.vip_number = vip_number == null ? null : vip_number.trim();
     }
 
     public String getPassword() {
@@ -51,35 +43,45 @@ public class VipInfo {
         this.createtime = createtime;
     }
 
-    public Date getUp_time() {
-        return up_time;
-    }
+	public String getVipNumber() {
+		return vipNumber;
+	}
 
-    public void setUp_time(Date up_time) {
-        this.up_time = up_time;
-    }
+	public void setVipNumber(String vipNumber) {
+		this.vipNumber = vipNumber;
+	}
 
-    public Date getDown_time() {
-        return down_time;
-    }
+	public Date getUpTime() {
+		return upTime;
+	}
 
-    public void setDown_time(Date down_time) {
-        this.down_time = down_time;
-    }
+	public void setUpTime(Date upTime) {
+		this.upTime = upTime;
+	}
 
-    public String getVip_code() {
-        return vip_code;
-    }
+	public Date getDownTime() {
+		return downTime;
+	}
 
-    public void setVip_code(String vip_code) {
-        this.vip_code = vip_code == null ? null : vip_code.trim();
-    }
+	public void setDownTime(Date downTime) {
+		this.downTime = downTime;
+	}
 
-    public Integer getCompany_id() {
-        return company_id;
-    }
+	public String getVipCode() {
+		return vipCode;
+	}
 
-    public void setCompany_id(Integer company_id) {
-        this.company_id = company_id;
-    }
+	public void setVipCode(String vipCode) {
+		this.vipCode = vipCode;
+	}
+
+	public Company getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Company companyId) {
+		this.companyId = companyId;
+	}
+    
+
 }
