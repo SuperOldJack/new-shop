@@ -18,10 +18,10 @@
 	</select>
 	<!-- 查询员工 -->
 	<select id="equeryWorker" resultType="com.shop.pojo.Worker">
-		select  id, name, sex, address, e_mail, phone, birthday, vip_code from tb_worker where id = #{id,jdbcType=INTEGER}
+		select  id, name, sex, address, e_mail, phone, birthday, vip_code as vipCodeString  from tb_worker where id = #{id,jdbcType=INTEGER}
 	</select>
 	<select id="equeryVip" resultType="com.shop.pojo.VipInfo">
-		select  id, vip_number, password, createtime, up_time, down_time, vip_code, company_id from tb_vip where id = #{id,jdbcType=INTEGER}
+		select  id, vip_number, password, createtime, up_time as upTime, down_time as downTime, vip_code as vipCode, company_id from tb_vip where vip_code = #{code,jdbcType=VARCHAR}
 	</select>
 	<resultMap type="com.shop.pojo.Moneyio" id="MoneyioMapper" extends="BaseResultMap">
 		
@@ -42,17 +42,17 @@
 			<result column="address" jdbcType="VARCHAR" property="address" />
 			<result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
 			<result column="phone" jdbcType="VARCHAR" property="phone" />
-			<result column="birthday" jdbcType="TIMESTAMP"
-				property="birthday" />
+			<result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    		<result column="vip_code" jdbcType="VARCHAR" property="vipCodeString" />
 			
-			<association column="vip_code" property="vipCode" javaType="com.shop.pojo.VipInfo" select="equeryVip">
-				<id column="id" jdbcType="INTEGER" property="id" />
-			    <result column="vip_number" jdbcType="VARCHAR" property="vipNumber" />
-			    <result column="password" jdbcType="VARCHAR" property="password" />
-			    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-			    <result column="up_time" jdbcType="TIMESTAMP" property="upTime" />
-			    <result column="down_time" jdbcType="TIMESTAMP" property="downTime" />
-			    <result column="vip_code" jdbcType="VARCHAR" property="vipCode" />
+			 <association column="vipCode" property="vipCode" javaType="com.shop.pojo.VipInfo" select="equeryVip">
+				<id   jdbcType="INTEGER" property="id" />
+			    <result jdbcType="VARCHAR" property="vipNumber" />
+			    <result jdbcType="VARCHAR" property="password" />
+			    <result jdbcType="TIMESTAMP" property="createtime" />
+			    <result jdbcType="TIMESTAMP" property="upTime" />
+			    <result jdbcType="TIMESTAMP" property="downTime" />
+			    <result  jdbcType="VARCHAR" property="vipCode" />
 			</association>
 		</association>
 
@@ -62,7 +62,7 @@
 		`comment`, io_type
 	</sql>
 	<select id="selectByID" parameterType="java.lang.Integer"
-		resultMap="BaseResultMap">
+		resultMap="MoneyioMapper">
 		select
 		<include refid="Base_Column_List" />
 		from tb_moneyio

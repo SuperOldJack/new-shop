@@ -13,13 +13,21 @@ public class Worker {
 
 	private String e_mail;
 
-
-
 	private String phone;
 
 	private Date birthday;
-
+	
+	private String vipCodeString;
+	
 	private VipInfo vipCode;
+
+	public VipInfo getVipCode() {
+		return vipCode;
+	}
+
+	public void setVipCode(VipInfo vipCode) {
+		this.vipCode = vipCode;
+	}
 
 	public Integer getId() {
 		return id;
@@ -75,12 +83,12 @@ public class Worker {
 		this.birthday = birthday;
 	}
 
-	public VipInfo getVipCode() {
-		return vipCode;
+	
+	public String getVipCodeString() {
+		return vipCodeString;
 	}
 
-	public void setVipCode(VipInfo vipCode) {
-		this.vipCode = vipCode;
+	public void setVipCodeString(String vipCodeString) {
+		this.vipCodeString = vipCodeString;
 	}
-	
 }

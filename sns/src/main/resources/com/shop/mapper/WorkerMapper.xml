@@ -9,17 +9,9 @@
     <result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    
-	<association property="vipCode" javaType="com.shop.pojo.VipInfo">   
-        <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="vip_number" jdbcType="VARCHAR" property="vipNumber" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="up_time" jdbcType="TIMESTAMP" property="upTime" />
-    <result column="down_time" jdbcType="TIMESTAMP" property="downTime" />
-    <result column="vip_code" jdbcType="VARCHAR" property="vipCode" />
-    </association>
+    <result column="vip_code" jdbcType="VARCHAR" property="vipCodeString" />
   </resultMap>
+  
   <sql id="Base_Column_List">
     id, name, sex, address, e_mail, phone, birthday, vip_code
   </sql>

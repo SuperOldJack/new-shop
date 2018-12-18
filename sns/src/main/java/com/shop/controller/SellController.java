@@ -9,7 +9,7 @@ import com.shop.service.MoneyioService;
 import com.shop.service.SellReturnService;
 
 @Controller
-public class SellReturnController {
+public class SellController {
 	
 	@Autowired
 	SellReturnService sellReturnService; 

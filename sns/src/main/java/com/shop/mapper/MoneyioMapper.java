@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.Moneyio;
+import com.shop.pojo.VipInfo;
 
 /**
  * 收支表
@@ -40,5 +41,8 @@ public interface MoneyioMapper {
      * @return 收支单
      */
     Moneyio selectByCode(String code);
+    
+    
+    VipInfo equeryVip(String code);
     
 }
