@@ -3,22 +3,29 @@
 <mapper namespace="com.shop.mapper.document.OrderGoodsMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.document.OrderGoods">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="goods_document_code" jdbcType="VARCHAR" property="goods_document_code" />
-    <result column="client_id" jdbcType="INTEGER" property="client_id" />
     <result column="amount_money" jdbcType="DECIMAL" property="amount_money" />
     <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
     <result column="card_id" jdbcType="INTEGER" property="card_id" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <association column="goods_document_code" property="goodsDocument" resultMap="com.shop.mapper.document.GoodsDocumentMapper.BaseResultMap"></association>
+    <association column="client_id" property="client" resultMap="com.shop.mapper.BaseMapper.UserResultMap"></association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, goods_document_code, client_id, amount_money, actual_money, card_id, comment
+    id, goods_document_code, client_id, amount_money, actual_money, card_id, `comment`
+  </sql>
+  <sql id="Select_info">
+  	select og.id, og.goods_document_code, og.client_id, og.amount_money, og.actual_money, og.card_id, og.`comment`,
+			 gd.`code`,gd.manage_lib_id ,gd.manage_man_id ,gd.create_time ,gd.create_man ,gd.document_type ,gd.isEffective   ,gd.`comment` as goods_document_comment,ui.name,ui.sex ,ui.address ,ui.e_mail ,ui.phone
+    from tb_order_goods as og LEFT JOIN tb_goods_document as gd ON og.goods_document_code = gd.`code`
+				 LEFT JOIN tb_user_info as ui ON og.client_id = ui.id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_order_goods
-    where id = #{id,jdbcType=INTEGER}
+    <include refid="Select_info" />
+    	where og.id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_order_goods
     where id = #{id,jdbcType=INTEGER}

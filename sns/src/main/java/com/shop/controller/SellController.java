@@ -2,9 +2,11 @@ package com.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shop.pojo.Moneyio;
+import com.shop.pojo.document.OrderGoods;
 import com.shop.service.MoneyioService;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
@@ -27,9 +29,18 @@ public class SellController {
 	
 	@RequestMapping("/orderGoodsTest")
 	public String orderGoodsTest() {
-		System.out.println("");
-		if(orderGoodsService.selectById(1) == null) System.out.println("OK"); 
-		return "jackUserTest"; 
+		OrderGoods orderGoods = orderGoodsService.selectById(1);
+		System.out.println(orderGoods.getCard_id());
+		return "orderbill"; 
 	}
+	
+	@RequestMapping("/orderGoodsAdd")
+	public String orderGoodsAdd(OrderGoods orderGoods,String comment) {
+		System.out.println(comment);
+		//orderGoodsService.seveOrderGoods(orderGoods);
+		System.out.println(orderGoods);
+		return "orderbill"; 
+	}
+	
 	
 }

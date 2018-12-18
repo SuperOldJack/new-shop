@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.BaseMapper">
+	
+  <!-- 仓库模型 -->
+  <resultMap id="LibResultMap" type="com.shop.pojo.Lib">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="lib_phone" jdbcType="VARCHAR" property="lib_phone" />
+    <result column="lib_manage_man" jdbcType="VARCHAR" property="lib_manage_man" />
+    <result column="manage_phone" jdbcType="VARCHAR" property="manage_phone" />
+  </resultMap>
+  
+  <resultMap id="UserResultMap" type="com.shop.pojo.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+</mapper>

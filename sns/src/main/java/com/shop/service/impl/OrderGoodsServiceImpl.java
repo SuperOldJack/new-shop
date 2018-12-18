@@ -19,4 +19,7 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 		return orderGoodsMapper.selectByPrimaryKey(id);
 	}
 
+	public int seveOrderGoods(OrderGoods orderGoods) {
+		return orderGoodsMapper.insertSelective(orderGoods);
+	};
 }

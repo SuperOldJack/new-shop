@@ -4,4 +4,6 @@ import com.shop.pojo.document.OrderGoods;
 
 public interface OrderGoodsService {
 	OrderGoods selectById(Integer id);
+	
+	int seveOrderGoods(OrderGoods orderGoods); 
 }
