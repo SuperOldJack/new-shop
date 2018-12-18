@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shop.pojo.Moneyio;
 import com.shop.service.MoneyioService;
+import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
 
+@RequestMapping("/sellManage")
 @Controller
 public class SellController {
 	
 	@Autowired
-	SellReturnService sellReturnService; 
+	SellReturnService sellReturnService;//销售退款处理 
 	
+	@Autowired
+	OrderGoodsService orderGoodsService;//销售货品处理
 	
 	@RequestMapping("/sellReturnTest")
 	public String sellReturnTest() {
@@ -21,5 +25,11 @@ public class SellController {
 		return "jackUserTest"; 
 	}
 	
+	@RequestMapping("/orderGoodsTest")
+	public String orderGoodsTest() {
+		System.out.println("");
+		if(orderGoodsService.selectById(1) == null) System.out.println("OK"); 
+		return "jackUserTest"; 
+	}
 	
 }

@@ -1,7 +1,10 @@
 package com.shop.mapper.document;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.shop.pojo.document.OrderGoods;
 
+@Mapper
 public interface OrderGoodsMapper {
     int deleteByPrimaryKey(Integer id);
 
