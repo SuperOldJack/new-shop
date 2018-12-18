@@ -65,37 +65,46 @@
 	</div>
 	<div class="modal_bg modal_hide" onclick="hideModal()"></div>
 	<div class="lr_modal modal_hide">
-		<div id="regForm" class="reg_from modal_hide">
-			<form action="">
-				<label>注册form、</label> <label>电话</label><input> <label>验证码</label><input>
+		<div class="lr_logo_div">
+			<img class="logo_img" alt="" src="images/ns3_1.png">
+		</div>
+		<div id="regForm" class="modal_hide lr_from ">
+			<form>
+				<div class="form-group">
+					<label for="email">手机号:</label> <input type="text"
+						class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="pwd">密码:</label> <input type="password"
+						class="form-control">
+				</div>
+				<div class="submit_div">
+					<a class="submit_btn" onclick="regSubmit()">注册</a>
+				</div>
 			</form>
 		</div>
 
-		<div id="loginForm" class="login_from">
-			<form action="">
-				<label>登录form、</label> <label>电话</label><input> <label>验证码</label><input>
+		<div id="loginForm" class="lr_from">
+			<form>
+				<div class="form-group">
+					<label for="email">账号:</label> <input type="text"
+						class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="pwd">密码:</label> <input type="password"
+						class="form-control">
+				</div>
+				<div class="submit_div">
+					<a class="submit_btn" onclick="regSubmit()">登录</a>
+				</div>
 			</form>
 		</div>
-		<button onclick="changeLR()">切换</button>
+		<div class="propmt_text">
+			<span>已有账号?</span><a onclick="changeLR()">登录</a>
+		</div>
 		<!-- <div class="lr_head">
 			
 		</div> -->
 	</div>
 </body>
 </html>
-<!-- <form>
-	<div class="form-group">
-		<label for="email">Email address:</label> <input type="email"
-			class="form-control" id="email">
-	</div>
-	<div class="form-group">
-		<label for="pwd">Password:</label> <input type="password"
-			class="form-control" id="pwd">
-	</div>
-	<div class="form-check">
-		<label class="form-check-label"> <input
-			class="form-check-input" type="checkbox"> Remember me
-		</label>
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
