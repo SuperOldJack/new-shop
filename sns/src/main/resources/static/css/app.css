@@ -1,0 +1,75 @@
+div {border: 1px #000 solid;}
+
+.pageBody{
+	float:left;width: 100%;background-image: url("/images/bg_img.jpg");
+	background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;}
+.app_body {
+	width: 100%;
+	float:left;
+	background-color: hsla(0,0%,100%,.5);
+}
+.left_div_show {
+	float:left;
+	width:20%;
+	display: block;
+}
+.left_div_hide {
+	width:0%;
+	display: none;
+}
+.rigth_div_small {
+	float:left;
+	width:80%;
+}
+.rigth_div_big {
+	float:left;
+	width:100%;
+}
+.rigth_head_div {
+	width: 100%;padding:0px 15px;
+}
+/* 打开/关闭左侧菜单的按钮 */
+.show_left_mune {
+	line-height: 50px;font-size: 25px;font-family: sans-serif;cursor:pointer;color: #666; 
+}
+/* 右侧菜单 */
+.rigth_menu {
+	float:right;
+	color: #666;width: 40%;
+}
+.rigth_menu ul { margin: 0px; padding: 0px;}
+.rigth_menu li { list-style-type: none; float: left; display: inline;margin: 0px 8px;}
+.rigth_menu a {display: block; line-height: 50px;cursor:pointer;color: #999; }
+.rigth_menu a:hover{}
+/* 头像 */
+.tx_div {left:left;height: 50px; width: 50px;border-radius:25px;
+	overflow: hidden;}
+.tx_img {width: 100%;height: 100%;}
+/* 右侧内容父级div */
+.rigth_body_div {
+	width: 100%;
+}
+/* logo */
+.logo_div {
+	width: 100%;
+	height: 50px;
+}
+.logo_img {width: 100%; height: 100%;}
+/* 左侧菜单栏 */
+.left_mune_div {
+	width: 100%; text-align: center;font-size: 15px;color: #666;
+}
+.left_mune_div ul { margin: 0px; padding: 0px;}
+.left_mune_div li {
+	list-style-type: none;display: inline;
+}
+.left_mune_div a {
+	color: #666;border-bottom:1px #999 solid;
+	line-height: 50px;
+	font-size: 18px;
+	display: block;
+	cursor: pointer;
+}
+.left_mune_div a:hover {
+	
+}
