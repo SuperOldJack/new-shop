@@ -1,4 +1,4 @@
-div {border: 1px #000 solid;}
+/* div {border: 1px #000 solid;} */
 
 .pageBody{
 	float:left;width: 100%;background-image: url("/images/bg_img.jpg");
@@ -10,7 +10,7 @@ div {border: 1px #000 solid;}
 }
 .left_div_show {
 	float:left;
-	width:20%;
+	width:20%;border-right:1px #666 solid;
 	display: block;
 }
 .left_div_hide {
@@ -27,6 +27,7 @@ div {border: 1px #000 solid;}
 }
 .rigth_head_div {
 	width: 100%;padding:0px 15px;
+	    background-color: hsla(213, 82%, 68%, 0.8);
 }
 /* 打开/关闭左侧菜单的按钮 */
 .show_left_mune {
@@ -38,9 +39,9 @@ div {border: 1px #000 solid;}
 	color: #666;width: 40%;
 }
 .rigth_menu ul { margin: 0px; padding: 0px;}
-.rigth_menu li { list-style-type: none; float: left; display: inline;margin: 0px 8px;}
-.rigth_menu a {display: block; line-height: 50px;cursor:pointer;color: #999; }
-.rigth_menu a:hover{}
+.rigth_menu li { list-style-type: none; float: left; display: inline;}
+.rigth_menu a {display: block; line-height: 50px;cursor:pointer;color: #666; padding: 0px 10px;}
+.rigth_menu a:hover{background-color: hsla(0, 0%, 100%, 0.5);}
 /* 头像 */
 .tx_div {left:left;height: 50px; width: 50px;border-radius:25px;
 	overflow: hidden;}
@@ -73,3 +74,36 @@ div {border: 1px #000 solid;}
 .left_mune_div a:hover {
 	
 }
+/* 登录/注册模态框 */
+.modal_hide{display: none;}
+.modal_bg {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	opacity: 0.6;
+	background-color: black;
+	z-index: 9;
+}
+
+.lr_modal {
+	/* background-color: hsla(0, 0%, 100%, 0.5); */
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 30%;min-width:370px;
+	height: 400px;
+	margin-left: -200px;
+	margin-top: -250px;
+	z-index: 10;
+	background-color: white;
+}
+
+
+/* .lr_head {
+	width: 100%;text-align: center;
+	font-size: 18px; color: #666;line-height: 40px;
+} */
+/* .login_btn{color:#fff; float: left;width: 50%;cursor: pointer; background-color: #0456bb;}
+.reg_btn{float: left;width: 50%;cursor: pointer;} */
