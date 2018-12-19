@@ -1,37 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<HEAD>
-<title>增加销售单</title>
-<SCRIPT language=JavaScript src="/js/date.js"></SCRIPT>
-
-<SCRIPT language=JavaScript src="/js/xmlhttp.js"></SCRIPT>
-
-<SCRIPT language=JavaScript src="/js/order.js"></SCRIPT>
-
-<SCRIPT language=JavaScript src="/js/showphoto.js"></SCRIPT>
-
-<SCRIPT language=JavaScript src="/js/addrow.js"></SCRIPT>
-
-
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<LINK href="/css/style.css" type=text/css rel=stylesheet>
-<META http-equiv=Pragma content=no-cache>
-<SCRIPT language=JavaScript src="/js/addrow.js"></SCRIPT>
-
-<SCRIPT language=JavaScript src="/js/jquery.js"></SCRIPT>
-
-
-<META content="MSHTML 6.00.6000.16981" name=GENERATOR>
-</HEAD>
-<BODY>
-	<form action="/sellManage/orderGoodsAdd" method="post">
-		<input name="comment" type="text">
-		<input  type="submit">
-	</form>
-
 	<TABLE align=center border=0>
 		<TBODY>
 			<TR>
@@ -125,5 +93,3 @@
 			</TR>
 		</TBODY>
 	</TABLE>
-</BODY>
-</HTML>
