@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.Moneyio;
 import com.shop.pojo.VipInfo;
 import com.shop.pojo.document.SellReturn;
+import com.shop.service.GoodsInfoService;
 import com.shop.service.MoneyioService;
 import com.shop.service.SellReturnService;
 
@@ -20,6 +22,8 @@ public class JackTestController {
 	@Autowired
 	MoneyioService moneyioService;
 	
+	@Autowired
+	GoodsInfoService  goodsInfoService;
 	
 	@RequestMapping("/sellReturnTest")
 	public String sellReturnTest() {
@@ -38,6 +42,13 @@ public class JackTestController {
 		return "jackUserTest";
 	}
 	
+	
+	@RequestMapping("/goodsTest")
+	public String goodsTest() {
+		 GoodsInfo selectById = goodsInfoService.selectById(1);
+		 System.out.println(selectById);
+		 return "orderbill";
+	}
 	
 	@RequestMapping("/sellDocument")
 	public String sellDocument() {

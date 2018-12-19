@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.GoodsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.GoodsInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="unit" jdbcType="INTEGER" property="unit" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
+    <association column="specification_id" property="specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
+    <association column="shop_id" property="shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_document_code, shop_id, specification_id, price, unit, count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goods_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_goods_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shop.pojo.GoodsInfo">
+    insert into tb_goods_info (id, goods_document_code, shop_id, 
+      specification_id, price, unit, 
+      count)
+    values (#{id,jdbcType=INTEGER}, #{goods_document_code,jdbcType=VARCHAR}, #{shop_id,jdbcType=INTEGER}, 
+      #{specification_id,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{unit,jdbcType=INTEGER}, 
+      #{count,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shop.pojo.GoodsInfo">
+    insert into tb_goods_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goods_document_code != null">
+        goods_document_code,
+      </if>
+      <if test="shop_id != null">
+        shop_id,
+      </if>
+      <if test="specification_id != null">
+        specification_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_document_code != null">
+        #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="shop_id != null">
+        #{shop_id,jdbcType=INTEGER},
+      </if>
+      <if test="specification_id != null">
+        #{specification_id,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.GoodsInfo">
+    update tb_goods_info
+    <set>
+      <if test="goods_document_code != null">
+        goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="shop_id != null">
+        shop_id = #{shop_id,jdbcType=INTEGER},
+      </if>
+      <if test="specification_id != null">
+        specification_id = #{specification_id,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.GoodsInfo">
+    update tb_goods_info
+    set goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      shop_id = #{shop_id,jdbcType=INTEGER},
+      specification_id = #{specification_id,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

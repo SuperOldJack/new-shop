@@ -17,7 +17,7 @@ public class GoodsInfo {
     private String unit;
     
 	private Shop shop;
-
+	
     private Specification specification;
 
     private BigDecimal price;

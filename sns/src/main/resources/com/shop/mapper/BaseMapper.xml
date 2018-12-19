@@ -21,4 +21,23 @@
     <result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
+  <!-- 商店模型 -->
+  <resultMap id="ShopResultMap" type="com.shop.pojo.Shop">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  
+  
+  <!-- sql语句区域 -->
+  <select id="selectShopByPrimaryKey" parameterType="java.lang.Integer" resultMap="ShopResultMap">
+    select id, name from tb_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="selectLibByPrimaryKey" parameterType="java.lang.Integer" resultMap="LibResultMap">
+    select id, name, address, lib_phone, lib_manage_man, manage_phone
+    from tb_lib
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -35,7 +35,7 @@ public class SellController {
 		 * OrderGoods orderGoods = orderGoodsService.selectById(1);
 		 * System.out.println(orderGoods.getCard_id());
 		 * */
-		return "orderbill"; 
+		return "addSell"; 
 	}
 	
 	@RequestMapping("/orderGoodsAdd")
@@ -46,7 +46,7 @@ public class SellController {
 			System.out.println("出现异常");
 			return "error"; 
 		}
-		return "orderbill"; 
+		return "addSell"; 
 	}
 	
 	
