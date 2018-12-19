@@ -17008,7 +17008,7 @@ footer {
     .mdc-persistent-drawer--open .mdc-list-group .mdc-drawer-menu, .mdc-persistent-drawer__drawer .mdc-list-group .mdc-drawer-menu {
       padding: 25px 0 200px 0;
       position: relative;
-      overflow: hidden;
+      overflow: overlay;
       max-height: 500px; }
   .mdc-persistent-drawer__drawer {
     border-right: 0; }
