@@ -102,9 +102,6 @@
 		<div class="propmt_text">
 			<span>已有账号?</span><a onclick="changeLR()">登录</a>
 		</div>
-		<!-- <div class="lr_head">
-			
-		</div> -->
 	</div>
 </body>
 </html>
