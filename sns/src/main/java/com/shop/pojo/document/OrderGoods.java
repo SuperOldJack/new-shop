@@ -2,6 +2,7 @@ package com.shop.pojo.document;
 
 import java.math.BigDecimal;
 
+import com.shop.pojo.Card;
 import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.UserInfo;
 
@@ -10,7 +11,7 @@ public class OrderGoods {
 
 	private GoodsDocument goodsDocument;
 
-
+	
 
 	private UserInfo client;
 	
@@ -18,7 +19,19 @@ public class OrderGoods {
 
 	private BigDecimal actual_money;
 
+	//外键ID 只读
 	private Integer card_id;
+	
+	private Card card;
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		card_id = card.getId();
+		this.card = card;
+	}
 
 	private String comment;
 
@@ -62,12 +75,12 @@ public class OrderGoods {
 	}
 
 	public Integer getCard_id() {
+		if(card_id == null && card != null) {
+			card_id = card.getId();
+		}
 		return card_id;
 	}
 
-	public void setCard_id(Integer card_id) {
-		this.card_id = card_id;
-	}
 
 	public String getComment() {
 		return comment;

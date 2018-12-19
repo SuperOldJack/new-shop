@@ -1,9 +1,15 @@
 package com.shop.service.impl;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.shop.mapper.document.GoodsDocumentMapper;
 import com.shop.mapper.document.OrderGoodsMapper;
+import com.shop.pojo.Lib;
+import com.shop.pojo.Worker;
 import com.shop.pojo.document.OrderGoods;
 import com.shop.service.OrderGoodsService;
 
@@ -13,13 +19,33 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 	@Autowired
 	OrderGoodsMapper orderGoodsMapper;
 	
+	@Autowired
+	GoodsDocumentMapper goodsDocumentMapper;
+	
 	@Override
 	public OrderGoods selectById(Integer id) {
 		
 		return orderGoodsMapper.selectByPrimaryKey(id);
 	}
 
-	public int seveOrderGoods(OrderGoods orderGoods) {
-		return orderGoodsMapper.insertSelective(orderGoods);
+	@Transactional
+	public int seveOrderGoods(OrderGoods orderGoods) throws SQLException {
+		//测试代码  --记得删除
+		Worker testWorkernew = new Worker();
+		Lib lib = new Lib();
+		lib.setId(1);
+		testWorkernew.setId(1);
+		orderGoods.getGoodsDocument().setCreateMan(testWorkernew);
+		orderGoods.getGoodsDocument().setManageMan(testWorkernew);
+		orderGoods.getGoodsDocument().setDocument_type("超级测试单");
+		orderGoods.getGoodsDocument().setManageLib(lib);
+		
+		int documentResult = goodsDocumentMapper.insertSelective(orderGoods.getGoodsDocument());
+		int orderResult = orderGoodsMapper.insertSelective(orderGoods);
+		
+		
+		int result = (orderResult > 0 && documentResult > 0) ? 1 : 0;
+		if(result <= 0) throw new SQLException("sql处理错误 --未增加数据");
+		return result;
 	};
 }

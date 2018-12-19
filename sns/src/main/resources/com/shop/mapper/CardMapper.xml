@@ -3,7 +3,7 @@
 <mapper namespace="com.shop.mapper.CardMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.Card">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="card_name" jdbcType="VARCHAR" property="name" />
     <result column="card_number" jdbcType="CHAR" property="card_number" />
   </resultMap>
   <sql id="Base_Column_List">

@@ -28,30 +28,22 @@
     delete from tb_goods_document
     where code = #{code,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.shop.pojo.GoodsDocument">
-    insert into tb_goods_document (code, manage_lib_id, manage_man_id, 
-      create_time, create_man, document_type, 
-      isEffective, comment)
-    values (#{code,jdbcType=VARCHAR}, #{manage_lib_id,jdbcType=INTEGER}, #{manage_man_id,jdbcType=INTEGER}, 
-      #{create_time,jdbcType=TIMESTAMP}, #{create_man,jdbcType=INTEGER}, #{document_type,jdbcType=VARCHAR}, 
-      #{isEffective,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="com.shop.pojo.GoodsDocument">
     insert into tb_goods_document
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="code != null">
         code,
       </if>
-      <if test="manage_lib_id != null">
+      <if test="manageLib.id != null">
         manage_lib_id,
       </if>
-      <if test="manage_man_id != null">
+      <if test="manageMan.id != null">
         manage_man_id,
       </if>
       <if test="create_time != null">
         create_time,
       </if>
-      <if test="create_man != null">
+      <if test="createMan.id != null">
         create_man,
       </if>
       <if test="document_type != null">
@@ -68,17 +60,17 @@
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="manage_lib_id != null">
-        #{manage_lib_id,jdbcType=INTEGER},
+      <if test="manageLib.id != null">
+        #{manageLib.id,jdbcType=INTEGER},
       </if>
-      <if test="manage_man_id != null">
-        #{manage_man_id,jdbcType=INTEGER},
+      <if test="manageMan.id != null">
+        #{manageMan.id,jdbcType=INTEGER},
       </if>
       <if test="create_time != null">
         #{create_time,jdbcType=TIMESTAMP},
       </if>
-      <if test="create_man != null">
-        #{create_man,jdbcType=INTEGER},
+      <if test="createMan.id != null">
+        #{createMan.id,jdbcType=INTEGER},
       </if>
       <if test="document_type != null">
         #{document_type,jdbcType=VARCHAR},

@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,16 +31,21 @@ public class SellController {
 	
 	@RequestMapping("/orderGoodsTest")
 	public String orderGoodsTest() {
-		OrderGoods orderGoods = orderGoodsService.selectById(1);
-		System.out.println(orderGoods.getCard_id());
+		/*
+		 * OrderGoods orderGoods = orderGoodsService.selectById(1);
+		 * System.out.println(orderGoods.getCard_id());
+		 * */
 		return "orderbill"; 
 	}
 	
 	@RequestMapping("/orderGoodsAdd")
-	public String orderGoodsAdd(OrderGoods orderGoods,String comment) {
-		System.out.println(comment);
-		//orderGoodsService.seveOrderGoods(orderGoods);
-		System.out.println(orderGoods);
+	public String orderGoodsAdd(OrderGoods orderGoods) {
+		try {
+			orderGoodsService.seveOrderGoods(orderGoods);
+		} catch (SQLException e) {
+			System.out.println("出现异常");
+			return "error"; 
+		}
 		return "orderbill"; 
 	}
 	
