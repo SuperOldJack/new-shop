@@ -5,7 +5,17 @@ public class Shop {
 
     private String name;
 
-    public Integer getId() {
+    private String content;
+    
+    public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Integer getId() {
         return id;
     }
 

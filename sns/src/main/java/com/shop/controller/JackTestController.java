@@ -47,11 +47,11 @@ public class JackTestController {
 	public String goodsTest() {
 		 GoodsInfo selectById = goodsInfoService.selectById(1);
 		 System.out.println(selectById);
-		 return "orderbill";
+		 return "/sell/addSell";
 	}
 	
 	@RequestMapping("/sellDocument")
 	public String sellDocument() {
-		return "orderbill";
+		return "/sell/addSell";
 	}
 }

@@ -34,7 +34,6 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 		Worker testWorkernew = new Worker();
 		testWorkernew.setId(1);
 		orderGoods.getGoodsDocument().setCreateMan(testWorkernew);
-		orderGoods.getGoodsDocument().setManageMan(testWorkernew);
 		orderGoods.getGoodsDocument().setDocument_type(OrderGoods.type);
 		
 		int documentResult = goodsDocumentMapper.insertSelective(orderGoods.getGoodsDocument());
