@@ -11,4 +11,10 @@ public class HhqTestController {
 		System.out.println("goIndex");
 		return "index";
 	}
+	
+	@RequestMapping("/addPurchaseOrder")
+	public String go() {
+		System.out.println("6666");
+		return "purchase/addPurchaseOrder";
+	}
 }
