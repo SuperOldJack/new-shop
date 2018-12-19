@@ -5,16 +5,15 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="amount_money" jdbcType="DECIMAL" property="amount_money" />
     <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
     <association column="goods_document_code" property="goodsDocument" resultMap="com.shop.mapper.document.GoodsDocumentMapper.BaseResultMap"></association>
     <association column="card_id" property="card" resultMap="com.shop.mapper.CardMapper.BaseResultMap"></association>
     <association column="client_id" property="client" resultMap="com.shop.mapper.BaseMapper.UserResultMap"></association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, goods_document_code, client_id, amount_money, actual_money, card_id, `comment`
+    id, goods_document_code, client_id, amount_money, actual_money, card_id
   </sql>
   <sql id="Select_info">
-  	select og.id, og.goods_document_code, og.client_id, og.amount_money, og.actual_money, og.card_id, og.`comment`,
+  	select og.id, og.goods_document_code, og.client_id, og.amount_money, og.actual_money, og.card_id, 
 			 gd.`code`,gd.manage_lib_id ,gd.manage_man_id ,gd.create_time ,gd.create_man ,gd.document_type ,gd.isEffective   ,gd.`comment` as goods_document_comment,ui.name,ui.sex ,ui.address ,ui.e_mail ,ui.phone,card.name as card_name
     from tb_order_goods as og LEFT JOIN tb_goods_document as gd ON og.goods_document_code = gd.`code`
 				 LEFT JOIN tb_user_info as ui ON og.client_id = ui.id
@@ -33,11 +32,9 @@
   </delete>
   <insert id="insert" parameterType="com.shop.pojo.document.OrderGoods">
     insert into tb_order_goods (id, goods_document_code, client_id, 
-      amount_money, actual_money, card_id, 
-      `comment`)
+      amount_money, actual_money, card_id)
     values (#{id,jdbcType=INTEGER}, #{goodsDocument.code,jdbcType=VARCHAR}, #{client.id,jdbcType=INTEGER}, 
-      #{amount_money,jdbcType=DECIMAL}, #{actual_money,jdbcType=DECIMAL}, #{card_id,jdbcType=INTEGER}, 
-      #{comment,jdbcType=VARCHAR})
+      #{amount_money,jdbcType=DECIMAL}, #{actual_money,jdbcType=DECIMAL}, #{card_id,jdbcType=INTEGER}
   </insert>
   <insert id="insertSelective" parameterType="com.shop.pojo.document.OrderGoods">
     insert into tb_order_goods
@@ -57,9 +54,6 @@
       <if test="card_id != null">
         card_id,
       </if>
-      <if test="comment != null">
-        comment,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="goodsDocument.code != null">
@@ -76,9 +70,6 @@
       </if>
       <if test="card_id != null">
         #{card_id,jdbcType=INTEGER},
-      </if>
-      <if test="comment != null">
-        #{comment,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -100,9 +91,6 @@
       <if test="card_id != null">
         card_id = #{card_id,jdbcType=INTEGER},
       </if>
-      <if test="comment != null">
-        comment = #{comment,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -112,8 +100,7 @@
       client_id = #{client_id,jdbcType=INTEGER},
       amount_money = #{amount_money,jdbcType=DECIMAL},
       actual_money = #{actual_money,jdbcType=DECIMAL},
-      card_id = #{card_id,jdbcType=INTEGER},
-      comment = #{comment,jdbcType=VARCHAR}
+      card_id = #{card_id,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

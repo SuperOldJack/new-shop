@@ -66,7 +66,7 @@
 								</TR>
 								<TR>
 									<TD align=right>仓&nbsp;&nbsp;&nbsp;&nbsp;库</TD>
-									<TD><SELECT id=depot name=manageLib.id><OPTION value=1
+									<TD><SELECT id=depot name=goodsDocument.manageLib.id><OPTION value=1
 												selected>一号仓库</OPTION></SELECT><FONT color=red>*</FONT></TD>
 									<TD align=right>制 单 人</TD>
 									<TD><INPUT readOnly size=16 value=1 name=createMan.id><FONT
@@ -74,7 +74,7 @@
 								</TR>
 								<TR>
 									<TD align=right>备 注</TD>
-									<TD><INPUT onKeyDown="" size=30 name=comment></TD>
+									<TD><INPUT onKeyDown="" size=30 name=goodsDocument.comment></TD>
 									<TD align=right>经 办 人</TD>
 									<TD>
 										<SELECT name=goodsDocument.manageMan.id>

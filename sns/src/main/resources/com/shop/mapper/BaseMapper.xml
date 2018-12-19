@@ -12,6 +12,7 @@
     <result column="manage_phone" jdbcType="VARCHAR" property="manage_phone" />
   </resultMap>
   
+  <!-- 用户模型 -->
   <resultMap id="UserResultMap" type="com.shop.pojo.UserInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />

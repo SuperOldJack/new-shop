@@ -32,13 +32,10 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 	public int seveOrderGoods(OrderGoods orderGoods) throws SQLException {
 		//测试代码  --记得删除
 		Worker testWorkernew = new Worker();
-		Lib lib = new Lib();
-		lib.setId(1);
 		testWorkernew.setId(1);
 		orderGoods.getGoodsDocument().setCreateMan(testWorkernew);
 		orderGoods.getGoodsDocument().setManageMan(testWorkernew);
-		orderGoods.getGoodsDocument().setDocument_type("超级测试单");
-		orderGoods.getGoodsDocument().setManageLib(lib);
+		orderGoods.getGoodsDocument().setDocument_type(OrderGoods.type);
 		
 		int documentResult = goodsDocumentMapper.insertSelective(orderGoods.getGoodsDocument());
 		int orderResult = orderGoodsMapper.insertSelective(orderGoods);

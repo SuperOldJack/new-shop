@@ -7,6 +7,8 @@ import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.UserInfo;
 
 public class OrderGoods {
+	public final static String type = "销售单";
+	
 	private Integer id;
 
 	private GoodsDocument goodsDocument;
@@ -29,11 +31,10 @@ public class OrderGoods {
 	}
 
 	public void setCard(Card card) {
+		
 		card_id = card.getId();
 		this.card = card;
 	}
-
-	private String comment;
 
 	public Integer getId() {
 		return id;
@@ -82,11 +83,4 @@ public class OrderGoods {
 	}
 
 
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment == null ? null : comment.trim();
-	}
 }

@@ -11,6 +11,8 @@ import com.shop.service.MoneyioService;
 @Service("moneyioService")
 public class MoneyioServiceImpl implements MoneyioService{
 
+	
+	
 	@Autowired
 	MoneyioMapper moneyioMapper;
 	
