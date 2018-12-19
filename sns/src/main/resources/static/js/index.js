@@ -4,7 +4,8 @@ function loadPage(that) {
 	$("#main").load("/test/"+type+"/"+mid);
 }
 
-$(function() {
+//初始化菜单项
+function initPage() {
 	var menuParentArr = ["purchase","sell","stock","finance","stockAndBill","other","basicData","system"];
 	var menuHtml = "";
 	var menuArr = [
@@ -55,17 +56,41 @@ $(function() {
 		$("#"+menuParentArr[i]).find(".mdc-list").html(menuHtml);
 		menuHtml = "";
 	}
+}
+
+var flag2 = true;//登录注册表单切换控制
+
+//打开登录注册模态框
+function openModal() {
+	$(".modal_hide").removeClass("modal_hide");
+	changeLR();
+}
+//关闭登录注册模态框
+function hideModal() {
+	$(".lr_modal").addClass("modal_hide");
+	$(".modal_bg").addClass("modal_hide");
+}
+
+//切换登录注册
+function changeLR() {
+	if(flag2) {
+		//注册
+		$("#regForm").removeClass("modal_hide");
+		$("#loginForm").addClass("modal_hide");
+		$(".propmt_text span").text("已有账号?");
+		$(".propmt_text a").text("登录");
+		flag2 = false;
+	} else {
+		//登录
+		$("#loginForm").removeClass("modal_hide");
+		$("#regForm").addClass("modal_hide");
+		$(".propmt_text span").text("没有账号?");
+		$(".propmt_text a").text("注册");
+		flag2 = true;
+	}
+}
+
+$(function() {
+	initPage();
 	
 });
-//class="tabs-link" href="javascript:" data-url="people/MyQuestions.jsp"
-/*$(".atten").click(function() {
-		var url = $(this).attr("data-url");
-		$(".proFile-main").load(url);
-	});*/
-/*<nav class="mdc-list mdc-drawer-submenu">
-<div class="mdc-list-item mdc-drawer-item">
-  <a class="mdc-drawer-link">
-   	子菜单1
-  </a>
-</div>
-</nav>*/
