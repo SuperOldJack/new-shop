@@ -49,5 +49,4 @@ public class SellController {
 		return "/sell/addSell"; 
 	}
 	
-	
 }

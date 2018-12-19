@@ -28,8 +28,20 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
   
+  <!-- 计量单位 -->
+  <resultMap id="CountUnitResultMap" type="com.shop.pojo.CountUnity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unit_name" />
+  </resultMap>
   
   <!-- sql语句区域 -->
+  <select id="selectCountUnit"  resultMap="CountUnitResultMap">
+    select 
+    id, unit_name
+    from tb_count_unity
+  </select>
+  
+  
   <select id="selectShopByPrimaryKey" parameterType="java.lang.Integer" resultMap="ShopResultMap">
     select id, name, content from tb_shop
     where id = #{id,jdbcType=INTEGER}

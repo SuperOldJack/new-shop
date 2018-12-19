@@ -8,8 +8,6 @@ import com.shop.pojo.GoodsInfo;
 public interface GoodsInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(GoodsInfo record);
-
     int insertSelective(GoodsInfo record);
 
     GoodsInfo selectByPrimaryKey(Integer id);
@@ -17,4 +15,6 @@ public interface GoodsInfoMapper {
     int updateByPrimaryKeySelective(GoodsInfo record);
 
     int updateByPrimaryKey(GoodsInfo record);
+    
+    
 }
