@@ -21,6 +21,14 @@
   <sql id="Base_Column_List">
     id, vip_number, password, createtime, up_time, down_time, vip_code, company_id
   </sql>
+  
+  <select id="selectByVipNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from tb_vip
+    where vip_number = #{vipNumber,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

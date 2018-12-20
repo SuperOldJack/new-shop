@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML><HEAD><TITLE>进销存管理系统</TITLE>
 <META http-equiv=Content-Type content="text/html; charset=gb2312">
@@ -5,7 +7,7 @@
 	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
 }
 TD {
-	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
+	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
 }
 TH {
 	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
@@ -47,12 +49,12 @@ border=0>
               border=0><TBODY>
               <TR>
                 <TD width="50%" height=26>&nbsp;</TD>
-                <TD width="14%"><B>用户帐号:</B> </TD>
+                <TD width="14%"><B>ç¨æ·å¸å·:</B> </TD>
                 <TD width="36%"><INPUT style="WIDTH: 120px" value=user 
                   name=username></TD></TR>
               <TR>
                 <TD height=28>&nbsp;</TD>
-                <TD><B>登录密码:</B> </TD>
+                <TD><B>ç»å½å¯ç :</B> </TD>
                 <TD><INPUT style="WIDTH: 120px" type=password value=123 
                   name=password></TD></TR>
               <TR>
@@ -63,5 +65,5 @@ border=0>
                   src="HTML/images/login_dot.jpg" 
               name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></TD></TR>
   <TR>
-    <TD vAlign=top align=middle>联系电话: 0755-6238383 3620858 <BR>开发商：金蝶软件公司 <A href="#" 
+    <TD vAlign=top align=middle>èç³»çµè¯: 0755-6238383 3620858 <BR>å¼ååï¼éè¶è½¯ä»¶å¬å¸ <A href="#" 
       target=_blank>#</A></TD></TR></TBODY></TABLE></BODY></HTML>

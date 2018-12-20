@@ -1,7 +1,10 @@
 package com.shop.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.shop.pojo.VipInfo;
 
+@Mapper
 public interface VipInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,6 @@ public interface VipInfoMapper {
     int updateByPrimaryKeySelective(VipInfo record);
 
     int updateByPrimaryKey(VipInfo record);
+    
+    VipInfo selectByVipNumber(String vipNumber);
 }
