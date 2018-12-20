@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,23 +16,33 @@ public class IndexController {
 	@Autowired
 	VipInfoService vipInfoService;
 	
+	@RequestMapping("/goHome")
+	public String goHome(HttpSession session) {
+		VipInfo vip = (VipInfo)session.getAttribute("vip");
+		if(vip == null) {
+			return "index";
+		} else {
+			System.out.println("goHome");
+			return "home";
+		}
+	}
+	
 	@RequestMapping("/login")
-	public String login(Model model, VipInfo vip) {
+	public String login(Model model, VipInfo vip,HttpSession session) {
 		VipInfo vip2 = vipInfoService.selectByVipNumber(vip.getVipNumber());
-		if(vip2.equals(null)) {
-			model.addAttribute("errorInfo", "账号不存在");
+		if(vip2 == null) {
+			model.addAttribute("accountError", "账号不存在");
 			return "index";
 		}
 		if(vip.getPassword().trim().equals(vip2.getPassword().trim())) {
 			model.addAttribute("vip", vip2);
-			return "home";
+			session.putValue("vip", vip2);
+			return "redirect:goHome";
 		} else {
-			model.addAttribute("errorInfo", "密码错误");
+			model.addAttribute("pwdError", "密码错误");
 			return "index";
 		}
 	}
 	
-	public static void main(String[] args) {
-		
-	}
+	
 }
