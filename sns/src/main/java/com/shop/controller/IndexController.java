@@ -16,11 +16,18 @@ public class IndexController {
 	
 	@RequestMapping("/login")
 	public String login(Model model, VipInfo vip) {
-		System.out.println(vip.getVipNumber());
 		VipInfo vip2 = vipInfoService.selectByVipNumber(vip.getVipNumber());
-		System.out.println(vip2.getVipNumber()+"\t"+vip2.getPassword());
-		model.addAttribute("vip", vip);
-		return "index";
+		if(vip2.equals(null)) {
+			model.addAttribute("errorInfo", "账号不存在");
+			return "index";
+		}
+		if(vip.getPassword().trim().equals(vip2.getPassword().trim())) {
+			model.addAttribute("vip", vip2);
+			return "home";
+		} else {
+			model.addAttribute("errorInfo", "密码错误");
+			return "index";
+		}
 	}
 	
 	public static void main(String[] args) {

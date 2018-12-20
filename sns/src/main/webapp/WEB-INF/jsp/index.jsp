@@ -1,64 +1,67 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jQuery实现的Mac样式消息提示框DEMO演示</title>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>进销存管理系统</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
+}
+TH {
+	FONT-SIZE: 12px; COLOR: #000; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
+}
+A:visited {
+	FONT-SIZE: 12px; COLOR: #000; TEXT-DECORATION: none
+}
+A:link {
+	FONT-SIZE: 12px; COLOR: #000; TEXT-DECORATION: none
+}
+</STYLE>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/demo.css">
-<link rel="stylesheet" href="css/style.css">
+<META content="MSHTML 6.00.6000.16981" name=GENERATOR></HEAD>
+<BODY bgColor=#afd3f7>
+<SCRIPT language=javascript>
+	function check() {
+		if (document.form1.username.value == ""
+				|| document.form1.password.value == "") {
+			alert("请输入用户名称和口令！");
+			return false;
+		}
+	}
+</SCRIPT>
 
-</head>
-<body>
-
-<div class="container">
-	<div class="row content">
-		<div class="col-md-6">
-			<h3>插件特点:</h3>
-			<ul>
-				<li>三个显示位置: right, center or left.</li>
-				<li>六种情景模式: success, info, warning, danger, light, dark.</li>
-			</ul>
-		</div>
-		<div class="col-md-6">
-			<h3>示例:</h3>
-
-			<button class="btn btn-success m-2" onclick="$.hulla.send('这是一则成功信息', 'success')">Success</button>
-			<button class="btn btn-info m-2" onclick="$.hulla.send('这是一则信息', 'info')">Info</button>
-			<button class="btn btn-warning m-2" onclick="$.hulla.send('这是一则警告信息!', 'warning')">Warning</button>
-			<button class="btn btn-danger m-2" onclick="$.hulla.send('这是一则危险信息', 'danger')">Danger</button>
-			<button class="btn btn-light m-2" onclick="$.hulla.send('这是一则信息（亮色主题）', 'light')">Light</button>
-			<button class="btn btn-dark m-2" onclick="$.hulla.send('这是一则信息（暗色主题）', 'dark')">Dark</button>
-		</div>
-	</div>
-</div>
-
-<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/hullabaloo.js"></script>
-<script type="text/javascript">
-	$.hulla = new hullabaloo();
-
-	setTimeout(function() {
-	  $.hulla.send("Hi！这里是HTML5资源教程网！", "success");
-	}, 1000);
-
-	setTimeout(function() {
-	  $.hulla.send("欢迎您的访问！", "info");
-	}, 2000);
-
-	setTimeout(function() {
-	  $.hulla.send("想知道如何使用HTML5实现炫酷的应用吗？", "warning");
-	}, 3000);
-</script>
-
-<div style="text-align:center;clear:both;">
-<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
-<script src="/follow.js" type="text/javascript"></script>
-</div>
-
-</body>
-</html>
+<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" align=center 
+border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=center align=middle>
+      <FORM name=form1 action=HTML/index.htm method=post>
+      <TABLE cellSpacing=0 cellPadding=0 width=494 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top background=HTML/images/login_1.jpg 
+          height=95>&nbsp;</TD></TR>
+        <TR>
+          <TD vAlign=top background=HTML/images/login_2.jpg 
+            height=166><TABLE cellSpacing=6 cellPadding=0 width="100%" 
+              border=0><TBODY>
+              <TR>
+                <TD width="50%" height=26>&nbsp;</TD>
+                <TD width="14%"><B>用户帐号:</B> </TD>
+                <TD width="36%"><INPUT style="WIDTH: 120px" value=user 
+                  name=username></TD></TR>
+              <TR>
+                <TD height=28>&nbsp;</TD>
+                <TD><B>登录密码:</B> </TD>
+                <TD><INPUT style="WIDTH: 120px" type=password value=123 
+                  name=password></TD></TR>
+              <TR>
+                <TD height=29>&nbsp;</TD>
+                <TD>&nbsp;</TD>
+                <TD><INPUT style="WIDTH: 81px; HEIGHT: 22px" 
+                  onclick=form1.submit() type=image 
+                  src="HTML/images/login_dot.jpg" 
+              name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></TD></TR>
+  <TR>
+    <TD vAlign=top align=middle>联系电话: 0755-6238383 3620858 <BR>开发商：金蝶软件公司 <A href="#" 
+      target=_blank>#</A></TD></TR></TBODY></TABLE></BODY></HTML>

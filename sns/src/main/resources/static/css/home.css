@@ -1,106 +1,52 @@
-/* div {
-	border: 1px solid #000;
-} */
-.head_div {
-	position: relative;
-	width:100%;
-	/* margin: 0 auto;
-	text-align: center; */
-}
-/* 公共的头部 */
-.common_head {
-	position: relative; top: 0px; width:100%; line-height: 42px;
-}
-
-.common_head_div {
-	position : absolute; z-index: 100;width:100%;
-	background-color: hsla(0,0%,100%,.4);
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
-}
-/* 公共头部左边的菜单 */
-.menu_parent_left {
-	position: relative;
-	width:40%;
-	margin: 0 auto;
-	float: left;
-}
-.menu_parent_left ul {
-	float: left;margin: 0px; padding: 0px;
-}
-.menu_parent_left li {
-	margin:0px;
-	list-style-type:none; float: left;padding:0px;display: inline;
-}
-.menu_parent_left a {
-	list-style-type:none;color:#000;line-height: 50px;
-	display: block; padding:0px 8px;cursor:pointer;
-}
-.menu_parent_left a:hover{
-	list-style-type:none;background-color: hsla(0,0%,100%,.4);
-}
-/* 公共头部右边的菜单 */
-.menu_parent_right{
-	position: relative;
-	width:40%;
-	margin: 0 auto;
-	float: right;
-}
-.menu_parent_right ul {
-	float: right;margin: 0px; padding: 0px;
-}
-.menu_parent_right li {
-	margin:0px;
-	list-style-type:none; float: left;padding:0px;display: inline;
-}
-.menu_parent_right a {
-	list-style-type:none;color:#000;line-height: 50px;
-	display: block; padding:0px 8px;cursor:pointer;
-}
-.menu_parent_right a:hover{
-	list-style-type:none;background-color: hsla(0,0%,100%,.4);
-}
-.head_bg {
-	height:100%;z-index: 99;
-	/* position:relative;top:0px;
-    height:100% width: 100%; padding: 0px;  */
-}
-.head_bg_img {
-	height: 200px; width: 100%; margin:0px;
-}
-.logo{
-	left:left;height: 50px; width: 50px;
-}
-.logo_img{
-	height: 100%; width: 100%;
-}
-.touxiang {
-	left:left;height: 50px; width: 50px;border-radius:25px;
-	overflow: hidden;
+/* 登录/注册模态框 */
+.modal_hide{display: none;}
+.logo_img {width: 100%; height: 100%;}
+.modal_bg {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	opacity: 0.6;
+	background-color: black;
+	z-index: 9;
 }
 
-.common_bottom_div {
-	background-color: #c0c0c0; width:100%;
+.lr_modal {
+	/* background-color: hsla(0, 0%, 100%, 0.5); */
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 30%;min-width:370px;
+	/* height: 400px; */
+	margin-left: -200px;
+	margin-top: -250px;
+	z-index: 10;padding:10px;/* text-align:center; */
+	background-color: white;
 }
-.common_bottom {
-	padding:15px 0px;
+
+/* 登录注册模态框的logdiv */
+.lr_logo_div {
+	width: 100%;height: 80px;margin-bottom: 8px;
 }
-.bottom_module {
-	float: left;text-align: center;
+.lr_from {
+	padding: 0px 10px;
 }
-.niubi {
-	 position: absolute;
-  top: calc(50% - 150px);
-  left: calc(50% - 150px);
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow:
-    inset 0 0 50px #fff,
-    inset 20px 0 80px #f0f,
-    inset -20px 0 80px #0ff,
-    inset 20px 0 300px #f0f,
-    inset -20px 0 300px #0ff,
-    0 0 50px #fff,
-    -10px 0 80px #f0f,
-    10px 0 80px #0ff;
+.propmt_text {
+	width: 100%; text-align: center;font-size: 18px; line-height: 50px;
+	color: #666;
+}
+.propmt_text a{
+	cursor: pointer;
+}
+/* 表单提交按钮 */
+.submit_div { width: 100%; text-align: center;margin-top:10px;
+background-color: rgba(106, 167, 240, 1.0);}
+.submit_btn {
+	cursor: pointer; line-height: 50px; font-size: 18px;
+	color: #666;display: block;background-color: rgba(106, 167, 240, 1.0);
+	width: 100%;
+}
+.verify-wrap {
+	cursor: pointer;
 }
