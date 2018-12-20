@@ -42,10 +42,4 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <listener>
-    <listener-class>com.shop.listener.MyServletRequestListener</listener-class>
-  </listener>
-  <listener>
-  	<listener-class>com.shop.listener.LinstenerTest</listener-class>
-  </listener>
 </web-app>

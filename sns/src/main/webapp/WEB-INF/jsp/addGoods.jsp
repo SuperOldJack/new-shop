@@ -5,10 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<script type="text/javascript">
+	function sendDate(){
+		window.opener.document.getElementById("OpenDiv").innerHTML="我是从子窗口Open传过来的值"
+	}
+</script>
 <title>选择商品</title>
 </head>
 <body>
+
 	<c:forEach items="${goodsInfo}" var="item">
 		${item.name}
 	</c:forEach>
