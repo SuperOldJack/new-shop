@@ -170,7 +170,7 @@
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
  			<a class="mdc-button mdc-button--unelevated mdc-ripple-upgraded" data-mdc-auto-init="MDCRipple" style="--mdc-ripple-fg-size:38.7054px; --mdc-ripple-fg-scale:2.16696;">
-                ${vip.vipNumber }
+                	用户：${vip.vipNumber }
              </a>
           <div class="mdc-menu-anchor">
             <a href="#" class="mdc-toolbar__icon mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
@@ -215,9 +215,9 @@
                     <i class="material-icons mdc-theme--primary mr-1">settings</i>
                     Settings
                   </li>
-                  <li class="mdc-list-item" role="menuitem" tabindex="0" onclick="openModal()">
+                  <li class="mdc-list-item" role="menuitem" tabindex="0" onclick="output()">
                     <i class="material-icons mdc-theme--primary mr-1" >power_settings_new</i>
-                    	登录/注册
+                    	退出登录
                   </li>
                 </ul>
             </div>
