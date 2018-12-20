@@ -5,9 +5,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.shop.pojo.VipInfo;
+import com.shop.service.VipInfoService;
+
 @Controller
 public class HhqTestController {
 
+	
 	@RequestMapping("/index")
 	public String goApp() {
 		System.out.println("goIndex");
@@ -25,4 +29,6 @@ public class HhqTestController {
 		System.out.println(type+"\t"+mid);
 		return type+"/"+mid;
 	}
+	
+	
 }

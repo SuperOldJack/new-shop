@@ -4,7 +4,7 @@ function loadPage(that) {
 	$("#main").load("/test/"+type+"/"+mid);
 }
 
-//初始化菜单项
+//初始化菜单项                                                                                             
 function initPage() {
 	var menuParentArr = ["purchase","sell","stock","finance","stockAndBill","other","basicData","system"];
 	var menuHtml = "";
@@ -56,6 +56,10 @@ function initPage() {
 		$("#"+menuParentArr[i]).find(".mdc-list").html(menuHtml);
 		menuHtml = "";
 	}
+}
+
+function loginSubmit() {
+	$("$loginFrom").submit();
 }
 
 var flag2 = true;//登录注册表单切换控制
