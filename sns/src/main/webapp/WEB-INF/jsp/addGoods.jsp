@@ -7,15 +7,45 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 	function sendDate(){
-		window.opener.document.getElementById("OpenDiv").innerHTML="我是从子窗口Open传过来的值"
+		window.opener.reload(window.document.getElementById("selectGoodsInfo").innerHTML);
+		window.close();
 	}
 </script>
 <title>选择商品</title>
 </head>
 <body>
-
+	<table id="selectGoodsInfo">
 	<c:forEach items="${goodsInfo}" var="item">
-		${item.name}
+		
+		
+			<tr>
+				<td>${item.name}</td>
+				<td>
+					<select name="单位名称">
+						<c:forEach items="${countUnitys}" var="Unit">
+							<option value="${Unit.id}">${Unit.unit_name}</option>
+						</c:forEach>
+						
+					</select>
+				</td>
+				<td>
+					<select name="">
+						<c:forEach items="${specifications}" var="Specification">
+							<option value="${Specification.id}">${Specification.specificationType}</option>
+						</c:forEach>
+						
+					</select>
+				</td>
+				<td>
+					<input type="checkbox" name="">
+				</td>
+				<td>${item.content}</td>
+			</tr>
+			
+		
 	</c:forEach>
+	
+	</table>
+	<input type="button"  onclick="sendDate()" value="提交"/>
 </body>
 </html>

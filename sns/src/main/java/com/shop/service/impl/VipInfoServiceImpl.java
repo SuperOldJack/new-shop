@@ -12,7 +12,7 @@ public class VipInfoServiceImpl implements VipInfoService {
 
 	@Autowired
 	VipInfoMapper vipInfoMapper;
-	
+
 	public VipInfo selectByVipNumber(String vipNumber) {
 		return vipInfoMapper.selectByVipNumber(vipNumber);
 	}

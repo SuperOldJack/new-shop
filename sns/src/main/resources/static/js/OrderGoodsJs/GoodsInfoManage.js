@@ -8,3 +8,14 @@ function add_row(){
 	window.open("/goodsInfo/addgoodsManage","","top=200,left=200,width=1200,height=600");
 	
 }
+
+function reload(goods){
+	 goods =$(goods).find("tr"); 
+	
+	 $.each(goods, function(){     
+		 $("#sqd").find("tbody").append(this);
+	 });  
+	
+	
+	
+}

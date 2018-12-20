@@ -12,6 +12,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.stereotype.Component;
+
 import com.shop.pojo.GoodsInfo;
 
 /**
@@ -20,6 +22,7 @@ import com.shop.pojo.GoodsInfo;
  *
  */
 @ServerEndpoint("/orderGoodsSelect")
+@Component
 public class OrderGoodsSocket {
 
 
@@ -60,14 +63,14 @@ public class OrderGoodsSocket {
 	public void onMessage(String message, Session session) {
 		System.out.println("来自客户端的消息:" + message);
 		//群发消息
-		for(OrderGoodsSocket item: webSocketSet){
+		/*for(OrderGoodsSocket item: webSocketSet){
 			try {
 				item.sendMessage(message);
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;
 			}
-		}
+		}*/
 	}
 
 	/**

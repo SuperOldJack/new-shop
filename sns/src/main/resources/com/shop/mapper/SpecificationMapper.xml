@@ -3,17 +3,16 @@
 <mapper namespace="com.shop.mapper.SpecificationMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.Specification">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="specification_type" jdbcType="INTEGER" property="specificationType" />
-    <result column="specification_name" jdbcType="VARCHAR" property="specificationType" />
+    <result column="type_name" jdbcType="VARCHAR" property="specificationType" />
     <result column="info" jdbcType="DECIMAL" property="info" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, specification_type, info
+    si.id, si.info,specification_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_specification_info
+    from tb_specification_info as si left join tb_specification_type as st on si.specification_type = st.id
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
