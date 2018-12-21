@@ -171,7 +171,7 @@
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
  			<a class="mdc-button mdc-button--unelevated mdc-ripple-upgraded" data-mdc-auto-init="MDCRipple" style="--mdc-ripple-fg-size:38.7054px; --mdc-ripple-fg-scale:2.16696;">
-                	用户：${vip.vipNumber }
+                	用户：${vip.vip_number }
              </a>
           <div class="mdc-menu-anchor">
             <a href="#" class="mdc-toolbar__icon mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
@@ -259,7 +259,7 @@
 			<form id="loginForm" action="/login" method="get">
 				<div class="form-group">
 					<label for="email">账号:</label> <input type="text"
-						class="form-control" name="vipNumber">
+						class="form-control" name="vip_number">
 				</div>
 				<div class="form-group">
 					<label for="pwd">密码:</label> <input type="password"

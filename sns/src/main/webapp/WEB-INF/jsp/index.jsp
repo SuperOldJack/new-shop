@@ -26,7 +26,7 @@ A:link {
 <SCRIPT language=javascript>
 	var flag = false;
 	function check() {
-		if($("input[name='vipNumber']").val().trim() == ""
+		if($("input[name='vip_number']").val().trim() == ""
 			|| $("input[name='password']").val().trim() == "") {
 			alert("密码或账号不能为空");
 			return false;
