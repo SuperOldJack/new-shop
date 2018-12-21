@@ -58,7 +58,7 @@ border=0>
                 <TD width="50%" height=26>&nbsp;</TD>
                 <TD width="14%"><B>用户帐号:</B> </TD>
                 <TD width="36%"><INPUT style="WIDTH: 120px"
-                  name="vipNumber"></TD></TR>
+                  name="vip_number"></TD></TR>
               <tr><TD width="50%">&nbsp;</TD>
                 <TD><B>${pwdError }</B> </TD></tr>
               <TR>
