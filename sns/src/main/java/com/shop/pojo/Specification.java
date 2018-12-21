@@ -3,6 +3,11 @@ package com.shop.pojo;
 import java.math.BigDecimal;
 
 public class Specification {
+	public Specification() {}
+	public Specification(Integer id) {
+		this.id = id;
+	}
+	
     private Integer id;
 
     private String specificationType;

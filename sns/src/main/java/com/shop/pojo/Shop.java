@@ -1,6 +1,10 @@
 package com.shop.pojo;
 
 public class Shop {
+	public Shop() {}
+	public Shop(Integer id) {
+		this.id = id;
+	}
     private Integer id;
 
     private String name;

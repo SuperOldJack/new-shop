@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<script type="text/javascript" src="/js/OrderGoodsJs/GoodsInfoManage.js"></script>
 	<script type="text/javascript" src="/js/websocket/orderGoodsSocket.js"></script>
-	
+	<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 	<TABLE align=center border=0>
 		<TBODY>
 			<TR>
@@ -76,16 +76,15 @@
 							bgColor=#ffffee borderColorLight=#000000 border=1>
 							<TBODY>
 								<TR align=middle>
-									<TH width="3%">&nbsp;</TH>
-									<TH width="5%">删除</TH>
 									<TH width="10%">商品编码</TH>
 									<TH width="15%">商品名称</TH>
-									<TH width="10%">商品规格</TH>
 									<TH width="7%">单位</TH>
+									<TH width="10%">商品规格</TH>
+									<TH width="10%">说明</TH>
 									<TH width="10%">单价</TH>
 									<TH width="10%">数量</TH>
 									<TH width="10%">金额</TH>
-									<TH width="20%">备注</TH>
+									<TH width="5%">删除</TH>
 								</TR>
 							</TBODY>
 						</TABLE>

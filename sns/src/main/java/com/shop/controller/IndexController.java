@@ -18,13 +18,12 @@ public class IndexController {
 	
 	@RequestMapping("/goHome")
 	public String goHome(HttpSession session) {
-		/*VipInfo vip = (VipInfo)session.getAttribute("vip");
+		VipInfo vip = (VipInfo)session.getAttribute("vip");
 		if(vip == null) {
 			return "index";
-		} else {*/
-			System.out.println("goHome");
+		} else {
 			return "home";
-		//}
+		}
 	}
 	
 	@RequestMapping("/login")

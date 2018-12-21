@@ -33,7 +33,7 @@ function check() {
 	var $phone = $("select[name='phone']").val();
 	var $birthday = $("select[name='birthday']").val();
 	$.post("addEmp", {"name":$name,"sex":$sex,"address":$address,"e_mail":$e_mail,"phone":$phone,"brithday":$birthday},
-		function(r){consoloe.log(r);,"J"}		
+		function(r){consoloe.log(r),"JSON"}		
 	);
 	/* $.post("addEmp",
 		{"name":$name,"sex":$sex,"address":$address,"e_mail":$e_mail,"phone":$phone,"brithday":$birthday},

@@ -5,7 +5,6 @@ var ws;
 
 if ("WebSocket" in window)
 {
-	alert("您的浏览器支持 WebSocket!");
 
 	// 打开一个 web socket
 	ws = new WebSocket("ws://localhost:80/orderGoodsSelect");

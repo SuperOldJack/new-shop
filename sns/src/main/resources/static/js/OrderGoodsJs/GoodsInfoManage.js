@@ -8,3 +8,18 @@ function add_row(){
 	window.open("/goodsInfo/addgoodsManage","","top=200,left=200,width=1200,height=600");
 	
 }
+
+/**
+ * 填充货品
+ * @param good
+ * @returns
+ */
+function addRow(good){
+	 $("#sqd").find("tbody").append(good); 
+	 /*$.each(goods, function(){     
+		 $("#sqd").find("tbody").append(this);
+	 });  
+	*/
+	
+	
+}

@@ -1,15 +1,21 @@
 package com.shop.controller;
 
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.shop.pojo.Moneyio;
+import com.shop.pojo.GoodsDocument;
+import com.shop.pojo.GoodsInfo;
+import com.shop.pojo.Shop;
+import com.shop.pojo.Specification;
 import com.shop.pojo.document.OrderGoods;
-import com.shop.service.MoneyioService;
+import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
 
@@ -22,6 +28,9 @@ public class SellController {
 	
 	@Autowired
 	OrderGoodsService orderGoodsService;//销售货品处理
+	
+	@Autowired
+	GoodsInfoService goodsInfoService;
 	
 	@RequestMapping("/sellReturnTest")
 	public String sellReturnTest() {
@@ -39,14 +48,49 @@ public class SellController {
 	}
 	
 	@RequestMapping("/orderGoodsAdd")
-	public String orderGoodsAdd(OrderGoods orderGoods) {
+	public String orderGoodsAdd(OrderGoods orderGoods,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount) {
+		
+		String documentCode = orderGoods.getGoodsDocument().getCode();
 		try {
-			orderGoodsService.seveOrderGoods(orderGoods);
-		} catch (SQLException e) {
+
+			//添加货品信息
+			List<GoodsInfo> goodsInfos = fullInfoList(documentCode,shopId,shopUnit,shopSpecification,goodsPrice,goodsCount);
+			
+			//添加销售单
+			orderGoodsService.seveOrderGoods(orderGoods,goodsInfos);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("出现异常");
 			return "error"; 
 		}
 		return "/sell/addSell"; 
 	}
 	
+	/**
+	 * 填充货品信息
+	 * @param code --信息所对应的单据号
+	 * @param shopId --商品ID
+	 * @param shopUnit --商品单位
+	 * @param shopSpecification --商品规格
+	 * @param goodsPrice --商品单价
+	 * @param goodsCount --商品总数
+	 * @return
+	 */
+	private List<GoodsInfo> fullInfoList(String code,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount){
+		List<GoodsInfo> goodsInfos = new ArrayList<>();
+		for (int i = 0;i<shopId.length;i++) {
+			GoodsInfo info = new GoodsInfo();
+			info.setGoodsDocument(new GoodsDocument(code));
+			info.setShop(new Shop(shopId[i]));
+			info.setPrice(goodsPrice[i]);
+			info.setUnitId(shopUnit[i]);
+			info.setSpecification(new Specification(shopSpecification[i]));
+			info.setCount(goodsCount[i]);
+			goodsInfos.add(info);
+		}
+		return goodsInfos;
+	}
 }

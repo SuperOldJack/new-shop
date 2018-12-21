@@ -8,6 +8,13 @@ import java.util.Date;
  *
  */
 public class GoodsDocument {
+	
+	public GoodsDocument() {}
+	public GoodsDocument(String code) {
+		this.code = code;
+	}
+	
+	
     private String code;
 
     /**
