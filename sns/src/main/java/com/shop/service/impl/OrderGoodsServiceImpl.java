@@ -52,5 +52,11 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 		int result = (orderResult > 0 && documentResult > 0 && goodsInfoResult > 0) ? 1 : 0;
 		if(result <= 0) throw new SQLException("sql处理错误 --未增加数据");
 		return result;
+	}
+
+	@Override
+	public List<OrderGoods> selectOrderGoodsAll() {
+		
+		return orderGoodsMapper.selectOrderGoodsAll();
 	};
 }

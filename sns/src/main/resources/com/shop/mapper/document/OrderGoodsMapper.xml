@@ -9,6 +9,9 @@
     <association column="card_id" property="card" resultMap="com.shop.mapper.CardMapper.BaseResultMap"></association>
     <association column="client_id" property="client" resultMap="com.shop.mapper.BaseMapper.UserResultMap"></association>
   </resultMap>
+  
+  
+  
   <sql id="Base_Column_List">
     id, goods_document_code, client_id, amount_money, actual_money, card_id
   </sql>
@@ -22,6 +25,10 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <include refid="Select_info" />
     	where og.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectOrderGoodsAll" resultMap="BaseResultMap">
+  	<include refid="Select_info" />
   </select>
   
   

@@ -20,5 +20,6 @@ public interface GoodsInfoMapper {
 
     int updateByPrimaryKey(GoodsInfo record);
     
-    
+    //用于查询销售货品和销售退货货品
+    List<GoodsInfo> orderGoodsSelect();
 }

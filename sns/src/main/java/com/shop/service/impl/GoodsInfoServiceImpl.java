@@ -26,6 +26,12 @@ public class GoodsInfoServiceImpl implements GoodsInfoService{
 		
 		return goodsInfoMapper.insertList(goodsinfos);
 	}
+
+	@Override
+	public List<GoodsInfo> orderGoodsSelect() {
+		
+		return goodsInfoMapper.orderGoodsSelect();
+	}
 	
 	
 	

@@ -7,13 +7,13 @@
     <result column="info" jdbcType="DECIMAL" property="info" />
   </resultMap>
   <sql id="Base_Column_List">
-    si.id, si.info,specification_name
+    si.id, si.info,st.type_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_specification_info as si left join tb_specification_type as st on si.specification_type = st.id
-    where id = #{id,jdbcType=INTEGER}
+    where si.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_specification_info

@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.GoodsInfo;
@@ -45,6 +46,24 @@ public class SellController {
 		 * System.out.println(orderGoods.getCard_id());
 		 * */
 		return "/sell/addSell"; 
+	}
+	
+	@RequestMapping("/showOrderGoods")
+	@ResponseBody
+	public List<OrderGoods> showOrderGoods() {
+		List<OrderGoods> selectOrderGoodsAll = orderGoodsService.selectOrderGoodsAll();
+		return selectOrderGoodsAll;
+	}
+	
+	/**
+	 * 查询销售货品明细
+	 * @return
+	 */
+	@RequestMapping("/orderGoodsSelect")
+	@ResponseBody
+	public List<GoodsInfo> orderGoodsSelect() {
+		List<GoodsInfo> orderGoodsSelect = goodsInfoService.orderGoodsSelect();
+		return orderGoodsSelect;
 	}
 	
 	@RequestMapping("/orderGoodsAdd")

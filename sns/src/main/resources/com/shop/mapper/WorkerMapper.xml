@@ -9,11 +9,11 @@
     <result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    <result column="vip_code" jdbcType="VARCHAR" property="vipCodeString" />
+    <result column="vip_code" jdbcType="VARCHAR" property="vip_code" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, name, sex, address, e_mail, phone, birthday, vip_code
+    id, name, sex, address, e_mail, phone, birthday, vip_code 
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

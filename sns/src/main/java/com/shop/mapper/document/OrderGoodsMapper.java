@@ -1,5 +1,7 @@
 package com.shop.mapper.document;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.document.OrderGoods;
@@ -17,4 +19,6 @@ public interface OrderGoodsMapper {
     int updateByPrimaryKeySelective(OrderGoods record);
 
     int updateByPrimaryKey(OrderGoods record);
+    
+    List<OrderGoods> selectOrderGoodsAll();
 }

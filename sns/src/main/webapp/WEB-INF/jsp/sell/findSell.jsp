@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript">
+	 $.post("/sellManage/showOrderGoods",
+		"json",function(data){
+				
+				for(var i = 0; i < data.length; i++){
+					$("#tbl").append("<tr><td>我不做删除修改了jojo</td> <td>"+data[i].goodsDocument.code+"</td><td>"+data[i].goodsDocument.document_type
+							+"</td><td>"+data[i].goodsDocument.create_time+"</td><td>"+data[i].client.name+"</td><td>"+data[i].goodsDocument.manageLib.name
+							+"</td><td>"+data[i].goodsDocument.manageMan.name+"</td></tr>");
 
+				}
+	 }
+	);
+	 
+</script>
 <P align=center><SPAN class=STYLE1>销售单查询</SPAN></P>
 <FORM name=form1   method=post>
 <TABLE width=780 align=center border=0>
@@ -25,19 +38,7 @@
     <TH>客 户</TH>
     <TH>仓库</TH>
     <TH>经办人</TH></TR>
-  <TR onmouseover=over() onclick=change() onmouseout=out() align=middle>
-    <TD><A 
-      href="editbill.htm">修改</A>&nbsp;&nbsp;&nbsp;&nbsp;<A 
-      onclick="del('XS-2010-04-15-0001')" 
-      href="#">删除</A>&nbsp;&nbsp;&nbsp;&nbsp;<A 
-      href="detail.htm">详情</A></TD>
-    <TD>XS-2010-04-15-0001</TD>
-    <TD>销售出库</TD>
-    <TD>2010-4-15</TD>
-    <TD>asdf</TD>
-    <TD>库房</TD>
-    <TD></TD></TR></TBODY></TABLE>
-<TABLE width=800 align=center border=0>
+  </TBODY></TABLE>
   <TBODY>
   <TR>
     <TH align=left colSpan=6><FONT style="FONT-FAMILY: Webdings">9 3</FONT> 
