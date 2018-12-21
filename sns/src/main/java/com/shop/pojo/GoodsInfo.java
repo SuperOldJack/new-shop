@@ -7,6 +7,11 @@ import java.math.BigDecimal;
  *
  */
 public class GoodsInfo {
+	
+	public GoodsInfo() {
+		
+	}
+
     private Integer id;
 
     private GoodsDocument goodsDocument;
@@ -16,6 +21,16 @@ public class GoodsInfo {
      */
     private String unit;
     
+    private Integer unitId;
+    
+	public Integer getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(Integer unitId) {
+		this.unitId = unitId;
+	}
+
 	private Shop shop;
 	
     private Specification specification;

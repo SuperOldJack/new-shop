@@ -1,5 +1,7 @@
 package com.shop.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.GoodsInfo;
@@ -10,6 +12,8 @@ public interface GoodsInfoMapper {
 
     int insertSelective(GoodsInfo record);
 
+    int insertList(List<GoodsInfo> record);
+    
     GoodsInfo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(GoodsInfo record);

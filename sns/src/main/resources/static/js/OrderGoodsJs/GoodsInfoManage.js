@@ -9,13 +9,17 @@ function add_row(){
 	
 }
 
-function reload(goods){
-	 goods =$(goods).find("tr"); 
-	
-	 $.each(goods, function(){     
+/**
+ * 填充货品
+ * @param good
+ * @returns
+ */
+function addRow(good){
+	 $("#sqd").find("tbody").append(good); 
+	 /*$.each(goods, function(){     
 		 $("#sqd").find("tbody").append(this);
 	 });  
-	
+	*/
 	
 	
 }

@@ -5,25 +5,52 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="unit" jdbcType="INTEGER" property="unit" />
+    <result column="unit" jdbcType="INTEGER" property="unitId" />
     <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="unit_name" jdbcType="INTEGER" property="unit" />
+    
     <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
     <association column="specification_id" property="specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
     <association column="shop_id" property="shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, goods_document_code, shop_id, specification_id, price, unit, count
+    gi.id, gi.goods_document_code, gi.shop_id, gi.specification_id, gi.price, gi.unit, gi.count,cu.unit_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_goods_info
+    from tb_goods_info as gi left join tb_count_unity as cu
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_goods_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
+  <insert id="insertList" >
+  	insert into tb_goods_info(
+        id,
+        goods_document_code,
+        shop_id,
+        specification_id,
+        price,
+        unit,
+        count)
+    values
+   
+  	<foreach collection="list" item="item" open="(" close=")" separator="),(" >
+  		
+	        #{item.id,jdbcType=INTEGER},
+	        #{item.goodsDocument.code,jdbcType=VARCHAR},
+	        #{item.shop.id,jdbcType=INTEGER},
+	        #{item.specification.id,jdbcType=INTEGER},
+	        #{item.price,jdbcType=DECIMAL},
+	        #{item.unitId,jdbcType=INTEGER},
+	        #{item.count,jdbcType=INTEGER}
+ 		
+  	</foreach>
+ 	
+  </insert>
   <insert id="insertSelective" parameterType="com.shop.pojo.GoodsInfo">
     insert into tb_goods_info
     <trim prefix="(" suffix=")" suffixOverrides=",">

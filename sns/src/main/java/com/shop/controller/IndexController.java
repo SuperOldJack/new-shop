@@ -22,7 +22,6 @@ public class IndexController {
 		if(vip == null) {
 			return "index";
 		} else {
-			System.out.println("goHome");
 			return "home";
 		}
 	}
