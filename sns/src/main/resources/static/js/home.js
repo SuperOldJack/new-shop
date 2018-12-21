@@ -1,7 +1,7 @@
 function loadPage(that) {
 	var mid = $(that).attr("mid");
 	var type = $(that).attr("type");
-	$("#main").load("/test/"+type+"/"+mid);
+	$("#main").load("/home/"+type+"/"+mid);
 }
 
 //初始化菜单项                                                                                             
@@ -35,7 +35,7 @@ function initPage() {
 			},
 			{//基础资料
 				"texts":["往来单位资料","货品资料","员工信息","仓库资料","计量单位","帐户信息","公司信息"],
-				"urls":["unitData","goodsData","empDat","libData","measUnit","accountData","companyData"]
+				"urls":["unitData","goodsData","empData","libData","measUnit","accountData","companyData"]
 			},
 			{//系统管理
 				"texts":["操作员管理","系统设置","数据初始化"],

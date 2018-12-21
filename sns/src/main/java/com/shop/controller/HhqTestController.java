@@ -24,7 +24,9 @@ public class HhqTestController {
 		return "purchase/addPurchaseOrder";
 	}
 	
-	@RequestMapping(value="/test/{type}/{mid}",method=RequestMethod.GET)
+	
+	
+	@RequestMapping(value="/home/{type}/{mid}",method=RequestMethod.GET)
 	public String test(@PathVariable("type")String type,@PathVariable("mid")String mid) {
 		System.out.println(type+"\t"+mid);
 		return type+"/"+mid;

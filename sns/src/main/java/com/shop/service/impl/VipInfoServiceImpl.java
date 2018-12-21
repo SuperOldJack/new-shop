@@ -17,5 +17,10 @@ public class VipInfoServiceImpl implements VipInfoService {
 		return vipInfoMapper.selectByVipNumber(vipNumber);
 	}
 
+	@Override
+	public int addVip(VipInfo vip) {
+		return vipInfoMapper.insertSelective(vip);
+	}
+
 
 }

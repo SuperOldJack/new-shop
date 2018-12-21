@@ -1,7 +1,10 @@
 package com.shop.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.shop.pojo.Worker;
 
+@Mapper
 public interface WorkerMapper {
     int deleteByPrimaryKey(Integer id);
 

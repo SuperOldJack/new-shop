@@ -3,12 +3,12 @@
 <mapper namespace="com.shop.mapper.VipInfoMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.VipInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="vip_number" jdbcType="VARCHAR" property="vipNumber" />
+    <result column="vip_number" jdbcType="VARCHAR" property="vip_number" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="up_time" jdbcType="TIMESTAMP" property="upTime" />
-    <result column="down_time" jdbcType="TIMESTAMP" property="downTime" />
-    <result column="vip_code" jdbcType="VARCHAR" property="vipCode" />
+    <result column="up_time" jdbcType="TIMESTAMP" property="up_time" />
+    <result column="down_time" jdbcType="TIMESTAMP" property="down_time" />
+    <result column="vip_code" jdbcType="VARCHAR" property="vip_code" />
     <association property="company" javaType="com.shop.pojo.Company">   
         <id column="id" jdbcType="INTEGER" property="id" />
 	    <result column="name" jdbcType="VARCHAR" property="name" />
@@ -71,7 +71,7 @@
       <if test="vip_code != null">
         vip_code,
       </if>
-      <if test="company_id != null">
+      <if test="company.id != null">
         company_id,
       </if>
     </trim>
@@ -97,7 +97,7 @@
       <if test="vip_code != null">
         #{vip_code,jdbcType=VARCHAR},
       </if>
-      <if test="company_id != null">
+      <if test="company.id != null">
         #{company_id,jdbcType=INTEGER},
       </if>
     </trim>

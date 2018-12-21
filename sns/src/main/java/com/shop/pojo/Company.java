@@ -1,5 +1,10 @@
 package com.shop.pojo;
 
+/**
+ * 公司
+ * @author Administrator
+ *
+ */
 public class Company {
     private Integer id;
 

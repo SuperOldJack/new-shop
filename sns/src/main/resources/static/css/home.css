@@ -50,3 +50,12 @@ background-color: rgba(106, 167, 240, 1.0);}
 .verify-wrap {
 	cursor: pointer;
 }
+/* ÓÒ²à¹¤×÷ÇøÓò */
+.main_div {
+	width: 100%; padding: 30px; font-size: 18px; color: #666;
+}
+.main_div h3{
+	text-align: center;
+}
+.main_div ul {margin: 0px; padding: 0px;}
+.main_div li {list-style-type: none;}

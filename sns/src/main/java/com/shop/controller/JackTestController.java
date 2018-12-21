@@ -38,7 +38,7 @@ public class JackTestController {
 		
 		
 		Moneyio moneyio = moneyioService.selectById(1);
-		System.out.println(moneyio.getManageWork().getVipCode()+moneyio.getManageWork().getVipCodeString());
+		System.out.println(moneyio.getManageWork().getVipCode()+moneyio.getManageWork().getVip_code());
 		return "jackUserTest";
 	}
 	

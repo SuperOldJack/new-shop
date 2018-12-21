@@ -2,6 +2,9 @@ package com.shop.pojo;
 
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Worker {
 	private Integer id;
 
@@ -15,9 +18,10 @@ public class Worker {
 
 	private String phone;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
-	private String vipCodeString;
+	private String vip_code;
 	
 	private VipInfo vipCode;
 
@@ -83,12 +87,14 @@ public class Worker {
 		this.birthday = birthday;
 	}
 
-	
-	public String getVipCodeString() {
-		return vipCodeString;
+	public String getVip_code() {
+		return vip_code;
 	}
 
-	public void setVipCodeString(String vipCodeString) {
-		this.vipCodeString = vipCodeString;
+	public void setVip_code(String vip_code) {
+		this.vip_code = vip_code;
 	}
+
+	
+	
 }

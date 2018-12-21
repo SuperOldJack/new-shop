@@ -18,18 +18,18 @@ public class IndexController {
 	
 	@RequestMapping("/goHome")
 	public String goHome(HttpSession session) {
-		VipInfo vip = (VipInfo)session.getAttribute("vip");
+		/*VipInfo vip = (VipInfo)session.getAttribute("vip");
 		if(vip == null) {
 			return "index";
-		} else {
+		} else {*/
 			System.out.println("goHome");
 			return "home";
-		}
+		//}
 	}
 	
 	@RequestMapping("/login")
 	public String login(Model model, VipInfo vip,HttpSession session) {
-		VipInfo vip2 = vipInfoService.selectByVipNumber(vip.getVipNumber());
+		VipInfo vip2 = vipInfoService.selectByVipNumber(vip.getVip_number());
 		if(vip2 == null) {
 			model.addAttribute("accountError", "账号不存在");
 			return "index";

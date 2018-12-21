@@ -2,24 +2,24 @@ package com.shop.pojo;
 
 import java.util.Date;
 
+
 public class VipInfo {
     private Integer id;
 
-    private String vipNumber;
+    private String vip_number;
 
     private String password;
 
     private Date createtime;
 
-    private Date upTime;
+    private Date up_time;
 
-    private Date downTime;
+    private Date down_time;
 
-    private String vipCode;
+    private String vip_code;
 
     private Company company;
 
-    
 
 	public Integer getId() {
         return id;
@@ -45,42 +45,46 @@ public class VipInfo {
         this.createtime = createtime;
     }
 
-	public String getVipNumber() {
-		return vipNumber;
+	public String getVip_number() {
+		return vip_number;
 	}
 
-	public void setVipNumber(String vipNumber) {
-		this.vipNumber = vipNumber;
+	public void setVip_number(String vip_number) {
+		this.vip_number = vip_number;
 	}
 
-	public Date getUpTime() {
-		return upTime;
+	public Date getUp_time() {
+		return up_time;
 	}
 
-	public void setUpTime(Date upTime) {
-		this.upTime = upTime;
+	public void setUp_time(Date up_time) {
+		this.up_time = up_time;
 	}
 
-	public Date getDownTime() {
-		return downTime;
+	public Date getDown_time() {
+		return down_time;
 	}
 
-	public void setDownTime(Date downTime) {
-		this.downTime = downTime;
+	public void setDown_time(Date down_time) {
+		this.down_time = down_time;
 	}
 
-	public String getVipCode() {
-		return vipCode;
+	public String getVip_code() {
+		return vip_code;
 	}
 
-	public void setVipCode(String vipCode) {
-		this.vipCode = vipCode;
+	public void setVip_code(String vip_code) {
+		this.vip_code = vip_code;
+	}
+
+	public int getCompany_id() {
+		return company.getId();
 	}
 
 	public Company getCompany() {
 		return company;
-	}
-
+	} 
+	
 	public void setCompany(Company company) {
 		this.company = company;
 	}
