@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.shop.pojo.document.GoodsDetail;
 import com.shop.pojo.document.OrderGoods;
 
 @Mapper
@@ -21,4 +22,6 @@ public interface OrderGoodsMapper {
     int updateByPrimaryKey(OrderGoods record);
     
     List<OrderGoods> selectOrderGoodsAll();
+    
+    List<GoodsDetail> getGoodsDetailAll();
 }

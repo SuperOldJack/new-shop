@@ -12,6 +12,7 @@
   
   
   
+  
   <sql id="Base_Column_List">
     id, goods_document_code, client_id, amount_money, actual_money, card_id
   </sql>
@@ -26,6 +27,15 @@
     <include refid="Select_info" />
     	where og.id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  <select id="getGoodsDetailAll"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsDetailMap">
+    select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price) as handleGoodsMoney,avg(xt.price) as returnGoodsMoney,sum(xs.count) as handleGoodsCount,sum(xt.count) as returnGoodsCount from (select gi.shop_id  ,gi.specification_id,gi.unit ,gi.price,gi.count  from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%') as xt,
+	(select gi.shop_id ,gi.specification_id,gi.unit,gi.price,gi.count from tb_goods_info as gi WHERE gi.goods_document_code like 'XS%') as xs
+	where xs.specification_id = xt.specification_id and xt.unit = xs.unit GROUP BY xs.specification_id,xt.specification_id,xs.unit,xt.unit
+
+  </select>
+  
   
   <select id="selectOrderGoodsAll" resultMap="BaseResultMap">
   	<include refid="Select_info" />

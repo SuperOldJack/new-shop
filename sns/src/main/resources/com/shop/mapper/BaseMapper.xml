@@ -42,6 +42,12 @@
     id, unit_name
     from tb_count_unity
   </select>
+  <select id="selectCountUnitById" parameterType="java.lang.Integer"  resultMap="CountUnitResultMap">
+    select 
+    id, unit_name
+    from tb_count_unity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   
   
   <select id="selectShopByPrimaryKey" parameterType="java.lang.Integer" resultMap="ShopResultMap">

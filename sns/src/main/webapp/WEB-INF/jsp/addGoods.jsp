@@ -28,7 +28,6 @@
 		node.append("<td><input name='goodsPrice' class='goods_price'/></td><td><input name='goodsCount' class='goods_count'/></td><td class='goods_countmoney'></td>");
 		
 		window.opener.addRow(node);
-		window.close();
 	}
 	
 </script>

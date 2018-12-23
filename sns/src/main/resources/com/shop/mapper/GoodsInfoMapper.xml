@@ -13,6 +13,18 @@
     <association column="specification_id" property="specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
     <association column="shop_id" property="shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
   </resultMap>
+  
+  <!--  货物销售/采购 汇总  -->
+  <resultMap type="com.shop.pojo.document.GoodsDetail" id="GoodsDetailMap">
+  	<result column="handleGoodsCount"  property="handleGoodsCount" />
+  	<result column="returnGoodsCount"  property="returnGoodsCount" />
+  	<result column="handleGoodsMoney" property="handleGoodsMoney" />
+  	<result column="returnGoodsMoney"  property="returnGoodsMoney" />
+    
+    <association column="unit" property="unit" select="com.shop.mapper.BaseMapper.selectCountUnitById"></association>
+    <association column="specification_id" property="specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
+    <association column="shop_id" property="shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
+  </resultMap>
   <sql id="Base_Column_List">
     gi.id, gi.goods_document_code, gi.shop_id, gi.specification_id, gi.price, gi.unit, gi.count,cu.unit_name
   </sql>

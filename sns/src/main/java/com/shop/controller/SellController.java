@@ -15,6 +15,7 @@ import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.Shop;
 import com.shop.pojo.Specification;
+import com.shop.pojo.document.GoodsDetail;
 import com.shop.pojo.document.OrderGoods;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
@@ -64,6 +65,14 @@ public class SellController {
 	public List<GoodsInfo> orderGoodsSelect() {
 		List<GoodsInfo> orderGoodsSelect = goodsInfoService.orderGoodsSelect();
 		return orderGoodsSelect;
+	}
+	
+	
+	@RequestMapping("/goodsDetailAll")
+	@ResponseBody
+	public List<GoodsDetail> goodsDetailAll() {
+		List<GoodsDetail> goodsDetailAll = orderGoodsService.getGoodsDetailAll();
+		return goodsDetailAll;
 	}
 	
 	@RequestMapping("/orderGoodsAdd")

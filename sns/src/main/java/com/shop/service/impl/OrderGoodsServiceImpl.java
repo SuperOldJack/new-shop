@@ -11,6 +11,7 @@ import com.shop.mapper.document.GoodsDocumentMapper;
 import com.shop.mapper.document.OrderGoodsMapper;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.Worker;
+import com.shop.pojo.document.GoodsDetail;
 import com.shop.pojo.document.OrderGoods;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
@@ -58,5 +59,13 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 	public List<OrderGoods> selectOrderGoodsAll() {
 		
 		return orderGoodsMapper.selectOrderGoodsAll();
+	}
+
+	@Override
+	public List<GoodsDetail> getGoodsDetailAll() {
+		
+		return orderGoodsMapper.getGoodsDetailAll();
 	};
+	
+	
 }
