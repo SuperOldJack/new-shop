@@ -15,7 +15,7 @@ import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.Shop;
 import com.shop.pojo.Specification;
-import com.shop.pojo.document.GoodsDetail;
+import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
@@ -68,10 +68,10 @@ public class SellController {
 	}
 	
 	
-	@RequestMapping("/goodsDetailAll")
+	@RequestMapping("/goodsSummaryAll")
 	@ResponseBody
-	public List<GoodsDetail> goodsDetailAll() {
-		List<GoodsDetail> goodsDetailAll = orderGoodsService.getGoodsDetailAll();
+	public List<GoodsSummary> goodsDetailAll() {
+		List<GoodsSummary> goodsDetailAll = orderGoodsService.getGoodsDetailAll();
 		return goodsDetailAll;
 	}
 	

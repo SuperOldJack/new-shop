@@ -1,24 +1,24 @@
 /**
  * 
  */
-$.post("/sellManage/goodsDetailAll ",
+$.post("/sellManage/goodsSummaryAll ",
 		"json",function(data){
-	alert("aaa");
+	console.log(data);
 	for(var i = 0; i < data.length; i++){
 
-		$("#tbl").append("<tr> <td>"+data[i].shop.id+"</td><td>"+data[i].shop.name
-				+"</td><td>"+data[i].specification.specificationType
+		$("#tbl").append("<tr> <td>"+data[i].shopInfo.shop.id+"</td><td>"+data[i].shopInfo.shop.name
+				+"</td><td>"+data[i].shopInfo.specification.specificationType
 				+"</td><td>"
-				+"<td>"+data[i].unit.unit_name+"</td>"
-				+"<td>"+data[i].handleGoodsCount+"</td>"
-				+"<td>"+data[i].handleGoodsMoney+"</td>"
-				+"<td>"+data[i].returnGoodsCount+"</td>"
-				+"<td>"+data[i].returnGoodsMoney+"</td>"
+				+"<td>"+data[i].shopInfo.unit.unit_name+"</td>"
+				+"<td>"+data[i].handleCount+"</td>"
+				+"<td>"+data[i].handleMoney+"</td>"
+				+"<td>"+data[i].returnCount+"</td>"
+				+"<td>"+data[i].returnMoney+"</td>"
 				
 				
 				
-				+"<td>"+(data[i].returnGoodsMoney*data[i].returnGoodsCount - data[i].returnGoodsCount * data[i].returnGoodsMoney) +"</td>"
-				+"<td>"+(data[i].handleGoodsCount-data[i].returnGoodsCount)+"</td>"
+				+"<td>"+(data[i].returnMoney -data[i].returnMoney) +"</td>"
+				+"<td>"+(data[i].handleCount-data[i].returnCount)+"</td>"
 				+"</tr>");
 
 	}

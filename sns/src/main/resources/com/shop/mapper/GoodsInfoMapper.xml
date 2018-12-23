@@ -14,16 +14,22 @@
     <association column="shop_id" property="shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
   </resultMap>
   
-  <!--  货物销售/采购 汇总  -->
-  <resultMap type="com.shop.pojo.document.GoodsDetail" id="GoodsDetailMap">
-  	<result column="handleGoodsCount"  property="handleGoodsCount" />
-  	<result column="returnGoodsCount"  property="returnGoodsCount" />
-  	<result column="handleGoodsMoney" property="handleGoodsMoney" />
-  	<result column="returnGoodsMoney"  property="returnGoodsMoney" />
+  
+  
+  <resultMap type="com.shop.pojo.document.ObjectSummary" id="ObjectSummaryMap">
+  	<result column="handleCount"  property="handleCount" />
+  	<result column="returnCount"  property="returnCount" />
+  	<result column="handleMoney" property="handleMoney" />
+  	<result column="returnMoney"  property="returnMoney" />
     
-    <association column="unit" property="unit" select="com.shop.mapper.BaseMapper.selectCountUnitById"></association>
-    <association column="specification_id" property="specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
-    <association column="shop_id" property="shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
+  </resultMap>
+  
+  <!--  货物销售/采购 汇总  -->
+  <resultMap type="com.shop.pojo.document.GoodsSummary" extends="ObjectSummaryMap" id="GoodsSummaryMap">
+    
+    <association column="unit" property="shopInfo.unit" select="com.shop.mapper.BaseMapper.selectCountUnitById"></association>
+    <association column="specification_id" property="shopInfo.specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
+    <association column="shop_id" property="shopInfo.shop" select="com.shop.mapper.BaseMapper.selectShopByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
     gi.id, gi.goods_document_code, gi.shop_id, gi.specification_id, gi.price, gi.unit, gi.count,cu.unit_name

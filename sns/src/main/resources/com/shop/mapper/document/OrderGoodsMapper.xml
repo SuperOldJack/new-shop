@@ -29,8 +29,9 @@
   </select>
   
   
-  <select id="getGoodsDetailAll"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsDetailMap">
-    select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price) as handleGoodsMoney,avg(xt.price) as returnGoodsMoney,sum(xs.count) as handleGoodsCount,sum(xt.count) as returnGoodsCount from (select gi.shop_id  ,gi.specification_id,gi.unit ,gi.price,gi.count  from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%') as xt,
+  <select id="getGoodsDetailAll"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
+    
+select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as handleMoney,avg(xt.price)*sum(xt.count) as returnMoney,sum(xs.count) as handleCount,sum(xt.count) as returnCount from (select gi.shop_id  ,gi.specification_id,gi.unit ,gi.price,gi.count  from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%') as xt,
 	(select gi.shop_id ,gi.specification_id,gi.unit,gi.price,gi.count from tb_goods_info as gi WHERE gi.goods_document_code like 'XS%') as xs
 	where xs.specification_id = xt.specification_id and xt.unit = xs.unit GROUP BY xs.specification_id,xt.specification_id,xs.unit,xt.unit
 

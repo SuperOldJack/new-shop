@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.shop.pojo.document.GoodsDetail;
+import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
 
 @Mapper
@@ -23,5 +23,5 @@ public interface OrderGoodsMapper {
     
     List<OrderGoods> selectOrderGoodsAll();
     
-    List<GoodsDetail> getGoodsDetailAll();
+    List<GoodsSummary> getGoodsDetailAll();
 }
