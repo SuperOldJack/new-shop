@@ -9,12 +9,20 @@
     <result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    <result column="vip_code" jdbcType="VARCHAR" property="vip_code" />
+    <!-- <result column="vip_code" jdbcType="VARCHAR" property="vip" /> -->
+    <association column="vip_code" property="vip" select="com.shop.mapper.VipInfoMapper.selectVipInfo"></association>
   </resultMap>
   
   <sql id="Base_Column_List">
     id, name, sex, address, e_mail, phone, birthday, vip_code 
   </sql>
+  
+  <select id="selectWorkerInfo" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tb_worker
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
