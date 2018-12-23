@@ -24,6 +24,12 @@ import com.shop.pojo.GoodsInfo;
 @ServerEndpoint("/orderGoodsSelect")
 @Component
 public class OrderGoodsSocket {
+	
+	public OrderGoodsSocket() {
+		OrderGoodsSocket.orderGoodsSocket = this;
+	}
+	
+	private static OrderGoodsSocket orderGoodsSocket;
 
 
 	//concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
@@ -33,6 +39,16 @@ public class OrderGoodsSocket {
 	private Session session;
 
 	private List<GoodsInfo> goodsInfoSet = new ArrayList<>(); 
+	
+	
+	public synchronized static void sendDocumentCode(String code) {
+		try {
+			orderGoodsSocket.sendMessage(code);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * 连接建立成功调用的方法

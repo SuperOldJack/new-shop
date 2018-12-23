@@ -3,7 +3,9 @@ package com.shop.controller;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import com.shop.pojo.document.OrderGoods;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
+import com.shop.socket.OrderGoodsSocket;
+import com.shop.tools.DateUnit;
 
 @RequestMapping("/sellManage")
 @Controller
@@ -76,7 +80,7 @@ public class SellController {
 	}
 	
 	@RequestMapping("/orderGoodsAdd")
-	public String orderGoodsAdd(OrderGoods orderGoods,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount) {
+	public synchronized String orderGoodsAdd(OrderGoods orderGoods,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount) {
 		
 		String documentCode = orderGoods.getGoodsDocument().getCode();
 		try {
@@ -85,16 +89,21 @@ public class SellController {
 			List<GoodsInfo> goodsInfos = fullInfoList(documentCode,shopId,shopUnit,shopSpecification,goodsPrice,goodsCount);
 			
 			//添加销售单
-			orderGoodsService.seveOrderGoods(orderGoods,goodsInfos);
+			int result = orderGoodsService.seveOrderGoods(orderGoods,goodsInfos);
 			
-			
+			if(result > 0) {
+				
+				String datacode = DateUnit.getNowDateFormat();
+				
+				OrderGoodsSocket.sendDocumentCode("XS-"+datacode);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("出现异常");
 			return "error"; 
 		}
-		return "/sell/addSell"; 
+		return "/goHome"; 
 	}
 	
 	/**

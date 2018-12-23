@@ -11,14 +11,15 @@ if ("WebSocket" in window)
 
 	ws.onopen = function()
 	{
-		alert("数据发送中...");
+		
+		
 	};
 
 	ws.onmessage = function (evt) 
 	{ 
 		var received_msg = evt.data;
-		alert("数据已接收...");
-		document.getElementById('message').innerHTML += received_msg + '<br/>';
+		document.getElementById('tittle_lable').innerHTML = received_msg;
+		document.getElementById('a').value = received_msg;
 	};
 
 	ws.onclose = function()
