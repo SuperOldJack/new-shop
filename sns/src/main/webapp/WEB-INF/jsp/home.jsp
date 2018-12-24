@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>逆熵3</title>
- <!--  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" > -->
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" >
   <link rel="stylesheet" href="/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
@@ -21,7 +21,7 @@
   <script type="text/javascript" src="/js/dashboard.js"></script>
   <script type="text/javascript" src="/js/home.js"></script>
   <script type="text/javascript" src="/js/jq-slideVerify.js"></script>
-  <!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script> -->
+  <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
   <script type="text/javascript" src="/calendar/WdatePicker.js"></script>
   
 </head>

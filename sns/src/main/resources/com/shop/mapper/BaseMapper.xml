@@ -61,9 +61,8 @@
     from tb_specification_info as si left join tb_specification_type as st on si.specification_type = st.id
   </select>
   
-  <select id="selectLibByPrimaryKey" parameterType="java.lang.Integer" resultMap="LibResultMap">
+  <select id="selectLibList"  resultMap="LibResultMap">
     select id, name, address, lib_phone, lib_manage_man, manage_phone
     from tb_lib
-    where id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>
