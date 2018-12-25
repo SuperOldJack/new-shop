@@ -26,7 +26,6 @@
 		node.find(".select_goods").parent().remove();
 		
 		node.append("<td><input name='goodsPrice' class='goods_price'/></td><td><input name='goodsCount' class='goods_count'/></td><td class='goods_countmoney'></td>");
-		
 		window.opener.addRow(node);
 	}
 	
@@ -59,7 +58,7 @@
 				</select></td>
 				
 				<td>${item.content}</td>
-				<td><input type="button" class="select_goods" onclick="sendDate(this)"></td>
+				<td><input type="button" class="select_goods" onclick="sendDate(this)" value="添加"></td>
 			</tr>
 
 

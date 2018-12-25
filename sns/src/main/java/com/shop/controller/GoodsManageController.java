@@ -26,7 +26,7 @@ public class GoodsManageController {
 		model.addAttribute("countUnitys",BaseData.getCountUnitys());
 		model.addAttribute("specifications",BaseData.getSpecifications());
 		
-		System.out.println(BaseServiceImpl.baseMapper.selectCountUnit().size());
+		//System.out.println(BaseServiceImpl.baseMapper.selectCountUnit().size());
 		return "addGoods";
 	}
 }

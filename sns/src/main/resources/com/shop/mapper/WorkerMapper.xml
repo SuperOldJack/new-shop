@@ -10,7 +10,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <!-- <result column="vip_code" jdbcType="VARCHAR" property="vip" /> -->
-    <association column="vip_code" property="vipCode" select="com.shop.mapper.VipInfoMapper.selectByVipCode"></association>
+    <association column="vip_code" property="vip" select="com.shop.mapper.VipInfoMapper.selectByVipCode"></association>
   </resultMap>
   
   <sql id="Base_Column_List">
