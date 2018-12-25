@@ -21,16 +21,15 @@ public class Worker {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
-	private String vip_code;
-	
-	private VipInfo vipCode;
+	private VipInfo vip;
 
-	public VipInfo getVipCode() {
-		return vipCode;
+
+	public VipInfo getVip() {
+		return vip;
 	}
 
-	public void setVipCode(VipInfo vipCode) {
-		this.vipCode = vipCode;
+	public void setVip(VipInfo vip) {
+		this.vip = vip;
 	}
 
 	public Integer getId() {
@@ -87,14 +86,4 @@ public class Worker {
 		this.birthday = birthday;
 	}
 
-	public String getVip_code() {
-		return vip_code;
-	}
-
-	public void setVip_code(String vip_code) {
-		this.vip_code = vip_code;
-	}
-
-	
-	
 }

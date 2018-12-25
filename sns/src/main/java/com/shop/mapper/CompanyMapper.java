@@ -17,4 +17,10 @@ public interface CompanyMapper {
     int updateByPrimaryKeySelective(Company record);
 
     int updateByPrimaryKey(Company record);
+    
+    /**
+     * 查询公司信息
+     * @return
+     */
+    Company selectCompanyInfo();
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.CountUnity;
+import com.shop.pojo.Lib;
 import com.shop.pojo.Specification;
 
 /**
@@ -17,10 +18,17 @@ import com.shop.pojo.Specification;
 public interface BaseMapper {
 	
 	/**
-	 * 获得全部单位
+	 * 获得所有的计量单位
 	 * @return 单位集合
 	 */
 	List<CountUnity> selectCountUnit();
 	
 	List<Specification> selectSpecifications();
+	
+	/**
+	 * 获取所有仓库
+	 * @return
+	 */
+	List<Lib> selectLibList();
+	
 }

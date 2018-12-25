@@ -94,8 +94,24 @@ function changeLR() {
 	}
 }
 
+//得到上一次操作的东西
+function getLast() {
+	$.ajax({
+		url:"getLast",
+		post:"get",
+		success : function(data) {
+			var last = data;
+			if(last != null && last.trim() != '') {
+				$("#main").load(last);
+			}
+		}
+	});
+}
+
+
 $(function() {
 	initPage();
+	getLast();
 	
 	//滑块验证
 	/*console.log(parseFloat('1px'))*/

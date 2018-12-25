@@ -17800,7 +17800,7 @@ address p {
       padding: 14px 10px;
       font-size: 13px;
       color: #212121;
-      text-align: right;
+      /* text-align: center; */
       border-bottom: 1px solid #cccccc;
       font-weight: 400; }
       .table tbody tr td:first-child {

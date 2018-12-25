@@ -1,5 +1,7 @@
 package com.shop.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class WorkerServiceImpl implements WorkerService{
 	
 	public int addWorker(Worker worker) {
 		return workerMapper.insertSelective(worker);
+	}
+
+	@Override
+	public List<Worker> queryWorkerList() {
+		return workerMapper.selectWorkerInfo();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.shop.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.Worker;
@@ -17,4 +19,6 @@ public interface WorkerMapper {
     int updateByPrimaryKeySelective(Worker record);
 
     int updateByPrimaryKey(Worker record);
+    
+    List<Worker> selectWorkerInfo();
 }
