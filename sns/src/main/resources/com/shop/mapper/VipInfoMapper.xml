@@ -10,12 +10,19 @@
     <result column="down_time" jdbcType="TIMESTAMP" property="down_time" />
     <result column="vip_code" jdbcType="VARCHAR" property="vip_code" />
     <association column="company_id" property="company" javaType="com.shop.pojo.Company" select="com.shop.mapper.CompanyMapper.selectByPrimaryKey">   
+
     </association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, vip_number, password, createtime, up_time, down_time, vip_code, company_id
+    id, vip_number, password, createtime, up_time, down_time, vip_code as vip_code_string, company_id
   </sql>
   
+  <select id="selectVipInfo" resultMap="BaseResultMap">
+  	select 
+	<include refid="Base_Column_List" />
+	from tb_vip
+  </select>
+	
   <select id="selectByVipNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
   	 select 
     <include refid="Base_Column_List" />

@@ -29,7 +29,8 @@
 		</association>
 		
 		<!-- 处理人 -->
-		<association property="manageWork" javaType="com.shop.pojo.Worker" column="manage_work_id" select="equeryWorker">
+		<association property="manageWork" javaType="com.shop.pojo.Worker" column="manage_work_id" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey">
+			
 		</association>
 
 	</resultMap>

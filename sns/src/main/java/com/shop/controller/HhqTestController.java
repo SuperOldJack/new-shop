@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.pojo.VipInfo;
 import com.shop.service.VipInfoService;
@@ -15,7 +16,7 @@ public class HhqTestController {
 	@RequestMapping("/index")
 	public String goApp() {
 		System.out.println("goIndex");
-		return "index";
+		return "test";
 	}
 	
 	@RequestMapping("/addPurchaseOrder")
@@ -33,4 +34,15 @@ public class HhqTestController {
 	}
 	
 	
+	@RequestMapping("/htest")
+	@ResponseBody
+	public Object test() {
+		System.out.println("test");
+		return "test";
+	}
+	
+	@RequestMapping("/webSocketT")
+	public String test2() {
+		return "/test/hhqTest";
+	}
 }

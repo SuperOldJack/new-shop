@@ -6,9 +6,9 @@ public class StringTool {
 
 	public static String getCarId() {
 		UUID uuid = UUID.randomUUID();
-		String str = uuid.toString().substring(0, 6);
-		System.out.println(str);
-		return str;
+		/*String str = uuid.toString().substring(0, 6);
+		System.out.println(str);*/
+		return uuid.toString();
 	}
 	
 	
