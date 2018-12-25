@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.PaymentMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.Payment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="dealtime" jdbcType="TIMESTAMP" property="dealtime" />
+    <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association>
+  	<association column="card_id" property="card" select="com.shop.mapper.CardMapper.selectByPrimaryKey"></association>
+  	<association column="manage_work_id" property="work" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, dealtime, goods_document_code, card_id, manage_work_id, actual_money, comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_payment_received
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_payment_received
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shop.pojo.Payment">
+    insert into tb_payment_received (id, type, dealtime, 
+      goods_document_code, card_id, manage_work_id, 
+      actual_money, comment)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{dealtime,jdbcType=TIMESTAMP}, 
+      #{goods_document_code,jdbcType=VARCHAR}, #{card_id,jdbcType=INTEGER}, #{manage_work_id,jdbcType=INTEGER}, 
+      #{actual_money,jdbcType=DECIMAL}, #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shop.pojo.Payment">
+    insert into tb_payment_received
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="dealtime != null">
+        dealtime,
+      </if>
+      <if test="goods_document_code != null">
+        goods_document_code,
+      </if>
+      <if test="card_id != null">
+        card_id,
+      </if>
+      <if test="manage_work_id != null">
+        manage_work_id,
+      </if>
+      <if test="actual_money != null">
+        actual_money,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="dealtime != null">
+        #{dealtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goods_document_code != null">
+        #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="card_id != null">
+        #{card_id,jdbcType=INTEGER},
+      </if>
+      <if test="manage_work_id != null">
+        #{manage_work_id,jdbcType=INTEGER},
+      </if>
+      <if test="actual_money != null">
+        #{actual_money,jdbcType=DECIMAL},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.Payment">
+    update tb_payment_received
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="dealtime != null">
+        dealtime = #{dealtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goods_document_code != null">
+        goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="card_id != null">
+        card_id = #{card_id,jdbcType=INTEGER},
+      </if>
+      <if test="manage_work_id != null">
+        manage_work_id = #{manage_work_id,jdbcType=INTEGER},
+      </if>
+      <if test="actual_money != null">
+        actual_money = #{actual_money,jdbcType=DECIMAL},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.Payment">
+    update tb_payment_received
+    set type = #{type,jdbcType=INTEGER},
+      dealtime = #{dealtime,jdbcType=TIMESTAMP},
+      goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      card_id = #{card_id,jdbcType=INTEGER},
+      manage_work_id = #{manage_work_id,jdbcType=INTEGER},
+      actual_money = #{actual_money,jdbcType=DECIMAL},
+      comment = #{comment,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
