@@ -26,34 +26,10 @@
 	<resultMap type="com.shop.pojo.Moneyio" id="MoneyioMapper" extends="BaseResultMap">
 		
 		<association property="card" javaType="com.shop.pojo.Card" column="card_id" select="equeryCard" >
-			<id column="id" jdbcType="INTEGER" property="id" />
-			<result column="name" jdbcType="VARCHAR" property="name" />
-			<result column="card_number" jdbcType="CHAR"
-				property="card_number" />
-			<result column="type_name" jdbcType="VARCHAR"
-				property="typeName" />
 		</association>
 		
 		<!-- 处理人 -->
 		<association property="manageWork" javaType="com.shop.pojo.Worker" column="manage_work_id" select="equeryWorker">
-			<id column="id" jdbcType="INTEGER" property="id" />
-			<result column="name" jdbcType="VARCHAR" property="name" />
-			<result column="sex" jdbcType="CHAR" property="sex" />
-			<result column="address" jdbcType="VARCHAR" property="address" />
-			<result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
-			<result column="phone" jdbcType="VARCHAR" property="phone" />
-			<result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    		<result column="vip_code" jdbcType="VARCHAR" property="vipCodeString" />
-			
-			 <association column="vipCode" property="vipCode" javaType="com.shop.pojo.VipInfo" select="equeryVip">
-				<id   jdbcType="INTEGER" property="id" />
-			    <result jdbcType="VARCHAR" property="vipNumber" />
-			    <result jdbcType="VARCHAR" property="password" />
-			    <result jdbcType="TIMESTAMP" property="createtime" />
-			    <result jdbcType="TIMESTAMP" property="upTime" />
-			    <result jdbcType="TIMESTAMP" property="downTime" />
-			    <result  jdbcType="VARCHAR" property="vipCode" />
-			</association>
 		</association>
 
 	</resultMap>

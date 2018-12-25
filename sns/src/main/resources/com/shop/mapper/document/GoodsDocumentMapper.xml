@@ -7,7 +7,7 @@
     <result column="document_type" jdbcType="VARCHAR" property="document_type" />
     <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <association column="manage_lib_id" property="manageLib"  select="com.shop.mapper.BaseMapper.selectLibByPrimaryKey"></association>
+    <association column="manage_lib_id" property="manageLib"  select="com.shop.mapper.BaseMapper.selectLibById"></association>
     <association column="manage_man_id" property="manageMan" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey" ></association>
     <association column="create_man" property="createMan" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey" ></association>
   </resultMap>
