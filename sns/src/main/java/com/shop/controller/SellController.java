@@ -29,6 +29,21 @@ import com.shop.tools.DateUnit;
 @Controller
 public class SellController {
 	
+	private static int code = 0;
+	public static String getSellCode() {
+		code++;
+		
+		String datacode = DateUnit.getNowDateFormat();
+		
+		StringBuffer codeInt = new StringBuffer().append("XS-").append(datacode).append("-"); 
+		for (int i = 0; i < 6 - (code+"").length() ; i++) {
+			codeInt.append("0");
+		}
+		codeInt.append(code);
+		
+		return codeInt.toString();
+	}
+	
 	@Autowired
 	SellReturnService sellReturnService;//销售退款处理 
 	
@@ -93,9 +108,7 @@ public class SellController {
 			
 			if(result > 0) {
 				
-				String datacode = DateUnit.getNowDateFormat();
-				
-				OrderGoodsSocket.sendDocumentCode("XS-"+datacode);
+				OrderGoodsSocket.sendDocumentCode(getSellCode());
 			}
 			
 		} catch (Exception e) {
@@ -103,8 +116,15 @@ public class SellController {
 			System.out.println("出现异常");
 			return "error"; 
 		}
-		return "/goHome"; 
+		return "redirect:/goHome"; 
 	}
+
+	@ResponseBody
+	@RequestMapping("/getNowSellOrderCode")
+	public String getNowSellOrderCode() {
+		return getSellCode();
+	}
+	
 	
 	/**
 	 * 填充货品信息
@@ -130,4 +150,6 @@ public class SellController {
 		}
 		return goodsInfos;
 	}
+	
+	
 }

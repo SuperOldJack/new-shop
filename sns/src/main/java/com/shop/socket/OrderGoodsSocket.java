@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.shop.pojo.GoodsInfo;
 
 /**
- * 处理销售货品的选择功能
+ * 统一对用户进行发送消息
  * @author Administrator
  *
  */

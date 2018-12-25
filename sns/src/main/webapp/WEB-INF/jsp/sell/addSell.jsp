@@ -11,13 +11,13 @@
 				<TD><BR>
 					<FORM  method=post action="/sellManage/orderGoodsAdd">
 						<DIV align=center>
-							<SPAN class=style1>销售订单</SPAN>
+							<SPAN class=style1>销售单</SPAN>
 						</DIV>
 						<INPUT id=rowcount type=hidden name=rowcount> <INPUT
 							id=_check type=hidden value=false name=_check>
 						<DIV align=center>
-							<SPAN class=style1><LABEL id=tittle_lable>XD-2010-04-15-0001</LABEL><INPUT
-								id=a type=hidden value=XD-2010-04-15-0001
+							<SPAN class=style1><LABEL id=tittle_lable></LABEL><INPUT
+								id=a type=hidden 
 								name=goodsDocument.code></SPAN>
 						</DIV>
 						<BR>

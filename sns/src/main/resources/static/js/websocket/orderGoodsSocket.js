@@ -3,6 +3,11 @@
  */
 var ws;
 
+function fullCode(received_msg){
+	document.getElementById('tittle_lable').innerHTML = received_msg;
+	document.getElementById('a').value = received_msg;
+}
+
 if ("WebSocket" in window)
 {
 
@@ -11,15 +16,14 @@ if ("WebSocket" in window)
 
 	ws.onopen = function()
 	{
-		
-		
+		 $.post("/sellManage/getNowSellOrderCode","json",function(data){ fullCode(data);});
+		 
 	};
 
 	ws.onmessage = function (evt) 
 	{ 
 		var received_msg = evt.data;
-		document.getElementById('tittle_lable').innerHTML = received_msg;
-		document.getElementById('a').value = received_msg;
+		fullCode(received_msg);
 	};
 
 	ws.onclose = function()
