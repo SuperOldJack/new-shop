@@ -7,16 +7,27 @@
     <result column="dealtime" jdbcType="TIMESTAMP" property="dealtime" />
     <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association>
+    <result column="goods_document_code" jdbcType="VARCHAR" property="docCode" />
+    <!-- <association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association> -->
   	<association column="card_id" property="card" select="com.shop.mapper.CardMapper.selectByPrimaryKey"></association>
   	<association column="manage_work_id" property="work" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
     id, type, dealtime, goods_document_code, card_id, manage_work_id, actual_money, comment
   </sql>
+  
+  <select id="selectPaymentDoc" resultMap="BaseResultMap">
+	select pr.id, pr.type, pr.dealtime, pr.goods_document_code as docCode, pr.card_id, pr.manage_work_id, pr.actual_money, pr.`comment`,
+				its.id, its.goods_document_code, its.supplier_id
+	from tb_payment_received as pr
+	inner join paymentReceived_to_inputlib as po on pr.id = po.tb_payment_received_id 
+	inner join inputlib_to_supplier as its on its.id = po.inputlib_id
+	where pr.type = 1
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+    id, type, dealtime, goods_document_code as docCode, card_id, manage_work_id, actual_money, comment
     from tb_payment_received
     where id = #{id,jdbcType=INTEGER}
   </select>

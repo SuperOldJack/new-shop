@@ -21,7 +21,8 @@ public class Payment {
     /**
      * 收付款单
      */
-    private GoodsDocument goods;
+    private String docCode;
+    /*private GoodsDocument goods;*/
 
     /**
      * 卡号
@@ -61,14 +62,6 @@ public class Payment {
 		this.dealtime = dealtime;
 	}
 
-	public GoodsDocument getGoods() {
-		return goods;
-	}
-
-	public void setGoods(GoodsDocument goods) {
-		this.goods = goods;
-	}
-
 	public Card getCard() {
 		return card;
 	}
@@ -101,4 +94,12 @@ public class Payment {
 		this.comment = comment;
 	}
 
+	public String getDocCode() {
+		return docCode;
+	}
+
+	public void setDocCode(String docCode) {
+		this.docCode = docCode;
+	}
+	
 }

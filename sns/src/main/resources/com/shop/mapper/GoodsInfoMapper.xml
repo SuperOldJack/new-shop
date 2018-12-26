@@ -34,11 +34,27 @@
   <sql id="Base_Column_List">
     gi.id, gi.goods_document_code, gi.shop_id, gi.specification_id, gi.price, gi.unit, gi.count,cu.unit_name
   </sql>
+  
+  <sql id="Goods_Column_List">
+    `code`,manage_lib_id,manage_man_id,create_time,create_man,document_type,isEffective,`comment`
+  </sql>
+  
+  <select id="selectGoodsByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Goods_Column_List" />
+    from tb_goods_document
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_goods_info as gi left join tb_count_unity as cu
+    from tb_goods_info as gi left join tb_count_unity as cu on gi.unit = cu.id
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="">
+  
   </select>
   
   <!-- 销售明细查询  -->
