@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.InLibAndSupMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.InLibAndSup">
+    <id column="id" jdbcType="INTEGER" property="id" />
+  	<association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association>
+  	<association column="supplier_id" property="supplier" select="com.shop.mapper.SupplierMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_document_code, supplier_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inputlib_to_supplier
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inputlib_to_supplier
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shop.pojo.InLibAndSup">
+    insert into inputlib_to_supplier (id, goods_document_code, supplier_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{goods_document_code,jdbcType=VARCHAR}, #{supplier_id,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shop.pojo.InLibAndSup">
+    insert into inputlib_to_supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goods_document_code != null">
+        goods_document_code,
+      </if>
+      <if test="supplier_id != null">
+        supplier_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_document_code != null">
+        #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier_id != null">
+        #{supplier_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.InLibAndSup">
+    update inputlib_to_supplier
+    <set>
+      <if test="goods_document_code != null">
+        goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier_id != null">
+        supplier_id = #{supplier_id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.InLibAndSup">
+    update inputlib_to_supplier
+    set goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
+      supplier_id = #{supplier_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
