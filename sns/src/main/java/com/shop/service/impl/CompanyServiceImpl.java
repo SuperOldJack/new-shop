@@ -5,9 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.shop.mapper.CompanyMapper;
 import com.shop.pojo.Company;
+import com.shop.service.CompanyService;
 
 @Service("companyService")
-public class CompanyService implements com.shop.service.CompanyService {
+public class CompanyServiceImpl implements CompanyService {
 
 	@Autowired
 	private CompanyMapper companyMapper;

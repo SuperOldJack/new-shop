@@ -6,7 +6,7 @@ import com.shop.pojo.Card;
 import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.UserInfo;
 
-public class OrderGoods {
+public class OrderGoods implements IDoc{
 	
 	private Integer id;
 
@@ -43,6 +43,7 @@ public class OrderGoods {
 		this.id = id;
 	}
 
+	@Override
 	public GoodsDocument getGoodsDocument() {
 		return goodsDocument;
 	}

@@ -11,11 +11,13 @@ import com.shop.mapper.document.GoodsDocumentMapper;
 import com.shop.mapper.document.InputlibMapper;
 import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.GoodsInfo;
+import com.shop.pojo.document.IDoc;
 import com.shop.pojo.document.Inputlib;
 import com.shop.service.InputLibService;
+import com.shop.service.templet.SeveDocTemplet;
 
 @Service("inputLibService")
-public class InputLibServiceImpl implements InputLibService{
+public class InputLibServiceImpl extends SeveDocTemplet implements InputLibService{
 
 	@Autowired
 	public InputlibMapper inputlibMapper;
@@ -31,12 +33,16 @@ public class InputLibServiceImpl implements InputLibService{
 	public int seveInputLib(  Inputlib inputlib,List<GoodsInfo> goodsInfo) {
 		
 		
+		 
+		return seveDocInfo(inputlib, goodsInfo);
+	}
+
+	@Override
+	protected int addDocTypeInfo(IDoc doc) {
+		Inputlib inputlib = (Inputlib)doc ;
 		
-		int documentResult =goodsDocumentMapper.insertSelective(inputlib.getGoodsDocument());
-		int goodsResult = goodsInfoMapper.insertList(goodsInfo);
-		int libResult =inputlibMapper.insert(inputlib);
-		int result = (libResult > 0 && documentResult > 0 && goodsResult >0) ? 1 : 0;
-		return result;
+		int libResult = inputlibMapper.insert(inputlib);
+		return libResult;
 	}
 	
 }

@@ -1,11 +1,6 @@
 package com.shop.controller;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,43 +8,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.GoodsInfo;
-import com.shop.pojo.Shop;
-import com.shop.pojo.Specification;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
+import com.shop.pojo.info.DocTypeMap;
 import com.shop.pojo.info.FullGoodsInfoListble;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
 import com.shop.socket.OrderGoodsSocket;
-import com.shop.tools.DateUnit;
+import com.shop.tools.CodeMake;
 
 @RequestMapping("/sellManage")
 @Controller
 public class SellController {
 	
-	private static int code = 0;
-	public static String getSellCode() {
-		code++;
-		
-		String datacode = DateUnit.getNowDateFormat();
-		
-		StringBuffer codeInt = new StringBuffer().append("XS-").append(datacode).append("-"); 
-		for (int i = 0; i < 6 - (code+"").length() ; i++) {
-			codeInt.append("0");
-		}
-		codeInt.append(code);
-		
-		return codeInt.toString();
-	}
+	private final static String orderGoodsType = "XS";
+	
+	private CodeMake code = new CodeMake(orderGoodsType);
 	
 	@Autowired
 	SellReturnService sellReturnService;//销售退款处理 
 	
 	@Autowired
 	OrderGoodsService orderGoodsService;//销售货品处理
+	
 	
 	@Autowired
 	GoodsInfoService goodsInfoService;
@@ -59,15 +42,15 @@ public class SellController {
 		if(sellReturnService.selectByPrimaryKey(1) == null) System.out.println("OK"); 
 		return "jackUserTest"; 
 	}
-	
+	/*
 	@RequestMapping("/orderGoodsTest")
 	public String orderGoodsTest() {
-		/*
+		
 		 * OrderGoods orderGoods = orderGoodsService.selectById(1);
 		 * System.out.println(orderGoods.getCard_id());
-		 * */
+		 * 
 		return "/sell/addSell"; 
-	}
+	}*/
 	
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
@@ -99,6 +82,7 @@ public class SellController {
 	public synchronized String orderGoodsAdd(OrderGoods orderGoods,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount) {
 		
 		String documentCode = orderGoods.getGoodsDocument().getCode();
+		orderGoods.getGoodsDocument().setDocumentType(DocTypeMap.getType(orderGoodsType));
 		try {
 
 			//添加货品信息
@@ -109,7 +93,7 @@ public class SellController {
 			
 			if(result > 0) {
 				
-				OrderGoodsSocket.sendDocumentCode(getSellCode());
+				OrderGoodsSocket.sendDocumentCode(code.getCode());
 			}
 			
 		} catch (Exception e) {
@@ -123,7 +107,7 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping("/getNowSellOrderCode")
 	public String getNowSellOrderCode() {
-		return getSellCode();
+		return code.getCode();
 	}
 	
 	

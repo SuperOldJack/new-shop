@@ -12,22 +12,19 @@ import com.shop.mapper.document.OrderGoodsMapper;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.Worker;
 import com.shop.pojo.document.GoodsSummary;
+import com.shop.pojo.document.IDoc;
 import com.shop.pojo.document.OrderGoods;
 import com.shop.pojo.info.DocTypeMap;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
+import com.shop.service.templet.SeveDocTemplet;
 
 @Service("orderGoodsService")
-public class OrderGoodsServiceImpl implements OrderGoodsService{
+public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsService{
 
 	@Autowired
 	OrderGoodsMapper orderGoodsMapper;
 	
-	@Autowired
-	GoodsDocumentMapper goodsDocumentMapper;
-	
-	@Autowired
-	GoodsInfoService goodsInfoService;
 	
 	@Override
 	public OrderGoods selectById(Integer id) {
@@ -35,26 +32,17 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 		return orderGoodsMapper.selectByPrimaryKey(id);
 	}
 
-	@Transactional
 	public int seveOrderGoods(OrderGoods orderGoods,List<GoodsInfo> goodsInfo) throws SQLException {
-		//测试代码  --记得删除
-		Worker testWorkernew = new Worker();
-		testWorkernew.setId(1);
-		orderGoods.getGoodsDocument().setCreateMan(testWorkernew);
-		
-		
-		orderGoods.getGoodsDocument().setDocumentType(DocTypeMap.getType("XS"));
-		int documentResult = goodsDocumentMapper.insertSelective(orderGoods.getGoodsDocument());
-		int orderResult = orderGoodsMapper.insertSelective(orderGoods);
-		int goodsInfoResult = goodsInfoService.insertGoodsInfo(goodsInfo);
-		
-		
-		
-		
-		int result = (orderResult > 0 && documentResult > 0 && goodsInfoResult > 0) ? 1 : 0;
-		if(result <= 0) throw new SQLException("sql处理错误 --未增加数据");
-		return result;
+		return seveDocInfo(orderGoods,goodsInfo);
 	}
+	
+	@Override
+	protected int addDocTypeInfo(IDoc doc) {
+		OrderGoods orederGoods = OrderGoods.class.cast(doc);
+		int orderResult = orderGoodsMapper.insertSelective(orederGoods);
+		return orderResult;
+	};
+	
 
 	@Override
 	public List<OrderGoods> selectOrderGoodsAll() {
@@ -66,7 +54,9 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 	public List<GoodsSummary> getGoodsDetailAll() {
 		
 		return orderGoodsMapper.getGoodsDetailAll();
-	};
+	}
+
+	
 	
 	
 }

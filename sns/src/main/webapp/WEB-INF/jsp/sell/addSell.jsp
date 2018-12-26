@@ -3,8 +3,21 @@
 	<script type="text/javascript" src="/js/OrderGoodsJs/GoodsInfoManage.js"></script>
 	<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 	
-    <script type="text/javascript" src="/js/websocket/orderGoodsSocket.js"></script>
-    
+    <script type="text/javascript" src="/js/websocket/BaseSocket.js"></script>
+    <script type="text/javascript">
+		function fullCode(received_msg){
+			document.getElementById('tittle_lable').innerHTML = received_msg;
+			document.getElementById('a').value = received_msg;
+		}
+		
+		var webSocket = connectionSocket("orderGoodsSelect");
+		webSocket.onopen = function()
+		{
+			 $.post("/sellManage/getNowSellOrderCode","json",function(data){ fullCode(data);});
+			 
+			 
+		};
+	</script>
 	<TABLE align=center border=0>
 		<TBODY>
 			<TR>
@@ -42,7 +55,7 @@
 									<TD><SELECT id=depot name=goodsDocument.manageLib.id><OPTION value=1
 												selected>一号仓库</OPTION></SELECT><FONT color=red>*</FONT></TD>
 									<TD align=right>制 单 人</TD>
-									<TD><INPUT readOnly size=16 value=1 name=createMan.id><FONT
+									<TD><INPUT readOnly size=16 value=1 name=goodsDocument.createMan.id><FONT
 										color=red>*</FONT></TD>
 								</TR>
 								<TR>

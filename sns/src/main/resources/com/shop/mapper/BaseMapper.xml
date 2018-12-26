@@ -37,16 +37,23 @@
   <!-- 单据类型  -->
   <resultMap id="DocumentTypeResultMap" type="com.shop.pojo.DocumentType">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="unit_name" jdbcType="VARCHAR" property="unit_name" />
+    <result column="type_name" jdbcType="VARCHAR" property="type_name" />
     <result column="abbreviation" jdbcType="VARCHAR" property="abbreviation" />
   </resultMap>
   
   
   <!-- sql语句区域 -->
   
+  
+  <!-- 查询单据类型 -->
   <select id="selectDocType" resultMap="DocumentTypeResultMap">
   	select 
-     id, unit_name, abbreviation
+     id, type_name, abbreviation
+    from tb_document_type
+  </select>
+  <select id="selectDocTypeById" resultMap="DocumentTypeResultMap">
+  	select 
+     id, type_name, abbreviation
     from tb_document_type
     where id = #{id,jdbcType=INTEGER}
   </select>

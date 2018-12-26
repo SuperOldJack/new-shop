@@ -8,7 +8,7 @@ import com.shop.pojo.Supplier;
  * @author Administrator
  *
  */
-public class Inputlib {
+public class Inputlib implements IDoc{
 	private Integer id;
 
 	private GoodsDocument goodsDocument;
@@ -26,6 +26,7 @@ public class Inputlib {
 		this.id = id;
 	}
 
+	@Override
 	public GoodsDocument getGoodsDocument() {
 		return goodsDocument;
 	}

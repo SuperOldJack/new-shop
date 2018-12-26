@@ -19,5 +19,5 @@ public interface InputLibService {
 	 * @param inputlib 入库表对象
 	 * @return
 	 */
-	int seveInputLib( Inputlib inputlib,List<GoodsInfo> goodsInfos);
+	int seveInputLib(Inputlib inputlib,List<GoodsInfo> goodsInfos);
 }

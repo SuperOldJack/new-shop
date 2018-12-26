@@ -16,9 +16,9 @@
         <id property="code" column="code"/>
         
 	    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
-	    <result column="document_type" jdbcType="VARCHAR" property="document_type" />
 	    <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
 	    <result column="comment" jdbcType="VARCHAR" property="comment" />
+	    <association column="document_type"  property="documentType"  select="com.shop.mapper.BaseMapper.selectDocType"></association>
     </association>
   </resultMap>
   

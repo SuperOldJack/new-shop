@@ -46,7 +46,7 @@
       <if test="createMan.id != null">
         create_man,
       </if>
-      <if test="document_type != null">
+      <if test="documentType.id != null">
         document_type,
       </if>
       <if test="isEffective != null">
@@ -72,8 +72,8 @@
       <if test="createMan.id != null">
         #{createMan.id,jdbcType=INTEGER},
       </if>
-      <if test="document_type != null">
-        #{document_type,jdbcType=VARCHAR},
+      <if test="documentType.id != null">
+        #{documentType.id,jdbcType=INTEGER},
       </if>
       <if test="isEffective != null">
         #{isEffective,jdbcType=INTEGER},

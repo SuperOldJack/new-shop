@@ -2,6 +2,7 @@ package com.shop.socket;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -26,24 +27,22 @@ import com.shop.pojo.GoodsInfo;
 public class OrderGoodsSocket {
 	
 	public OrderGoodsSocket() {
-		OrderGoodsSocket.orderGoodsSocket = this;
 	}
 	
-	private static OrderGoodsSocket orderGoodsSocket;
-
 
 	//concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
 	private static CopyOnWriteArraySet<OrderGoodsSocket> webSocketSet = new CopyOnWriteArraySet<OrderGoodsSocket>();
 
 	//与某个客户端的连接会话，需要通过它来给客户端发送数据
 	private Session session;
-
-	private List<GoodsInfo> goodsInfoSet = new ArrayList<>(); 
 	
 	
 	public synchronized static void sendDocumentCode(String code) {
 		try {
-			orderGoodsSocket.sendMessage(code);
+			Iterator<OrderGoodsSocket> iterator = webSocketSet.iterator();
+			while(iterator.hasNext()) {
+				iterator.next().sendMessage(code);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

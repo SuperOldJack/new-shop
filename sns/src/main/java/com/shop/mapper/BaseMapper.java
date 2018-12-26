@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.CountUnity;
+import com.shop.pojo.DocumentType;
 import com.shop.pojo.Lib;
 import com.shop.pojo.Specification;
 
@@ -31,4 +32,7 @@ public interface BaseMapper {
 	 */
 	List<Lib> selectLibList();
 	
+	
+	
+	List<DocumentType> selectDocType();
 }

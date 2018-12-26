@@ -6,17 +6,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.document.Inputlib;
-import com.shop.pojo.document.OrderGoods;
+import com.shop.pojo.info.DocTypeMap;
 import com.shop.pojo.info.FullGoodsInfoListble;
 import com.shop.service.InputLibService;
-import com.shop.socket.OrderGoodsSocket;
+import com.shop.tools.CodeMake;
 
 @Controller
 @RequestMapping("/stock")
 public class StockController {
+	
+	private final static String inputLibType = "RK"; 
+
+	private CodeMake code = new CodeMake(inputLibType);
 	
 	@Autowired
 	InputLibService inputLibService; 
@@ -30,6 +35,7 @@ public class StockController {
 		
 			
 			String documentCode = inputlib.getGoodsDocument().getCode();
+			inputlib.getGoodsDocument().setDocumentType(DocTypeMap.getType(inputLibType));
 			try {
 
 				//添加货品信息
@@ -50,6 +56,12 @@ public class StockController {
 
 		
 		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getNowInLibCode")
+	public String getNowSellOrderCode() {
+		return code.getCode();
 	}
 	
 }

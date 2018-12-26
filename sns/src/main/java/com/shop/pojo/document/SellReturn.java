@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.shop.pojo.GoodsDocument;
 
-public class SellReturn {
+public class SellReturn implements IDoc{
     private Integer id;
 
     private GoodsDocument goodsDocument;
@@ -49,6 +49,8 @@ public class SellReturn {
     public void setReturntime(Date returntime) {
         this.returntime = returntime;
     }
+    
+    @Override
     public GoodsDocument getGoodsDocument() {
 		return goodsDocument;
 	}
