@@ -8,7 +8,7 @@ package com.shop.pojo;
 public class InLibAndSup {
     private Integer id;
 
-    private GoodsDocument goods;
+    private String goodsCode;
 
     private Supplier supplier;
 
@@ -20,14 +20,6 @@ public class InLibAndSup {
         this.id = id;
     }
 
-	public GoodsDocument getGoods() {
-		return goods;
-	}
-
-	public void setGoods(GoodsDocument goods) {
-		this.goods = goods;
-	}
-
 	public Supplier getSupplier() {
 		return supplier;
 	}
@@ -36,4 +28,13 @@ public class InLibAndSup {
 		this.supplier = supplier;
 	}
 
+	public String getGoodsCode() {
+		return goodsCode;
+	}
+
+	public void setGoodsCode(String goodsCode) {
+		this.goodsCode = goodsCode;
+	}
+
+	
 }

@@ -3,15 +3,15 @@
 <mapper namespace="com.shop.mapper.InLibAndSupMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.InLibAndSup">
     <id column="id" jdbcType="INTEGER" property="id" />
-  	<association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association>
+    <result column="goods_document_code" jdbcType="VARCHAR" property="goodsCode" />
   	<association column="supplier_id" property="supplier" select="com.shop.mapper.SupplierMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, goods_document_code, supplier_id
+    id, goods_document_code as goodsCode, supplier_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+    id, goods_document_code as goodsCode, supplier_id
     from inputlib_to_supplier
     where id = #{id,jdbcType=INTEGER}
   </select>

@@ -12,7 +12,7 @@
     <association column="create_man" property="createMan" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey" ></association>
   </resultMap>
   <sql id="Base_Column_List">
-    code, manage_lib_id, manage_man_id, create_time, create_man, document_type, isEffective, 
+    code, manage_lib_id as manageLib, manage_man_id as manageMan, create_time, create_man as createMan, document_type as documentType, isEffective, 
     comment
   </sql>
   
@@ -24,6 +24,7 @@
     from tb_goods_document
     where code = #{code,jdbcType=VARCHAR}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_goods_document
     where code = #{code,jdbcType=VARCHAR}

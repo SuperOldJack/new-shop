@@ -1,5 +1,7 @@
 package com.shop.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.Payment;
@@ -17,4 +19,10 @@ public interface PaymentMapper {
     int updateByPrimaryKeySelective(Payment record);
 
     int updateByPrimaryKey(Payment record);
+    
+    /**
+     * 查询付款单信息
+     * @return
+     */
+    List<Payment> selectPaymentDoc();
 }
