@@ -7,7 +7,6 @@ import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.UserInfo;
 
 public class OrderGoods {
-	public final static String type = "销售单";
 	
 	private Integer id;
 

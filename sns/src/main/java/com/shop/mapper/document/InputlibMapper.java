@@ -1,7 +1,10 @@
 package com.shop.mapper.document;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.shop.pojo.document.Inputlib;
 
+@Mapper
 public interface InputlibMapper {
     int deleteByPrimaryKey(Integer id);
 

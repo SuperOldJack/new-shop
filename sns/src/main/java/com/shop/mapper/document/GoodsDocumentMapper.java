@@ -1,5 +1,7 @@
 package com.shop.mapper.document;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.GoodsDocument;
@@ -10,7 +12,7 @@ public interface GoodsDocumentMapper {
 
     int insert(GoodsDocument record);
 
-    int insertSelective(GoodsDocument record);
+    int insertSelective(GoodsDocument goodsDocument);
 
     GoodsDocument selectByPrimaryKey(String code);
 

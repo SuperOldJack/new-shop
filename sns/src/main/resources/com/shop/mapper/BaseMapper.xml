@@ -34,9 +34,23 @@
     <result column="unit_name" jdbcType="VARCHAR" property="unit_name" />
   </resultMap>
   
+  <!-- 单据类型  -->
+  <resultMap id="DocumentTypeResultMap" type="com.shop.pojo.DocumentType">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unit_name" />
+    <result column="abbreviation" jdbcType="VARCHAR" property="abbreviation" />
+  </resultMap>
   
   
   <!-- sql语句区域 -->
+  
+  <select id="selectDocType" resultMap="DocumentTypeResultMap">
+  	select 
+     id, unit_name, abbreviation
+    from tb_document_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectCountUnit"  resultMap="CountUnitResultMap">
     select 
     id, unit_name

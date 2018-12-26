@@ -19,6 +19,7 @@ import com.shop.pojo.Shop;
 import com.shop.pojo.Specification;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
+import com.shop.pojo.info.FullGoodsInfoListble;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
@@ -101,7 +102,7 @@ public class SellController {
 		try {
 
 			//添加货品信息
-			List<GoodsInfo> goodsInfos = fullInfoList(documentCode,shopId,shopUnit,shopSpecification,goodsPrice,goodsCount);
+			List<GoodsInfo> goodsInfos = FullGoodsInfoListble.fullInfoList(documentCode,shopId,shopUnit,shopSpecification,goodsPrice,goodsCount);
 			
 			//添加销售单
 			int result = orderGoodsService.seveOrderGoods(orderGoods,goodsInfos);
@@ -126,30 +127,7 @@ public class SellController {
 	}
 	
 	
-	/**
-	 * 填充货品信息
-	 * @param code --信息所对应的单据号
-	 * @param shopId --商品ID
-	 * @param shopUnit --商品单位
-	 * @param shopSpecification --商品规格
-	 * @param goodsPrice --商品单价
-	 * @param goodsCount --商品总数
-	 * @return
-	 */
-	private List<GoodsInfo> fullInfoList(String code,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount){
-		List<GoodsInfo> goodsInfos = new ArrayList<>();
-		for (int i = 0;i<shopId.length;i++) {
-			GoodsInfo info = new GoodsInfo();
-			info.setGoodsDocument(new GoodsDocument(code));
-			info.setShop(new Shop(shopId[i]));
-			info.setPrice(goodsPrice[i]);
-			info.setUnitId(shopUnit[i]);
-			info.setSpecification(new Specification(shopSpecification[i]));
-			info.setCount(goodsCount[i]);
-			goodsInfos.add(info);
-		}
-		return goodsInfos;
-	}
+	
 	
 	
 }

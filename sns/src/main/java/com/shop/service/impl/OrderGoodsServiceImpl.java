@@ -13,6 +13,7 @@ import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.Worker;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
+import com.shop.pojo.info.DocTypeMap;
 import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
 
@@ -42,7 +43,7 @@ public class OrderGoodsServiceImpl implements OrderGoodsService{
 		orderGoods.getGoodsDocument().setCreateMan(testWorkernew);
 		
 		
-		orderGoods.getGoodsDocument().setDocument_type(OrderGoods.type);
+		orderGoods.getGoodsDocument().setDocumentType(DocTypeMap.getType("XS"));
 		int documentResult = goodsDocumentMapper.insertSelective(orderGoods.getGoodsDocument());
 		int orderResult = orderGoodsMapper.insertSelective(orderGoods);
 		int goodsInfoResult = goodsInfoService.insertGoodsInfo(goodsInfo);

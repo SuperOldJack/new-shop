@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
-	
-    <!-- <script type="text/javascript" src="/js/websocket/orderGoodsSocket.js"></script> -->
-    
+	<!-- 
+    <script type="text/javascript" src="/js/websocket/orderGoodsSocket.js"></script> -->
+    <script type="text/javascript" src="/js/OrderGoodsJs/GoodsInfoManage.js"></script>
 	<TABLE align=center border=0>
 		<TBODY>
 			<TR>
 				<TD><BR>
-					<FORM  method=post action="/sellManage/orderGoodsAdd">
+					<FORM  method=post action="/stock/addInputLib">
 						<DIV align=center>
 							<SPAN class=style1>入库单</SPAN>
 						</DIV>
@@ -31,7 +31,7 @@
 										onclick="setDay(date);return false;" type=image height=16
 										width=18 src="../images/date.gif"><FONT color=red>*</FONT></TD>
 									<TD align=right width=70>供应商</TD>
-									<TD width=320><INPUT id=cust value="1" size=24 name=client.id><A
+									<TD width=320><INPUT id=cust value="1" size=24 name=supplier.id><A
 										onclick="JavaScript:window.open ('../System/selectcust.htm', 'newwindow', 'left=150,top=100,height=600, width=800, toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no, status=no')"
 										href="#"><IMG height=17 src="../images/choose.gif"
 											width=21 border=0></A><FONT color=red>*</FONT></TD>
@@ -41,7 +41,7 @@
 									<TD><SELECT id=depot name=goodsDocument.manageLib.id><OPTION value=1
 												selected>一号仓库</OPTION></SELECT><FONT color=red>*</FONT></TD>
 									<TD align=right>制 单 人</TD>
-									<TD><INPUT readOnly size=16 value=1 name=createMan.id><FONT
+									<TD><INPUT readOnly size=16 value=1 name=goodsDocument.createMan.id><FONT
 										color=red>*</FONT></TD>
 								</TR>
 								<TR>
@@ -65,6 +65,23 @@
 								id=barcode onkeyup=bar(); size=16 name=barcode>
 						</DIV>
 						
+						<TABLE id=sqd style="FONT-SIZE: 12px" cellSpacing=0
+							borderColorDark=#ffffff cellPadding=2 width=780 align=center
+							bgColor=#ffffee borderColorLight=#000000 border=1>
+							<TBODY>
+								<TR align=middle>
+									<TH width="10%">商品编码</TH>
+									<TH width="15%">商品名称</TH>
+									<TH width="7%">单位</TH>
+									<TH width="10%">商品规格</TH>
+									<TH width="10%">说明</TH>
+									<TH width="10%">单价</TH>
+									<TH width="10%">数量</TH>
+									<TH width="10%">金额</TH>
+									<TH width="5%">删除</TH>
+								</TR>
+							</TBODY>
+						</TABLE>
 						<DIV class=but_mar align=center>
 							<INPUT class=button type=submit value="创  建" name=B1>
 						</DIV>

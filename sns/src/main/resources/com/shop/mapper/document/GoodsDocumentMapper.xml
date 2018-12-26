@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.shop.pojo.GoodsDocument">
     <id column="code" jdbcType="VARCHAR" property="code" />
     <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
-    <result column="document_type" jdbcType="VARCHAR" property="document_type" />
     <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <association column="document_type" property="documentType" select="com.shop.mapper.BaseMapper.selectDocType"></association>
     <association column="manage_lib_id" property="manageLib"  select="com.shop.mapper.BaseMapper.selectLibById"></association>
     <association column="manage_man_id" property="manageMan" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey" ></association>
     <association column="create_man" property="createMan" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey" ></association>
