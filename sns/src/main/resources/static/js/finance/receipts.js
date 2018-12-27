@@ -1,7 +1,23 @@
-//付款单的js
+//查看收款单的相关单据(出库单)
+function relatedDoc(that) {
+	alert('查看收款单的相关单据(出库单)');
+	var inLib = null;
+	var code = $(that).parent().siblings().eq(0).text();//, toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no, status=no
+	window.open("finance/queryOutLibInfo?Code=" + code, 'newwindow', 'left=150,top=100,height=600, width=800');
+}
+
+//查看收款单的详情
+function detailed(that) {
+	alert('查看收款单的详情');
+	var inLib = null;
+	var code = $(that).parent().siblings().eq(1).text();
+	window.open("finance/queryRecDocInfo?Code=" + code, 'newwindow', 'left=150,top=100,height=600, width=800');
+}
+
+//收款单的js
 function queryrecDoc() {
 	/*$("#main").load("/finance/queryrecment");*/
-	$.ajax({
+	/*$.ajax({
 		"url":"finance/queryReceipts",
 		"type":"get",
 		"success":function(data) {
@@ -12,12 +28,13 @@ function queryrecDoc() {
 				  recHtml += "<tr><td>" + recList[i].payment.docCode + "</td>";
 				  recHtml += "<td>" + recList[i].inLibAndSup.goodsCode + "</td>";
 				  recHtml += "<td>" + recList[i].payment.actual_money + "</td>";
-				  recHtml += "<td>" + recList[i].payment.comment + "</td></tr>";
+				  recHtml += "<td>" + recList[i].payment.comment + "</td>";
+				  recHtml += "<td><button class='btn btn-primary'onclick='relatedDoc(this)'>相关单据</button></td>";
+				  recHtml += "<td><button class='btn btn-primary'onclick='detailed(this)'>查看详情</button></td></tr>";
 			 }
-			 //console.log("recHtml:"+recHtml);
 			 $("#recInfoTable").html(recHtml);
 		}
-	});
+	});*/
 }
 
 $(function() {
