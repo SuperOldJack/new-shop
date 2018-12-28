@@ -1,17 +1,20 @@
-package com.shop.pojo;
+package com.shop.pojo.document;
+
+import com.shop.pojo.GoodsDocument;
+import com.shop.pojo.User;
 
 /**
  * 出库
  * @author Administrator
  *
  */
-public class OutLibAndUse {
+public class Outputlib implements IDoc{
     private Integer id;
 
     /**
      * 出库单单号
      */
-    private GoodsDocument goods;
+    private GoodsDocument goodsDocument;
 
     private User user;
 
@@ -23,12 +26,13 @@ public class OutLibAndUse {
         this.id = id;
     }
 
-	public GoodsDocument getGoods() {
-		return goods;
+
+	public GoodsDocument getGoodsDocument() {
+		return goodsDocument;
 	}
 
-	public void setGoods(GoodsDocument goods) {
-		this.goods = goods;
+	public void setGoodsDocument(GoodsDocument goodsDocument) {
+		this.goodsDocument = goodsDocument;
 	}
 
 	public User getUser() {

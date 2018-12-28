@@ -1,14 +1,18 @@
-package com.shop.pojo;
+package com.shop.pojo.document;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.shop.pojo.Card;
+import com.shop.pojo.GoodsDocument;
+import com.shop.pojo.Worker;
 
 /**
  * 收付款单详情
  * @author Administrator
  *
  */
-public class Payment {
+public class Payment implements IDoc{
     private Integer id;
 
     /**
@@ -21,8 +25,8 @@ public class Payment {
     /**
      * 收付款单
      */
-    private String docCode;
-    /*private GoodsDocument goods;*/
+   /* private String docCode;*/
+    private GoodsDocument goods;
 
     /**
      * 卡号
@@ -94,12 +98,17 @@ public class Payment {
 		this.comment = comment;
 	}
 
-	public String getDocCode() {
-		return docCode;
+	public GoodsDocument getGoods() {
+		return goods;
 	}
 
-	public void setDocCode(String docCode) {
-		this.docCode = docCode;
+	public void setGoods(GoodsDocument goods) {
+		this.goods = goods;
 	}
-	
+
+	@Override
+	public GoodsDocument getGoodsDocument() {
+		return this.goods;
+	}
+
 }

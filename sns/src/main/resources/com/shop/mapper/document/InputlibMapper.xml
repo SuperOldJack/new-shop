@@ -3,7 +3,6 @@
 <mapper namespace="com.shop.mapper.document.InputlibMapper">
   <resultMap id="BaseResultMap" type="com.shop.pojo.document.Inputlib">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <!-- <result column="goods_document_code" jdbcType="VARCHAR" property="goodsDocument" /> -->
     <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
     <association column="supplier_id" property="supplier" select="com.shop.mapper.SupplierMapper.selectByPrimaryKey"></association>
   </resultMap>

@@ -1,4 +1,4 @@
-package com.shop.pojo;
+package com.shop.pojo.document;
 
 /**
  * 收付款与出库单关系
@@ -16,17 +16,9 @@ public class PayrecAndOutLib {
     /**
      * 出库单id
      */
-    private OutLibAndUse inLibAndSup;
+    private Outputlib outputlib;
 
-    public OutLibAndUse getInLibAndSup() {
-		return inLibAndSup;
-	}
-
-	public void setInLibAndSup(OutLibAndUse inLibAndSup) {
-		this.inLibAndSup = inLibAndSup;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -42,6 +34,12 @@ public class PayrecAndOutLib {
 		this.payment = payment;
 	}
 
+	public Outputlib getOutputlib() {
+		return outputlib;
+	}
 
-    
+	public void setOutputlib(Outputlib outputlib) {
+		this.outputlib = outputlib;
+	}
+
 }

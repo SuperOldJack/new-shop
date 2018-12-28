@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.PayrecAndOutLibMapper">
-  <resultMap id="BaseResultMap" type="com.shop.pojo.PayrecAndOutLib">
+<mapper namespace="com.shop.mapper.document.PayrecAndOutLibMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.document.PayrecAndOutLib">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <association column="tb_payment_received_id" property="payment" select="com.shop.mapper.PaymentMapper.selectByPrimaryKey"></association>
-  	<association column="inputlib_id" property="inLibAndSup" select="com.shop.mapper.InLibAndSupMapper.selectByPrimaryKey"></association>
+    <association column="tb_payment_received_id" property="payment" select="com.shop.mapper.document.PaymentMapper.selectByPrimaryKey"></association>
+  	<association column="outlib_id" property="outputlib" select="com.shop.mapper.document.OutputlibMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, tb_payment_received_id, inputlib_id
+    id, tb_payment_received_id, outlib_id
   </sql>
   
   <select id="selectReceiptsDoc" resultMap="BaseResultMap">
@@ -26,13 +26,13 @@
     delete from paymentreceived_to_outlib
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.shop.pojo.PayrecAndOutLib">
-    insert into paymentreceived_to_outlib (id, tb_payment_received_id, inputlib_id
+  <insert id="insert" parameterType="com.shop.mapper.document.PayrecAndOutLibMapper">
+    insert into paymentreceived_to_outlib (id, tb_payment_received_id, outlib_id
       )
-    values (#{id,jdbcType=INTEGER}, #{tb_payment_received_id,jdbcType=INTEGER}, #{inputlib_id,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{tb_payment_received_id,jdbcType=INTEGER}, #{outlib_id,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.shop.pojo.PayrecAndOutLib">
+  <insert id="insertSelective" parameterType="com.shop.mapper.document.PayrecAndOutLibMapper">
     insert into paymentreceived_to_outlib
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -41,8 +41,8 @@
       <if test="tb_payment_received_id != null">
         tb_payment_received_id,
       </if>
-      <if test="inputlib_id != null">
-        inputlib_id,
+      <if test="outlib_id != null">
+        outlib_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -52,27 +52,27 @@
       <if test="tb_payment_received_id != null">
         #{tb_payment_received_id,jdbcType=INTEGER},
       </if>
-      <if test="inputlib_id != null">
-        #{inputlib_id,jdbcType=INTEGER},
+      <if test="outlib_id != null">
+        #{outlib_id,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.PayrecAndOutLib">
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.mapper.document.PayrecAndOutLibMapper">
     update paymentreceived_to_outlib
     <set>
       <if test="tb_payment_received_id != null">
         tb_payment_received_id = #{tb_payment_received_id,jdbcType=INTEGER},
       </if>
-      <if test="inputlib_id != null">
-        inputlib_id = #{inputlib_id,jdbcType=INTEGER},
+      <if test="outlib_id != null">
+        outlib_id = #{outlib_id,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.PayrecAndOutLib">
+  <update id="updateByPrimaryKey" parameterType="com.shop.mapper.document.PayrecAndOutLibMapper">
     update paymentreceived_to_outlib
     set tb_payment_received_id = #{tb_payment_received_id,jdbcType=INTEGER},
-      inputlib_id = #{inputlib_id,jdbcType=INTEGER}
+      outlib_id = #{outlib_id,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

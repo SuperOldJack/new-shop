@@ -10,9 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shop.pojo.Payment;
-import com.shop.pojo.PayrecAndInLib;
-import com.shop.pojo.PayrecAndOutLib;
+import com.shop.pojo.document.PayrecAndInLib;
+import com.shop.pojo.document.PayrecAndOutLib;
 import com.shop.service.PaymentService;
 
 /**

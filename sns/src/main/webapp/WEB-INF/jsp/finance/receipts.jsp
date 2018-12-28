@@ -16,13 +16,7 @@
 				<td>操作
 		</thead>
 		<tbody id="recInfoTable">
-			<tr>
-				<td>测试-付款单
-				<td>测试-入库单
-				<td>测试-金额
-				<td>测试-备注
-				<td><button class='btn btn-primary' onclick='relatedDoc(this)'>相关单据</button>
-					<button class='btn btn-primary' onclick='detailed(this)'>查看详情</button>
+
 		</tbody>
 	</table>
 </div>

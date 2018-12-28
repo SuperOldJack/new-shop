@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.OutLibAndUseMapper">
-  <resultMap id="BaseResultMap" type="com.shop.pojo.OutLibAndUse">
+<mapper namespace="com.shop.mapper.document.OutputlibMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.document.Outputlib">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association>
+    <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
   	<association column="client_id" property="user" select="com.shop.mapper.UserMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
@@ -19,13 +19,13 @@
     delete from outlib_to_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.shop.pojo.OutLibAndUse">
+  <insert id="insert" parameterType="com.shop.pojo.document.Outputlib">
     insert into outlib_to_user (id, goods_document_code, client_id
       )
     values (#{id,jdbcType=INTEGER}, #{goods_document_code,jdbcType=VARCHAR}, #{client_id,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.shop.pojo.OutLibAndUse">
+  <insert id="insertSelective" parameterType="com.shop.pojo.document.Outputlib">
     insert into outlib_to_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.OutLibAndUse">
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.document.Outputlib">
     update outlib_to_user
     <set>
       <if test="goods_document_code != null">
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.OutLibAndUse">
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.document.Outputlib">
     update outlib_to_user
     set goods_document_code = #{goods_document_code,jdbcType=VARCHAR},
       client_id = #{client_id,jdbcType=INTEGER}

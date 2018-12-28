@@ -1,10 +1,10 @@
-package com.shop.mapper;
+package com.shop.mapper.document;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.shop.pojo.PayrecAndInLib;
+import com.shop.pojo.document.PayrecAndInLib;
 
 @Mapper
 public interface PayrecAndInLibMapper {

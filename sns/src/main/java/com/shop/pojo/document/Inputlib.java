@@ -13,8 +13,6 @@ public class Inputlib implements IDoc{
 
 	private GoodsDocument goodsDocument;
 
-
-
 	private Supplier supplier;//供应商
 
 

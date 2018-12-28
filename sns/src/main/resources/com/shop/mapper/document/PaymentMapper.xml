@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.PaymentMapper">
-  <resultMap id="BaseResultMap" type="com.shop.pojo.Payment">
+<mapper namespace="com.shop.mapper.document.PaymentMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.document.Payment">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="dealtime" jdbcType="TIMESTAMP" property="dealtime" />
     <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="goods_document_code" jdbcType="VARCHAR" property="docCode" />
-    <!-- <association column="goods_document_code" property="goods" select="com.shop.mapper.GoodsInfoMapper.selectByPrimaryKey"></association> -->
+    <association column="goods_document_code" property="goods" javaType="com.shop.pojo.GoodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
   	<association column="card_id" property="card" select="com.shop.mapper.CardMapper.selectByPrimaryKey"></association>
   	<association column="manage_work_id" property="work" select="com.shop.mapper.WorkerMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
-    id, type, dealtime, goods_document_code, card_id, manage_work_id, actual_money, comment
+    id, type, dealtime, goods_document_code, card_id, manage_work_id, actual_money, `comment`
   </sql>
-  
-  <select id="selectPaymentDoc" resultMap="BaseResultMap">
-	select pr.id, pr.type, pr.dealtime, pr.goods_document_code as docCode, pr.card_id, pr.manage_work_id, pr.actual_money, pr.`comment`,
-				its.id, its.goods_document_code, its.supplier_id
-	from tb_payment_received as pr
-	inner join paymentReceived_to_inputlib as po on pr.id = po.tb_payment_received_id 
-	inner join inputlib_to_supplier as its on its.id = po.inputlib_id
-	where pr.type = 1
-  </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    id, type, dealtime, goods_document_code as docCode, card_id, manage_work_id, actual_money, comment
+    <include refid="Base_Column_List"/>
     from tb_payment_received
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -35,7 +25,7 @@
     delete from tb_payment_received
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.shop.pojo.Payment">
+  <insert id="insert" parameterType="com.shop.pojo.document.Payment">
     insert into tb_payment_received (id, type, dealtime, 
       goods_document_code, card_id, manage_work_id, 
       actual_money, comment)
@@ -43,7 +33,7 @@
       #{goods_document_code,jdbcType=VARCHAR}, #{card_id,jdbcType=INTEGER}, #{manage_work_id,jdbcType=INTEGER}, 
       #{actual_money,jdbcType=DECIMAL}, #{comment,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.shop.pojo.Payment">
+  <insert id="insertSelective" parameterType="com.shop.pojo.document.Payment">
     insert into tb_payment_received
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -98,7 +88,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.Payment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.document.Payment">
     update tb_payment_received
     <set>
       <if test="type != null">
@@ -125,7 +115,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.Payment">
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.document.Payment">
     update tb_payment_received
     set type = #{type,jdbcType=INTEGER},
       dealtime = #{dealtime,jdbcType=TIMESTAMP},

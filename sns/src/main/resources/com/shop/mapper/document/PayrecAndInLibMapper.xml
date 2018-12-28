@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.PayrecAndInLibMapper">
-  <resultMap id="BaseResultMap" type="com.shop.pojo.PayrecAndInLib">
+<mapper namespace="com.shop.mapper.document.PayrecAndInLibMapper">
+  <resultMap id="BaseResultMap" type="com.shop.pojo.document.PayrecAndInLib">
     <id column="id" jdbcType="INTEGER" property="id" />
-  	<association column="tb_payment_received_id" property="payment" select="com.shop.mapper.PaymentMapper.selectByPrimaryKey"></association>
-  	<association column="inputlib_id" property="inLibAndSup" select="com.shop.mapper.InLibAndSupMapper.selectByPrimaryKey"></association>
+  	<association column="tb_payment_received_id" property="payment" select="com.shop.mapper.document.PaymentMapper.selectByPrimaryKey"></association>
+  	<association column="inputlib_id" property="inputlib" select="com.shop.mapper.document.InputlibMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
     id, tb_payment_received_id, inputlib_id
@@ -26,13 +26,13 @@
     delete from paymentreceived_to_inputlib
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.shop.pojo.PayrecAndInLib">
+  <insert id="insert" parameterType="com.shop.pojo.document.PayrecAndInLib">
     insert into paymentreceived_to_inputlib (id, tb_payment_received_id, inputlib_id
       )
     values (#{id,jdbcType=INTEGER}, #{tb_payment_received_id,jdbcType=INTEGER}, #{inputlib_id,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.shop.pojo.PayrecAndInLib">
+  <insert id="insertSelective" parameterType="com.shop.pojo.document.PayrecAndInLib">
     insert into paymentreceived_to_inputlib
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.PayrecAndInLib">
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.pojo.document.PayrecAndInLib">
     update paymentreceived_to_inputlib
     <set>
       <if test="tb_payment_received_id != null">
@@ -69,7 +69,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.PayrecAndInLib">
+  <update id="updateByPrimaryKey" parameterType="com.shop.pojo.document.PayrecAndInLib">
     update paymentreceived_to_inputlib
     set tb_payment_received_id = #{tb_payment_received_id,jdbcType=INTEGER},
       inputlib_id = #{inputlib_id,jdbcType=INTEGER}

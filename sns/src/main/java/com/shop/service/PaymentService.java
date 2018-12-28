@@ -2,8 +2,8 @@ package com.shop.service;
 
 import java.util.List;
 
-import com.shop.pojo.PayrecAndInLib;
-import com.shop.pojo.PayrecAndOutLib;
+import com.shop.pojo.document.PayrecAndInLib;
+import com.shop.pojo.document.PayrecAndOutLib;
 
 public interface PaymentService {
 
