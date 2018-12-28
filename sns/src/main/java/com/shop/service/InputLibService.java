@@ -20,4 +20,6 @@ public interface InputLibService {
 	 * @return
 	 */
 	int seveInputLib(Inputlib inputlib,List<GoodsInfo> goodsInfos);
+	
+	List<Inputlib> selectInLib();
 }

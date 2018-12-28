@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -56,6 +57,14 @@ public class StockController {
 
 		
 		return null;
+	}
+	
+	@RequestMapping("/showInLib")
+	public String showInLib(Model model) {
+		List<Inputlib> lib = inputLibService.selectInLib();
+		model.addAttribute("inlib", lib);
+		
+		return "/stock/findInputLib";
 	}
 	
 	@ResponseBody

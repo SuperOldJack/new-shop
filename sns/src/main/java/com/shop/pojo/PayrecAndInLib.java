@@ -1,5 +1,7 @@
 package com.shop.pojo;
 
+import com.shop.pojo.document.Inputlib;
+
 /**
  * 收付款与入库单关系
  * @author Administrator
@@ -16,9 +18,17 @@ public class PayrecAndInLib {
     /**
      * 入库单
      */
-    private InLibAndSup inLibAndSup;
+    private Inputlib inLibAndSup;
 
-    public Integer getId() {
+    public Inputlib getInLibAndSup() {
+		return inLibAndSup;
+	}
+
+	public void setInLibAndSup(Inputlib inLibAndSup) {
+		this.inLibAndSup = inLibAndSup;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -34,12 +44,5 @@ public class PayrecAndInLib {
 		this.payment = payment;
 	}
 
-	public InLibAndSup getInLibAndSup() {
-		return inLibAndSup;
-	}
-
-	public void setInLibAndSup(InLibAndSup inLibAndSup) {
-		this.inLibAndSup = inLibAndSup;
-	}
 
 }

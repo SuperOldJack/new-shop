@@ -16,6 +16,11 @@
     from inputlib_to_supplier
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectInLib" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inputlib_to_supplier
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from inputlib_to_supplier
     where id = #{id,jdbcType=INTEGER}

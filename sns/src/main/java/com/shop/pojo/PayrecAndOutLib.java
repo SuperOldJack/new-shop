@@ -16,9 +16,17 @@ public class PayrecAndOutLib {
     /**
      * 出库单id
      */
-    private InLibAndSup inLibAndSup;
+    private OutLibAndUse inLibAndSup;
 
-    public Integer getId() {
+    public OutLibAndUse getInLibAndSup() {
+		return inLibAndSup;
+	}
+
+	public void setInLibAndSup(OutLibAndUse inLibAndSup) {
+		this.inLibAndSup = inLibAndSup;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -34,13 +42,6 @@ public class PayrecAndOutLib {
 		this.payment = payment;
 	}
 
-	public InLibAndSup getInLibAndSup() {
-		return inLibAndSup;
-	}
-
-	public void setInLibAndSup(InLibAndSup inLibAndSup) {
-		this.inLibAndSup = inLibAndSup;
-	}
 
     
 }

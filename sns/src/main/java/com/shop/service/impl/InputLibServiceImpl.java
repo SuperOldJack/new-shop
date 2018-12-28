@@ -44,5 +44,11 @@ public class InputLibServiceImpl extends SeveDocTemplet implements InputLibServi
 		int libResult = inputlibMapper.insert(inputlib);
 		return libResult;
 	}
+
+	@Override
+	public List<Inputlib> selectInLib() {
+
+		return inputlibMapper.selectInLib();
+	}
 	
 }
