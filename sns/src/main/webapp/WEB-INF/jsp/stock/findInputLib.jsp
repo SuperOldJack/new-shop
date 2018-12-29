@@ -49,13 +49,13 @@
 			</TR>
 			<TR id=tr onMouseOver="GetDIV('block',1)"
 				onMouseOut="GetDIV('none',1)" align=middle bgColor=#ffffff>
-				<TD onmousemove=addtext(1)>RK-2010-04-15-0001</TD>
-				<TD onmousemove=addtext(1)>2010-4-15</TD>
-				<TD onmousemove=addtext(1)>asdf</TD>
-				<TD onmousemove=addtext(1)></TD>
-				<TD><INPUT class=button onClick="edit('RK-2010-04-15-0001');"
+				<TD onmousemove=addtext(1)>${inlib.goodsDocument.code}</TD>
+				<TD onmousemove=addtext(1)>${inlib.goodsDocument.create_time}</TD>
+				<TD onmousemove=addtext(1)>${inlib.supplier.linker_name}</TD>
+				<TD onmousemove=addtext(1)>${inlib.goodsDocument.manageMan}</TD>
+				<TD><INPUT class=button onClick="edit('${inlib.goodsDocument.code}');"
 					type=button value=修改> <INPUT class=button
-					onClick="del('RK-2010-04-15-0001');" type=button value=删除></TD>
+					onClick="del('${inlib.goodsDocument.code}');" type=button value=删除></TD>
 			</TR>
 		</TBODY>
 	</TABLE>
@@ -78,3 +78,25 @@
 	</FORM>
 	<DIV class=billdetail id=search_suggest
 		style="DISPLAY: none; POSITION: absolute"></DIV>
+		
+<script type="text/javascript">
+
+$.post("/stock/showInLib",
+		"json",function(data){
+
+			for(var i = 0; i < data.length; i++){
+				$("#tbl").append("<tr> "
+						+"<td>"+data[i].goodsDocument.code+"</td>"
+						+"<td>"+data[i].goodsDocument.create_time+"</td>"
+						+"<td>"+data[i].supplier.unit+"</td>"
+						
+						+"<td>"+data[i].goodsDocument.manageMan.name+"</td>"
+						+"<TD><INPUT class=button onClick='edit('"+data[i].goodsDocument.code+"');'"
+						+"type=button value=修改> <INPUT class=button"
+						+"onClick='del('${inlib.goodsDocument.code}');' type=button value=删除></TD></tr>");
+
+			}
+	 }
+	)
+
+</script>		

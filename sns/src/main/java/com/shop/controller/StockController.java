@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.node.JSPMapper;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.document.Inputlib;
 import com.shop.pojo.info.DocTypeMap;
@@ -59,12 +60,11 @@ public class StockController {
 		return null;
 	}
 	
+	@ResponseBody
 	@RequestMapping("/showInLib")
-	public String showInLib(Model model) {
+	public List<Inputlib> showInLib() {
 		List<Inputlib> lib = inputLibService.selectInLib();
-		model.addAttribute("inlib", lib);
-		
-		return "/stock/findInputLib";
+		return lib;
 	}
 	
 	@ResponseBody

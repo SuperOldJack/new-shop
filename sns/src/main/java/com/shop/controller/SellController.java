@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.node.JSPMapper;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
@@ -22,6 +23,11 @@ import com.shop.tools.CodeMake;
 @RequestMapping("/sellManage")
 @Controller
 public class SellController {
+	
+	public SellController() {
+		//向中央控制器添加此控制器
+		TheCentralController.getCentralController().addController(this);;
+	}
 	
 	private final static String orderGoodsType = "XS";
 	
@@ -54,6 +60,7 @@ public class SellController {
 	
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
+	@JSPMapper("/sell/findSell")
 	public List<OrderGoods> showOrderGoods() {
 		List<OrderGoods> selectOrderGoodsAll = orderGoodsService.selectOrderGoodsAll();
 		return selectOrderGoodsAll;
