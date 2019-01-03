@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<TITLE>订单浏览</TITLE>
+<TITLE>入库单查询</TITLE>
 
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <META content="MSHTML 6.00.6000.16981" name=GENERATOR>
 </HEAD>
@@ -56,7 +57,22 @@
 				<TD><INPUT class=button onClick="edit('${inlib.goodsDocument.code}');"
 					type=button value=修改> <INPUT class=button
 					onClick="del('${inlib.goodsDocument.code}');" type=button value=删除></TD>
+					
+				
 			</TR>
+			<c:forEach var="item" items="${data}">
+				<tr>
+					
+					<td>${item.goodsDocument.code}</td>
+					<td>${item.goodsDocument.create_time}</td>
+					<td>${item.supplier.unit}</td>
+					
+					<td>${item.goodsDocument.manageMan.name}</td>
+					<TD><INPUT class=button onClick="edit('${item.goodsDocument.code}');" type=button value=修改>
+					 <INPUT class=button onClick="del('${item.goodsDocument.code}');" type=button value=删除></TD>
+				</tr>
+				
+			</c:forEach>
 		</TBODY>
 	</TABLE>
 	<TABLE width=850 align=center border=0>
@@ -79,24 +95,4 @@
 	<DIV class=billdetail id=search_suggest
 		style="DISPLAY: none; POSITION: absolute"></DIV>
 		
-<script type="text/javascript">
-
-$.post("/stock/showInLib",
-		"json",function(data){
-
-			for(var i = 0; i < data.length; i++){
-				$("#tbl").append("<tr> "
-						+"<td>"+data[i].goodsDocument.code+"</td>"
-						+"<td>"+data[i].goodsDocument.create_time+"</td>"
-						+"<td>"+data[i].supplier.unit+"</td>"
-						
-						+"<td>"+data[i].goodsDocument.manageMan.name+"</td>"
-						+"<TD><INPUT class=button onClick='edit('"+data[i].goodsDocument.code+"');'"
-						+"type=button value=修改> <INPUT class=button"
-						+"onClick='del('${inlib.goodsDocument.code}');' type=button value=删除></TD></tr>");
-
-			}
-	 }
-	)
-
-</script>		
+		

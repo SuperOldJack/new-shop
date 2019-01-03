@@ -1,5 +1,5 @@
 /**
- * 
+ * 用于获得code参数
  */
 
 
@@ -40,7 +40,10 @@ function connectionSocket(url){
 	}
 	
 }
-
+function fullCode(received_msg){
+	document.getElementById('tittle_lable').innerHTML = received_msg;
+	document.getElementById('a').value = received_msg;
+}
 function sendMessage(){
 
 	ws.send(document.getElementById('text').value);

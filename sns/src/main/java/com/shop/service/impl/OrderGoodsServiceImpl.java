@@ -5,19 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.shop.mapper.document.GoodsDocumentMapper;
 import com.shop.mapper.document.OrderGoodsMapper;
 import com.shop.pojo.GoodsInfo;
-import com.shop.pojo.Worker;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.IDoc;
 import com.shop.pojo.document.OrderGoods;
-import com.shop.pojo.info.DocTypeMap;
-import com.shop.service.GoodsInfoService;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.templet.SeveDocTemplet;
+import com.shop.tools.IPageTool;
+import com.shop.tools.PageTool;
 
 @Service("orderGoodsService")
 public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsService{
@@ -54,6 +51,14 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 	public List<GoodsSummary> getGoodsDetailAll() {
 		
 		return orderGoodsMapper.getGoodsDetailAll();
+	}
+
+	@Override
+	public List<OrderGoods> getOrderGoodsPage(int currentPageNo) {
+		int count = orderGoodsMapper.getcount();
+		IPageTool page = new PageTool(currentPageNo,count);
+		return orderGoodsMapper.selectByPage(page.getCurrentPageNo(),page.getPageSize());
+		
 	}
 
 	

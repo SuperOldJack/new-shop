@@ -16,7 +16,7 @@ public class Outputlib implements IDoc{
      */
     private GoodsDocument goodsDocument;
 
-    private User user;
+    private User client;
 
     public Integer getId() {
         return id;
@@ -26,7 +26,7 @@ public class Outputlib implements IDoc{
         this.id = id;
     }
 
-
+    @Override
 	public GoodsDocument getGoodsDocument() {
 		return goodsDocument;
 	}
@@ -35,12 +35,12 @@ public class Outputlib implements IDoc{
 		this.goodsDocument = goodsDocument;
 	}
 
-	public User getUser() {
-		return user;
+	public User getClient() {
+		return client;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setClient(User user) {
+		this.client = user;
 	}
 
     

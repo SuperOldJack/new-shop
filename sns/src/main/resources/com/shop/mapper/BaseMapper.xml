@@ -44,6 +44,10 @@
   
   <!-- sql语句区域 -->
   
+  <!-- 分页查询 -->
+  <sql id="limit">
+  	 limit #{pageIndex},#{pageSize}
+  </sql>
   
   <!-- 查询单据类型 -->
   <select id="selectDocType" resultMap="DocumentTypeResultMap">
@@ -56,6 +60,13 @@
      id, type_name, abbreviation
     from tb_document_type
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectUserById" resultMap="UserResultMap">
+  	select
+  		id,name,sex,address,e_mail,phone
+  	from tb_user_info
+  	where id = #{id,jdbcType=INTEGER}
   </select>
   
   <select id="selectCountUnit"  resultMap="CountUnitResultMap">

@@ -1,5 +1,7 @@
 package com.shop.mapper.document;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.pojo.document.Outputlib;
@@ -17,4 +19,6 @@ public interface OutputlibMapper {
     int updateByPrimaryKeySelective(Outputlib record);
 
     int updateByPrimaryKey(Outputlib record);
+    
+    List<Outputlib> selectAll();
 }

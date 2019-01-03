@@ -29,8 +29,7 @@ public class DocTypeMap {
 	private static void init(){
 		type = new HashMap<>();
 		List<DocumentType> documentType = BaseData.getDocumentType();
-		documentType.forEach((t)->{type.put(t.getType_name(),t);});
-		type.put("XS", new DocumentType(new Integer(1),"销售单","XS"));
+		documentType.forEach((t)->{type.put(t.getAbbreviation(),t);});
 		
 	}
 	

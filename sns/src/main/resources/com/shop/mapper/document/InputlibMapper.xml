@@ -36,10 +36,10 @@
       <if test="id != null">
         id,
       </if>
-      <if test="goods_document_code != null">
+      <if test="goodsDocument.code != null">
         goods_document_code,
       </if>
-      <if test="supplier_id != null">
+      <if test="supplier.id != null">
         supplier_id,
       </if>
     </trim>
@@ -47,11 +47,11 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="goods_document_code != null">
-        #{goods_document_code,jdbcType=VARCHAR},
+      <if test="goodsDocument.code != null">
+        #{goodsDocument.code,jdbcType=VARCHAR},
       </if>
-      <if test="supplier_id != null">
-        #{supplier_id,jdbcType=INTEGER},
+      <if test="supplier.id != null">
+        #{supplier.id,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

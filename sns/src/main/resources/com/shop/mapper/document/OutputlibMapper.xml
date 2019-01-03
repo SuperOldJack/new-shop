@@ -4,11 +4,17 @@
   <resultMap id="BaseResultMap" type="com.shop.pojo.document.Outputlib">
     <id column="id" jdbcType="INTEGER" property="id" />
     <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
-  	<association column="client_id" property="user" select="com.shop.mapper.UserMapper.selectByPrimaryKey"></association>
+  	<association column="client_id" property="client" select="com.shop.mapper.UserMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Base_Column_List">
     id, goods_document_code, client_id
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from outlib_to_user
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -31,10 +37,10 @@
       <if test="id != null">
         id,
       </if>
-      <if test="goods_document_code != null">
+      <if test="goodsDocument.code != null">
         goods_document_code,
       </if>
-      <if test="client_id != null">
+      <if test="client.id != null">
         client_id,
       </if>
     </trim>
@@ -42,11 +48,11 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="goods_document_code != null">
-        #{goods_document_code,jdbcType=VARCHAR},
+      <if test="goodsDocument.code != null">
+        #{goodsDocument.code,jdbcType=VARCHAR},
       </if>
-      <if test="client_id != null">
-        #{client_id,jdbcType=INTEGER},
+      <if test="client.id != null">
+        #{client.id,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

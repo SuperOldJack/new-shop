@@ -22,15 +22,11 @@ public class InputLibServiceImpl extends SeveDocTemplet implements InputLibServi
 	@Autowired
 	public InputlibMapper inputlibMapper;
 	
-	@Autowired 
-	public GoodsDocumentMapper goodsDocumentMapper;
 	
-	@Autowired
-	public GoodsInfoMapper goodsInfoMapper;
 	
 	@Override
 	@Transactional
-	public int seveInputLib(  Inputlib inputlib,List<GoodsInfo> goodsInfo) {
+	public int seveInputLib(Inputlib inputlib,List<GoodsInfo> goodsInfo) {
 		
 		
 		 

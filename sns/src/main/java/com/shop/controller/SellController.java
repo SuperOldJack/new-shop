@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,14 +20,17 @@ import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
 import com.shop.socket.OrderGoodsSocket;
 import com.shop.tools.CodeMake;
+import com.shop.tools.IPageTool;
+import com.shop.tools.PageTool;
 
 @RequestMapping("/sellManage")
 @Controller
+@DependsOn("theCentralController")//添加依赖,这表示该控制器会在其他控制器之后实例化
 public class SellController {
 	
 	public SellController() {
 		//向中央控制器添加此控制器
-		TheCentralController.getCentralController().addController(this);;
+		TheCentralController.getCentralController().addController(this);
 	}
 	
 	private final static String orderGoodsType = "XS";
@@ -60,9 +64,10 @@ public class SellController {
 	
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
-	@JSPMapper("/sell/findSell")
-	public List<OrderGoods> showOrderGoods() {
-		List<OrderGoods> selectOrderGoodsAll = orderGoodsService.selectOrderGoodsAll();
+	@JSPMapper("sell/findSell")
+	public List<OrderGoods> showOrderGoods(int pageNo) {
+		
+		List<OrderGoods> selectOrderGoodsAll = orderGoodsService.getOrderGoodsPage(pageNo);
 		return selectOrderGoodsAll;
 	}
 	
@@ -116,8 +121,6 @@ public class SellController {
 	public String getNowSellOrderCode() {
 		return code.getCode();
 	}
-	
-	
 	
 	
 	

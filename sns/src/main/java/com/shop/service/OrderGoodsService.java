@@ -6,6 +6,8 @@ import java.util.List;
 import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
+import com.shop.tools.IPageTool;
+import com.shop.tools.PageTool;
 
 public interface OrderGoodsService {
 	OrderGoods selectById(Integer id);
@@ -15,4 +17,7 @@ public interface OrderGoodsService {
 	int seveOrderGoods(OrderGoods orderGoods,List<GoodsInfo> goodsInfos) throws SQLException; 
 	
 	List<GoodsSummary> getGoodsDetailAll();
+	
+	List<OrderGoods> getOrderGoodsPage(int currentPageNo);
+	
 }

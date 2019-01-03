@@ -10,11 +10,25 @@
     <association column="client_id" property="client" resultMap="com.shop.mapper.BaseMapper.UserResultMap"></association>
   </resultMap>
   
+  <!-- 强化版map -->
+  <resultMap id="EXResultMap" type="com.shop.pojo.document.OrderGoods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="amount_money" jdbcType="DECIMAL" property="amount_money" />
+    <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
+    <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
+    <association column="card_id" property="card" select="com.shop.mapper.CardMapper.selectByPrimaryKey"></association>
+    <association column="client_id" property="client" select="com.shop.mapper.BaseMapper.selectUserById"></association>
+  </resultMap>
   
   
   
   <sql id="Base_Column_List">
     id, goods_document_code, client_id, amount_money, actual_money, card_id
+  </sql>
+  <sql id="Select_info_eazy">
+  	select og.id, og.goods_document_code, og.client_id, og.amount_money, og.actual_money, og.card_id
+			
+    from tb_order_goods as og 
   </sql>
   <sql id="Select_info">
   	select og.id, og.goods_document_code, og.client_id, og.amount_money, og.actual_money, og.card_id, 
@@ -28,6 +42,15 @@
     	where og.id = #{id,jdbcType=INTEGER}
   </select>
   
+  <select id="selectByPage" resultMap="BaseResultMap">
+  	<include refid="Select_info_eazy" />
+  	<include refid="com.shop.mapper.BaseMapper.limit" />
+  </select>	
+  <select id="getcount">
+  select count(1)
+			
+    from tb_order_goods
+  </select>
   
   <select id="getGoodsDetailAll"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
     
@@ -38,8 +61,8 @@ select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as h
   </select>
   
   
-  <select id="selectOrderGoodsAll" resultMap="BaseResultMap">
-  	<include refid="Select_info" />
+  <select id="selectOrderGoodsAll" resultMap="EXResultMap">
+  	<include refid="Select_info_eazy" />
   </select>
   
   

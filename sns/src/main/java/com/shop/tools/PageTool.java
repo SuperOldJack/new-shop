@@ -1,6 +1,11 @@
 package com.shop.tools;
 
-public class PageTool {
+public class PageTool implements IPageTool{
+	
+	public PageTool(int currentPageNo,int totalCount) {
+		this.setCurrentPageNo(currentPageNo);
+		this.setTotalCount(totalCount);
+	}
 	
 	//当前页码-来自于用户输入
 	private int currentPageNo = 1;
@@ -14,7 +19,7 @@ public class PageTool {
 	//总页数-totalCount/pageSize（+1）
 	private int totalPageCount = 1;
 	
-	//下一页
+	//下一页 
 	private int nextPage;
 	
 	//上一页

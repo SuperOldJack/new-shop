@@ -6,6 +6,11 @@ import com.shop.pojo.Card;
 import com.shop.pojo.GoodsDocument;
 import com.shop.pojo.UserInfo;
 
+/**
+ * 销售单
+ * @author Administrator
+ *
+ */
 public class OrderGoods implements IDoc{
 	
 	private Integer id;
