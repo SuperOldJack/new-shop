@@ -3,6 +3,7 @@ package com.shop.mapper.document;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
@@ -29,5 +30,5 @@ public interface OrderGoodsMapper {
     
     List<GoodsSummary> getGoodsDetailAll();
     
-    List<OrderGoods> selectByPage(int currentPageNo,int totalCount);
+    List<OrderGoods> selectByPage(@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
 }

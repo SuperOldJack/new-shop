@@ -57,7 +57,9 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 	public List<OrderGoods> getOrderGoodsPage(int currentPageNo) {
 		int count = orderGoodsMapper.getcount();
 		IPageTool page = new PageTool(currentPageNo,count);
-		return orderGoodsMapper.selectByPage(page.getCurrentPageNo(),page.getPageSize());
+		
+		List<OrderGoods> selectByPage = orderGoodsMapper.selectByPage(page.getCurrentPageNo(),page.getPageSize());
+		return selectByPage;
 		
 	}
 

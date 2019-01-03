@@ -44,17 +44,20 @@ public class TheCentralController {
 		}
 	} 
 	
+	@RequestMapping(value="/home/{type}/{mid}",method=RequestMethod.GET)
+	public String mainMenu(@PathVariable("type")String type,@PathVariable("mid")String mid,Model model) {
+		
+		//判断是否需要分页处理数据
+		getMapper(type+"/"+mid,model);
+		
+		return type+"/"+mid;
+	}
 	
-	
-	@RequestMapping(value="/home/{type}/{mid}/{currentPageNo}",method=RequestMethod.GET)
+	@RequestMapping(value="/home/{type}/{mid}/{currentPageNo:\\d*}",method=RequestMethod.GET)
 	public String mainMenu(@PathVariable("type")String type,@PathVariable("mid")String mid,@PathVariable("currentPageNo")Integer currentPageNo,Model model) {
 		
 		//判断是否需要分页处理数据
-		if(currentPageNo != null) {
-			getMapper(type+"/"+mid,model,currentPageNo);
-		}else {
-			getMapper(type+"/"+mid, model);
-		}
+		getMapper(type+"/"+mid,model,currentPageNo);
 		
 		return type+"/"+mid;
 	}
@@ -67,7 +70,7 @@ public class TheCentralController {
 	 * @param mapper 获得值的方法
 	 * @param model 接收值
 	 */
-	private void getMapper(String mapper,Model model) {
+	private void getMapper(String mapper,Model model,Object...objects) {
 		for (Object controll : list) {
 			Class controCls = controll.getClass();
 		
@@ -77,8 +80,10 @@ public class TheCentralController {
 				if(method.isAnnotationPresent(JSPMapper.class)) {
 					if(method.getAnnotation(JSPMapper.class).value().equals(mapper)) {
 						try {
-							
-							model.addAttribute("data", method.invoke(controll));
+							if(objects == null)
+								model.addAttribute("data", method.invoke(controll));
+							else
+								model.addAttribute("data", method.invoke(controll,objects));
 						} catch (IllegalAccessException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -94,39 +99,5 @@ public class TheCentralController {
 			}
 		}
 	}
-
-	/**
-	 * 分页处理数据
-	 * @param mapper
-	 * @param model
-	 */
-	private void getMapper(String mapper,Model model,int currentPageNo) {
-		for (Object controll : list) {
-			Class controCls = controll.getClass();
-
-			
-			Method[] methods = controCls.getMethods();
-			for (Method method : methods) {
-				if(method.isAnnotationPresent(JSPMapper.class)) {
-					if(method.getAnnotation(JSPMapper.class).value().equals(mapper)) {
-						try {
-							
-							model.addAttribute("data", method.invoke(controll,currentPageNo));
-						} catch (IllegalAccessException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IllegalArgumentException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (InvocationTargetException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		}
-	}
-
 
 }

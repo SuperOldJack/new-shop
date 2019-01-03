@@ -42,11 +42,11 @@
     	where og.id = #{id,jdbcType=INTEGER}
   </select>
   
-  <select id="selectByPage" resultMap="BaseResultMap">
+  <select id="selectByPage" resultMap="EXResultMap">
   	<include refid="Select_info_eazy" />
   	<include refid="com.shop.mapper.BaseMapper.limit" />
   </select>	
-  <select id="getcount">
+  <select id="getcount" resultType="int">
   select count(1)
 			
     from tb_order_goods

@@ -9,7 +9,7 @@ public interface IPageTool {
 
 	
 	public void setTotalCount(int totalCount) ;
-	public int getPageSize() ;
+	public int getPageSize();
 	public void setPageSize(int pageSize) ;
 
 	public int getTotalPageCount() ;

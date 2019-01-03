@@ -65,10 +65,22 @@ public class SellController {
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
 	@JSPMapper("sell/findSell")
-	public List<OrderGoods> showOrderGoods(int pageNo) {
+	public List<OrderGoods> showOrderGoods(Object page) {
+		if(page.getClass() == Integer.class) {
+			
+			try {
+				int pageNo = (Integer)page;
+				List<OrderGoods> selectOrderGoodsAll = orderGoodsService.getOrderGoodsPage(pageNo);
+				return selectOrderGoodsAll;
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+		}else {
+			return null;
+		}
 		
-		List<OrderGoods> selectOrderGoodsAll = orderGoodsService.getOrderGoodsPage(pageNo);
-		return selectOrderGoodsAll;
 	}
 	
 	/**
