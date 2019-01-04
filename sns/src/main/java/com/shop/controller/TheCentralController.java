@@ -44,17 +44,10 @@ public class TheCentralController {
 		}
 	} 
 	
-	@RequestMapping(value="/home/{type}/{mid}",method=RequestMethod.GET)
-	public String mainMenu(@PathVariable("type")String type,@PathVariable("mid")String mid,Model model) {
-		
-		//判断是否需要分页处理数据
-		getMapper(type+"/"+mid,model);
-		
-		return type+"/"+mid;
-	}
 	
-	@RequestMapping(value="/home/{type}/{mid}/{currentPageNo:\\d*}",method=RequestMethod.GET)
-	public String mainMenu(@PathVariable("type")String type,@PathVariable("mid")String mid,@PathVariable("currentPageNo")Integer currentPageNo,Model model) {
+	
+	@RequestMapping(value="/home/{type}/{mid}",method=RequestMethod.GET)
+	public String mainMenu(@PathVariable("type")String type,@PathVariable("mid")String mid,Integer currentPageNo,Model model) {
 		
 		//判断是否需要分页处理数据
 		getMapper(type+"/"+mid,model,currentPageNo);
@@ -82,8 +75,12 @@ public class TheCentralController {
 						try {
 							if(objects == null)
 								model.addAttribute("data", method.invoke(controll));
-							else
-								model.addAttribute("data", method.invoke(controll,objects));
+							else {
+								if(foreach(objects)) {
+
+									model.addAttribute("data", method.invoke(controll,objects));
+								}
+							}
 						} catch (IllegalAccessException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -100,4 +97,13 @@ public class TheCentralController {
 		}
 	}
 
+	private boolean foreach(Object[] objects) {
+		for (Object object : objects) {
+			if(object == null) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

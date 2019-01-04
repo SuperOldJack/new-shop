@@ -48,15 +48,4 @@
 	</TBODY>
 </TABLE>
 <TBODY>
-	<TR>
-		<TH align=left colSpan=6><FONT style="FONT-FAMILY: Webdings">9
-				3</FONT> [1] <FONT style="FONT-FAMILY: Webdings">4 :</FONT> [页次:1/1页] [共1条]
-			[20条/页] <SCRIPT>
-function tiaozhuan(){
-var yema=document.getElementById("yema").value
-document.form1.action='/lenobs/bsjxc/Bills/selectbill.asp?type=xs&page='+yema;
-document.form1.submit();
-}
-</SCRIPT> 转到第：<INPUT id=yema size=1>页<LABEL class=button1><INPUT
-				onclick=tiaozhuan() type=button value=GO></LABEL></TH>
-	</TR>
+	<%@include file="/WEB-INF/jsp/page.jsp"%>
