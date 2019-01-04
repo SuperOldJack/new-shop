@@ -73,14 +73,12 @@ public class TheCentralController {
 				if(method.isAnnotationPresent(JSPMapper.class)) {
 					if(method.getAnnotation(JSPMapper.class).value().equals(mapper)) {
 						try {
-							if(objects == null)
+							
+							if(objects == null && foreach(objects))
 								model.addAttribute("data", method.invoke(controll));
-							else {
-								if(foreach(objects)) {
-
-									model.addAttribute("data", method.invoke(controll,objects));
-								}
-							}
+							else 
+								model.addAttribute("data", method.invoke(controll,objects));
+							
 						} catch (IllegalAccessException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -97,6 +95,11 @@ public class TheCentralController {
 		}
 	}
 
+	/**
+	 * 遍历数组是否有空值
+	 * @param objects
+	 * @return
+	 */
 	private boolean foreach(Object[] objects) {
 		for (Object object : objects) {
 			if(object == null) {
