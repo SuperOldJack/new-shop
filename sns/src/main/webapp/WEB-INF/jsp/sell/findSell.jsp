@@ -33,7 +33,7 @@
 			<TH>仓库</TH>
 			<TH>经办人</TH>
 		</TR>
-		<c:forEach var="item" items="${data}">
+		<c:forEach var="item" items="${data.pageData}">
 			<tr>
 				<td>我不做删除修改了jojo</td> 
 				<td>${item.goodsDocument.code}</td>

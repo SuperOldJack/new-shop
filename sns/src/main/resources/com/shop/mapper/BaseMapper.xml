@@ -46,7 +46,10 @@
   
   <!-- 分页查询 -->
   <sql id="limit">
-  	 limit #{pageIndex},#{pageSize}
+  	
+	<if test='pageIndex!=null and pageSize != null '>
+	  limit #{pageIndex},#{pageSize}
+	</if>
   </sql>
   
   <!-- 查询单据类型 -->

@@ -24,11 +24,15 @@ public interface OrderGoodsMapper {
     int updateByPrimaryKey(OrderGoods record);
     
     //获得销售单总数
-    int getcount();
+    int getOrderCount();
+    
+    int getGoodsDetailCount();
     
     List<OrderGoods> selectOrderGoodsAll();
     
     List<GoodsSummary> getGoodsDetailAll();
     
     List<OrderGoods> selectByPage(@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
+    
+    List<GoodsSummary> getGoodsDetailByPage(@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
 }

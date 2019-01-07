@@ -21,6 +21,7 @@ import com.shop.service.SellReturnService;
 import com.shop.socket.OrderGoodsSocket;
 import com.shop.tools.CodeMake;
 import com.shop.tools.IPageTool;
+import com.shop.tools.PageData;
 import com.shop.tools.PageTool;
 
 @RequestMapping("/sellManage")
@@ -65,13 +66,13 @@ public class SellController {
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
 	@JSPMapper("sell/findSell")
-	public List<OrderGoods> showOrderGoods(Object page) {
+	public PageData<OrderGoods> showOrderGoods(Object page) {
 		if(page.getClass() == Integer.class) {
 			
 			try {
 				int pageNo = (Integer)page;
-				List<OrderGoods> selectOrderGoodsAll = orderGoodsService.getOrderGoodsPage(pageNo);
-				return selectOrderGoodsAll;
+				PageData<OrderGoods> orderGoodsPage = orderGoodsService.getOrderGoodsPage(pageNo);
+				return orderGoodsPage;
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 				return null;
@@ -83,6 +84,28 @@ public class SellController {
 		
 	}
 	
+	
+	@RequestMapping("/goodsSummaryAll")
+	@ResponseBody
+	@JSPMapper("sell/sellSummary")
+	public PageData<GoodsSummary> goodsDetailAll(Object page) {
+		
+		if(page.getClass() == Integer.class) {
+			
+			try {
+				int pageNo = (Integer)page;
+				PageData<GoodsSummary> goodsDetailAll = orderGoodsService.getGoodsDetailAll(pageNo);
+				return goodsDetailAll;
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+		}else {
+			return null;
+		}
+		
+	}
 	/**
 	 * 查询销售货品明细
 	 * @return
@@ -95,12 +118,7 @@ public class SellController {
 	}
 	
 	
-	@RequestMapping("/goodsSummaryAll")
-	@ResponseBody
-	public List<GoodsSummary> goodsDetailAll() {
-		List<GoodsSummary> goodsDetailAll = orderGoodsService.getGoodsDetailAll();
-		return goodsDetailAll;
-	}
+	
 	
 	@RequestMapping("/orderGoodsAdd")
 	public synchronized String orderGoodsAdd(OrderGoods orderGoods,Integer[] shopId,Integer[] shopUnit,Integer[] shopSpecification,BigDecimal[] goodsPrice,Integer[] goodsCount) {

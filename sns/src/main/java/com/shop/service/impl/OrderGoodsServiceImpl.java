@@ -14,6 +14,7 @@ import com.shop.pojo.document.OrderGoods;
 import com.shop.service.OrderGoodsService;
 import com.shop.service.templet.SeveDocTemplet;
 import com.shop.tools.IPageTool;
+import com.shop.tools.PageData;
 import com.shop.tools.PageTool;
 
 @Service("orderGoodsService")
@@ -47,20 +48,26 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 		return orderGoodsMapper.selectOrderGoodsAll();
 	}
 
+
 	@Override
-	public List<GoodsSummary> getGoodsDetailAll() {
+	public PageData<OrderGoods> getOrderGoodsPage(int currentPageNo) {
+		int count = orderGoodsMapper.getOrderCount();
+		PageData<OrderGoods> page = new PageData<OrderGoods>(currentPageNo,count);
 		
-		return orderGoodsMapper.getGoodsDetailAll();
+		List<OrderGoods> selectByPage = orderGoodsMapper.selectByPage(page.getCurrentPageIndex(),page.getPageSize());
+		page.setPageData(selectByPage);
+		return page;
+		
 	}
 
 	@Override
-	public List<OrderGoods> getOrderGoodsPage(int currentPageNo) {
-		int count = orderGoodsMapper.getcount();
-		IPageTool page = new PageTool(currentPageNo,count);
-		
-		List<OrderGoods> selectByPage = orderGoodsMapper.selectByPage(page.getCurrentPageNo(),page.getPageSize());
-		return selectByPage;
-		
+	public PageData<GoodsSummary> getGoodsDetailAll(int currentPageNo) {
+		int count = orderGoodsMapper.getGoodsDetailCount();
+		PageData<GoodsSummary> page = new PageData<GoodsSummary>(currentPageNo,count);
+
+		List<GoodsSummary> selectByPage = orderGoodsMapper.getGoodsDetailByPage(page.getCurrentPageIndex(),page.getPageSize());
+		page.setPageData(selectByPage);
+		return page;
 	}
 
 	

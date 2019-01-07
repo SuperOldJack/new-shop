@@ -37,6 +37,12 @@
 				 LEFT JOIN tb_user_info as ui ON og.client_id = ui.id
 				 LEFT JOIN tb_card as card ON og.card_id = card.id
   </sql>
+  <sql id="from_GoodsDetailAll">
+  from (select gi.shop_id  ,gi.specification_id,gi.unit ,gi.price,gi.count  from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%') as xt,
+	(select gi.shop_id ,gi.specification_id,gi.unit,gi.price,gi.count from tb_goods_info as gi WHERE gi.goods_document_code like 'XS%') as xs
+	where xs.specification_id = xt.specification_id and xt.unit = xs.unit GROUP BY xs.specification_id,xt.specification_id,xs.unit,xt.unit
+  
+  </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <include refid="Select_info" />
     	where og.id = #{id,jdbcType=INTEGER}
@@ -44,9 +50,10 @@
   
   <select id="selectByPage" resultMap="EXResultMap">
   	<include refid="Select_info_eazy" />
+  	
   	<include refid="com.shop.mapper.BaseMapper.limit" />
   </select>	
-  <select id="getcount" resultType="int">
+  <select id="getOrderCount" resultType="int">
   select count(1)
 			
     from tb_order_goods
@@ -54,15 +61,25 @@
   
   <select id="getGoodsDetailAll"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
     
-select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as handleMoney,avg(xt.price)*sum(xt.count) as returnMoney,sum(xs.count) as handleCount,sum(xt.count) as returnCount from (select gi.shop_id  ,gi.specification_id,gi.unit ,gi.price,gi.count  from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%') as xt,
-	(select gi.shop_id ,gi.specification_id,gi.unit,gi.price,gi.count from tb_goods_info as gi WHERE gi.goods_document_code like 'XS%') as xs
-	where xs.specification_id = xt.specification_id and xt.unit = xs.unit GROUP BY xs.specification_id,xt.specification_id,xs.unit,xt.unit
-
+	select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as handleMoney,avg(xt.price)*sum(xt.count) as returnMoney,sum(xs.count) as handleCount,sum(xt.count) as returnCount 
+	<include refid="from_GoodsDetailAll" />
   </select>
   
+  <select id="getGoodsDetailCount">
+  	select count(1)
+  	<include refid="from_GoodsDetailAll" />
+  </select>
+  
+  <select id="getGoodsDetailByPage"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
+    
+	select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as handleMoney,avg(xt.price)*sum(xt.count) as returnMoney,sum(xs.count) as handleCount,sum(xt.count) as returnCount 
+	<include refid="from_GoodsDetailAll" /><!-- 查询货品明细 -->
+  	<include refid="com.shop.mapper.BaseMapper.limit" />
+  </select>
   
   <select id="selectOrderGoodsAll" resultMap="EXResultMap">
   	<include refid="Select_info_eazy" />
+  	<include refid="com.shop.mapper.BaseMapper.limit" />
   </select>
   
   

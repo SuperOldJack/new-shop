@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
 货品销售汇总
 </div>
@@ -27,56 +28,29 @@
 				<td style="CURSOR: pointer" width=80 type="Number">总数量</td>
 			</TR>
 		
-			
+			<c:forEach var="item" items="${data.pageData}">
+				
+				<tr> 
+					<td>${item.shopInfo.shop.id}</td>
+					<td>${item.shopInfo.shop.name}item.shopInfo.shop.name</td>
+					<td>${item.shopInfo.specification.specificationType}</td>
+					<td>${item.shopInfo.unit.unit_name}</td>
+					<td>${item.handleCount}</td>
+					<td>${item.handleMoney}</td>
+					<td>${item.returnCount}</td>
+					<td>${item.returnMoney}</td>
+					<td>${item.returnMoney - item.returnMoney} </td>
+					<td>${item.handleCount-item.returnCount}</td>
+				</tr>
+			</c:forEach>
 		</TBODY>
 		<TBODY>
 			<TR onmouseover=over() onclick=change() onmouseout=out()>
 			</TR>
 		</TBODY>
 	</TABLE>
-	<TABLE width=1351 align=center border=0>
-		<TBODY>
-			<TR>
-				<TH align=left colSpan=14><FONT style="FONT-FAMILY: Webdings">9
-						3</FONT> [1] <FONT style="FONT-FAMILY: Webdings">4 :</FONT> [页次:1/1页]
-					[共2条] [20条/页] <SCRIPT>
-function tiaozhuan(){
-var yema=document.getElementById("yema").value
-document.form1.action='#';
-document.form1.submit();
-}
-</SCRIPT> 转到第：<INPUT id=yema size=1>页<LABEL class=button1><INPUT
-						onclick=tiaozhuan() type=button value=GO></LABEL> <LABEL
-					class=button1><INPUT type=submit value=Excel></LABEL></TH>
-			</TR>
-		</TBODY>
-	</TABLE>
+	
 </FORM>
 
+	<%@include file="/WEB-INF/jsp/page.jsp"%>
 
-<script type="text/javascript" >
-$.post("/sellManage/goodsSummaryAll ",
-		"json",function(data){
-	console.log(data);
-	for(var i = 0; i < data.length; i++){
-
-		$("#tbl").append("<tr> <td>"+data[i].shopInfo.shop.id+"</td><td>"+data[i].shopInfo.shop.name
-				+"</td><td>"+data[i].shopInfo.specification.specificationType
-				+"</td><td>"
-				+"<td>"+data[i].shopInfo.unit.unit_name+"</td>"
-				+"<td>"+data[i].handleCount+"</td>"
-				+"<td>"+data[i].handleMoney+"</td>"
-				+"<td>"+data[i].returnCount+"</td>"
-				+"<td>"+data[i].returnMoney+"</td>"
-				
-				
-				
-				+"<td>"+(data[i].returnMoney -data[i].returnMoney) +"</td>"
-				+"<td>"+(data[i].handleCount-data[i].returnCount)+"</td>"
-				+"</tr>");
-
-	}
-}
-);
-	
-</script>

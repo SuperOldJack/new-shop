@@ -19,4 +19,6 @@ public interface IPageTool {
 	public void setTotalPageCountByRs();
 	public int getNextPage() ;
     public int getPrePage() ;
+
+	int getCurrentPageIndex();
 }

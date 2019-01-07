@@ -37,7 +37,7 @@ public class InputLibServiceImpl extends SeveDocTemplet implements InputLibServi
 	protected int addDocTypeInfo(IDoc doc) {
 		Inputlib inputlib = (Inputlib)doc ;
 		
-		int libResult = inputlibMapper.insert(inputlib);
+		int libResult = inputlibMapper.insertSelective(inputlib);
 		return libResult;
 	}
 
