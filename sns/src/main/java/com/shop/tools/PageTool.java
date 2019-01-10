@@ -22,7 +22,7 @@ public class PageTool implements IPageTool{
 	private int totalCount = 0;
 
 	//页面容量
-	private int pageSize = 1;
+	private int pageSize = 10;
 
 	//总页数-totalCount/pageSize（+1）
 	private int totalPageCount = 1;

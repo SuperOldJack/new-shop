@@ -17,9 +17,12 @@
     <result column="actual_money" jdbcType="DECIMAL" property="actual_money" />
     <association column="goods_document_code" property="goodsDocument" select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
     <association column="card_id" property="card" select="com.shop.mapper.CardMapper.selectByPrimaryKey"></association>
-    <association column="client_id" property="client" select="com.shop.mapper.BaseMapper.selectUserById"></association>
+    <association column="client_id" property="client"  select="com.shop.mapper.BaseMapper.selectUserById"></association>
   </resultMap>
   
+  <resultMap type="com.shop.pojo.document.ClientSummary" extends="com.shop.mapper.BaseMapper.ObjectSummaryMap" id="ClientSummaryMap">
+  	<association column="id" property="user" select="com.shop.mapper.BaseMapper.selectUserById"></association>
+  </resultMap>
   
   
   <sql id="Base_Column_List">
@@ -38,10 +41,11 @@
 				 LEFT JOIN tb_card as card ON og.card_id = card.id
   </sql>
   <sql id="from_GoodsDetailAll">
-  from (select gi.shop_id  ,gi.specification_id,gi.unit ,gi.price,gi.count  from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%') as xt,
-	(select gi.shop_id ,gi.specification_id,gi.unit,gi.price,gi.count from tb_goods_info as gi WHERE gi.goods_document_code like 'XS%') as xs
-	where xs.specification_id = xt.specification_id and xt.unit = xs.unit GROUP BY xs.specification_id,xt.specification_id,xs.unit,xt.unit
-  
+	  from (select gi.shop_id  ,gi.specification_id,gi.unit ,avg(gi.price) as price,sum(gi.count) as count
+				from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%' GROUP BY specification_id,unit) as xt right join
+		 (select gi.shop_id ,gi.specification_id,gi.unit  ,avg(gi.price) as price,sum(gi.count) as count
+			  from tb_goods_info as gi WHERE gi.goods_document_code like 'XS%' GROUP BY specification_id,unit) as xs 
+	  on xs.specification_id = xt.specification_id and xt.unit = xs.unit 
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <include refid="Select_info" />
@@ -61,20 +65,36 @@
   
   <select id="getGoodsDetailAll"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
     
-	select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as handleMoney,avg(xt.price)*sum(xt.count) as returnMoney,sum(xs.count) as handleCount,sum(xt.count) as returnCount 
+	select 
+	xs.shop_id  ,xs.specification_id,xs.unit,xs.price*xs.count as handleMoney,
+	xt.price*xt.count as returnMoney,xs.count as handleCount,xt.count as returnCount  
 	<include refid="from_GoodsDetailAll" />
   </select>
   
-  <select id="getGoodsDetailCount">
+  <select id="getGoodsDetailCount" resultType="int">
   	select count(1)
   	<include refid="from_GoodsDetailAll" />
   </select>
   
-  <select id="getGoodsDetailByPage"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
+  
+  
+  <select id="getGoodsDetailByPage" parameterType="map"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
     
-	select xt.shop_id  ,xt.specification_id,xt.unit,avg(xs.price)*sum(xs.count) as handleMoney,avg(xt.price)*sum(xt.count) as returnMoney,sum(xs.count) as handleCount,sum(xt.count) as returnCount 
+	select xs.shop_id  ,xs.specification_id,xs.unit,xs.price*xs.count as handleMoney,
+	xt.price*xt.count as returnMoney,xs.count as handleCount,xt.count as returnCount   
 	<include refid="from_GoodsDetailAll" /><!-- 查询货品明细 -->
+  	
+  	
+  	<trim prefix="where">
+  		 <if test="_parameter.containsKey('findId') and findId != null">
+			xs.shop_id = #{findId}
+		</if>
+		
+		
+  	</trim>
+  	
   	<include refid="com.shop.mapper.BaseMapper.limit" />
+  	
   </select>
   
   <select id="selectOrderGoodsAll" resultMap="EXResultMap">
@@ -82,7 +102,29 @@
   	<include refid="com.shop.mapper.BaseMapper.limit" />
   </select>
   
-  
+  <select id="getUserSellSumCount" resultType="int">
+  		select count(1)
+    from tb_user_info as ui right join 
+		(select  og.client_id  from tb_order_goods as og GROUP BY client_id	) as xs
+	  on ui.id = xs.client_id
+		right join 
+		(select  og.client_id  from tb_sell_return as og GROUP BY client_id	) as xt
+	  on ui.id = xt.client_id		
+					
+  </select>
+  <select id="getUserSellSumByPage" resultMap="ClientSummaryMap">
+	select ui.id,xs.count as handleCount,xs.money as handleMoney,xt.count as returnCount,xt.money as returnMoney
+    from tb_user_info as ui right join 
+		(select  og.client_id,sum(gi.price*gi.count) as money,sum(gi.count) as count  from tb_goods_info as gi inner JOIN tb_order_goods as og 
+		on gi.goods_document_code = og.goods_document_code group by og.client_id) as xs
+	  on ui.id = xs.client_id
+		left join 
+		(select  og.client_id,sum(gi.price*gi.count) as money,sum(gi.count) as count from tb_goods_info as gi inner JOIN tb_sell_return as og 
+		on gi.goods_document_code = og.goods_document_code ) as xt
+	  on ui.id = xt.client_id			
+					
+  	<include refid="com.shop.mapper.BaseMapper.limit" />		
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_order_goods

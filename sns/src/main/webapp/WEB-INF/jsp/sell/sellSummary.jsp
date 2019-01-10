@@ -12,8 +12,8 @@
 		type=hidden
 		
 		name=sql>
-	<TABLE id=tbl onclick=sortColumn(event) width=1351 align=center
-		border=0>
+	<%@include file="/WEB-INF/jsp/condition/idCondition.jsp"%>
+	<TABLE id=tbl onclick=sortColumn(event) width=1351 align=center border=0>
 		<TBODY>
 			<TR align=middle>
 				<td style="CURSOR: pointer" width=70 type="CaseInsensitiveString">货品编码</td>
@@ -32,7 +32,7 @@
 				
 				<tr> 
 					<td>${item.shopInfo.shop.id}</td>
-					<td>${item.shopInfo.shop.name}item.shopInfo.shop.name</td>
+					<td>${item.shopInfo.shop.name}</td>
 					<td>${item.shopInfo.specification.specificationType}</td>
 					<td>${item.shopInfo.unit.unit_name}</td>
 					<td>${item.handleCount}</td>

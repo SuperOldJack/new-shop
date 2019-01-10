@@ -13,13 +13,7 @@ import com.shop.pojo.Specification;
 public class ShopInfo {
 	private Shop shop;
 
-	private CountUnity unit;
-	
-	
-	private Specification specification;
-	
-	
-    public Shop getShop() {
+	public Shop getShop() {
 		return shop;
 	}
 
@@ -27,6 +21,14 @@ public class ShopInfo {
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
+
+
+	private CountUnity unit;
+	
+	
+	private Specification specification;
+	
+	
 
 
 	public CountUnity getUnit() {

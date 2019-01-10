@@ -18,7 +18,7 @@ function initPage() {
 			},
 			{//销售管理 	
 				"texts":["新增销售单","销售单查询","销售退货","销售明细表","货品销售汇总表","客户销售汇总表","销售订单完成情况"],
-				"urls":["addSell","findSell?currentPageNo=0","sellRturn","sellDetail","sellSummary?currentPageNo=0","CSellSummary","sellOrderStatus"]
+				"urls":["addSell","findSell?currentPageNo=0","sellRturn","sellDetail?currentPageNo=0","sellSummary?currentPageNo=0","CSellSummary?currentPageNo=0","sellOrderStatus"]
 			},
 			{//库存管理
 				"texts":["新增入库单","入库单查询","新增出库单","出库单查询","仓库调拨","库存盘点"],

@@ -1,8 +1,5 @@
 package com.shop.pojo.document;
 
-import com.shop.pojo.CountUnity;
-import com.shop.pojo.Shop;
-import com.shop.pojo.Specification;
 import com.shop.pojo.info.ShopInfo;
 
 /**
@@ -28,11 +25,13 @@ public class GoodsSummary extends ObjectSummary{
 	
 
 	public ShopInfo getShopInfo() {
+		
 		return shopInfo;
 	}
 
 
 	public void setShopInfo(ShopInfo shopInfo) {
+		
 		this.shopInfo = shopInfo;
 	}
 

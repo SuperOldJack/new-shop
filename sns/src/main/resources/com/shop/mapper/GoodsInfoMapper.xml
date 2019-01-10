@@ -15,17 +15,8 @@
   </resultMap>
   
   
-  
-  <resultMap type="com.shop.pojo.document.ObjectSummary" id="ObjectSummaryMap">
-  	<result column="handleCount"  property="handleCount" />
-  	<result column="returnCount"  property="returnCount" />
-  	<result column="handleMoney" property="handleMoney" />
-  	<result column="returnMoney"  property="returnMoney" />
-    
-  </resultMap>
-  
   <!--  货物销售/采购 汇总  -->
-  <resultMap type="com.shop.pojo.document.GoodsSummary" extends="ObjectSummaryMap" id="GoodsSummaryMap">
+  <resultMap type="com.shop.pojo.document.GoodsSummary" extends="com.shop.mapper.BaseMapper.ObjectSummaryMap" id="GoodsSummaryMap">
     
     <association column="unit" property="shopInfo.unit" select="com.shop.mapper.BaseMapper.selectCountUnitById"></association>
     <association column="specification_id" property="shopInfo.specification" select="com.shop.mapper.SpecificationMapper.selectByPrimaryKey"></association>
@@ -38,6 +29,10 @@
   <sql id="Goods_Column_List">
     `code`,manage_lib_id,manage_man_id,create_time,create_man,document_type,isEffective,`comment`
   </sql>
+  
+  <select id="getCount" resultType="int">
+  	select count(1) from tb_goods_info  where goods_document_code  like  'XS%' or goods_document_code  like  'XT%'
+  </select>
   
   <select id="selectGoodsByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -53,15 +48,19 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   
-  <select id="">
-  
-  </select>
   
   <!-- 销售明细查询  -->
   <select id="orderGoodsSelect"  resultMap="BaseResultMap">
   	select 
     id, goods_document_code, shop_id, specification_id, price, unit, count
     from tb_goods_info  where goods_document_code  like  'XS%' or goods_document_code  like  'XT%'
+  </select>
+  
+  <select id="orderGoodsSelectByPage"  resultMap="BaseResultMap">
+  	select 
+    id, goods_document_code, shop_id, specification_id, price, unit, count
+    from tb_goods_info  where goods_document_code  like  'XS%' or goods_document_code  like  'XT%'
+    <include refid="com.shop.mapper.BaseMapper.limit"/>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

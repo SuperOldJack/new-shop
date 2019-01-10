@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.node.JSPMapper;
 import com.shop.pojo.GoodsInfo;
+import com.shop.pojo.document.ClientSummary;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
 import com.shop.pojo.info.DocTypeMap;
@@ -20,9 +22,7 @@ import com.shop.service.OrderGoodsService;
 import com.shop.service.SellReturnService;
 import com.shop.socket.OrderGoodsSocket;
 import com.shop.tools.CodeMake;
-import com.shop.tools.IPageTool;
 import com.shop.tools.PageData;
-import com.shop.tools.PageTool;
 
 @RequestMapping("/sellManage")
 @Controller
@@ -66,44 +66,20 @@ public class SellController {
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
 	@JSPMapper("sell/findSell")
-	public PageData<OrderGoods> showOrderGoods(Object page) {
-		if(page.getClass() == Integer.class) {
-			
-			try {
-				int pageNo = (Integer)page;
-				PageData<OrderGoods> orderGoodsPage = orderGoodsService.getOrderGoodsPage(pageNo);
-				return orderGoodsPage;
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-				return null;
-			}
-			
-		}else {
-			return null;
-		}
+	public PageData<OrderGoods> showOrderGoods(Map<String,Object> map) throws NumberFormatException{
 		
+		PageData<OrderGoods> orderGoodsPage = orderGoodsService.getOrderGoodsPage(map);
+		return orderGoodsPage;
 	}
 	
 	
 	@RequestMapping("/goodsSummaryAll")
 	@ResponseBody
 	@JSPMapper("sell/sellSummary")
-	public PageData<GoodsSummary> goodsDetailAll(Object page) {
-		
-		if(page.getClass() == Integer.class) {
-			
-			try {
-				int pageNo = (Integer)page;
-				PageData<GoodsSummary> goodsDetailAll = orderGoodsService.getGoodsDetailAll(pageNo);
-				return goodsDetailAll;
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-				return null;
-			}
-			
-		}else {
-			return null;
-		}
+	public PageData<GoodsSummary> goodsDetailAll(Map<String,Object> map) throws NumberFormatException{
+	
+		PageData<GoodsSummary> goodsDetailAll = orderGoodsService.getGoodsDetailAll(map);
+		return goodsDetailAll;
 		
 	}
 	/**
@@ -112,11 +88,27 @@ public class SellController {
 	 */
 	@RequestMapping("/orderGoodsSelect")
 	@ResponseBody
-	public List<GoodsInfo> orderGoodsSelect() {
-		List<GoodsInfo> orderGoodsSelect = goodsInfoService.orderGoodsSelect();
+	@JSPMapper("sell/sellDetail")
+	public PageData<GoodsInfo> orderGoodsSelect(Map<String,Object> map) throws NumberFormatException{
+		PageData<GoodsInfo> orderGoodsSelect = goodsInfoService.orderGoodsSelectByPage(map);
 		return orderGoodsSelect;
+		
 	}
 	
+	/**
+	 * 查询用户销售明细
+	 * @param page
+	 * @return
+	 * @throws NumberFormatException
+	 */
+	@RequestMapping("/clientSellSummary")
+	@ResponseBody
+	@JSPMapper("sell/CSellSummary")
+	public PageData<ClientSummary> clientSellSummary(Map<String,Object> map) throws NumberFormatException{
+		PageData<ClientSummary> orderGoodsSelect = orderGoodsService.getUserSellSumByPage(map);
+		return orderGoodsSelect;
+		
+	}
 	
 	
 	

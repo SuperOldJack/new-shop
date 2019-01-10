@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.BaseMapper">
+<!-- 汇总对象 用于计算金额 -->
+  <resultMap type="com.shop.pojo.document.ObjectSummary" id="ObjectSummaryMap">
+  	<result column="handleCount"  property="handleCount" />
+  	<result column="returnCount"  property="returnCount" />
+  	<result column="handleMoney" property="handleMoney" />
+  	<result column="returnMoney"  property="returnMoney" />
+    
+  </resultMap>
+
 	
   <!-- 仓库模型 -->
   <resultMap id="LibResultMap" type="com.shop.pojo.Lib">
@@ -21,7 +30,7 @@
     <result column="e_mail" jdbcType="VARCHAR" property="e_mail" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
-  <!-- 商店模型 -->
+  <!-- 商品模型 -->
   <resultMap id="ShopResultMap" type="com.shop.pojo.Shop">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -42,7 +51,7 @@
   </resultMap>
   
   
-  <!-- sql语句区域 -->
+<!-- sql语句区域 -->
   
   <!-- 分页查询 -->
   <sql id="limit">
@@ -51,6 +60,37 @@
 	  limit #{pageIndex},#{pageSize}
 	</if>
   </sql>
+  
+  <!-- 按ID查询|条件 -->
+  <sql id="findId">
+  	<if test="_parameter.containsKey('findId') and findId != null">
+		id = #{findId}
+	</if>
+  </sql>
+  
+  <!-- 按时间查询|条件 -->
+  <sql id="time">
+  		
+  		<if test="_parameter.containsKey('starTime') or _parameter.containsKey('endTime')">
+	  		create_time BETWEEN
+	  		<if test='starTime!=null'>
+			  #{starTime}
+			</if>
+			<if test='starTime==null'>
+			  ''
+			</if>
+			and
+			<if test='endTime != null'>
+			  #{endTime}
+			</if>
+			<if test='endTime == null'>
+			  ''
+			</if>
+  		
+  		</if>
+  </sql>
+  
+  
   
   <!-- 查询单据类型 -->
   <select id="selectDocType" resultMap="DocumentTypeResultMap">

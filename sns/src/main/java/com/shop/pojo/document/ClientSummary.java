@@ -1,6 +1,6 @@
 package com.shop.pojo.document;
 
-import com.shop.pojo.User;
+import com.shop.pojo.UserInfo;
 
 /**
  * 用户明细表
@@ -13,9 +13,20 @@ public  class ClientSummary extends ObjectSummary{
 	/**
 	 * 用户对象 --查找明细的对象
 	 */
-	private User user;
+	private UserInfo user;
 	
 	
+	
+	public UserInfo getUser() {
+		return user;
+	}
+
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
+
+
 	@Override
 	public Object getSummaryObject() {
 		return user;

@@ -1,6 +1,7 @@
 package com.shop.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,5 +24,11 @@ public interface GoodsInfoMapper {
     //用于查询销售货品和销售退货货品
     List<GoodsInfo> orderGoodsSelect();
     
+    List<GoodsInfo> orderGoodsSelectByPage(Map<String,Object> map);
+    
     GoodsInfo selectGoodsByPrimaryKey(Integer id);
+    
+    int getCount();
+    
+    
 }

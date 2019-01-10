@@ -1,13 +1,14 @@
 package com.shop.mapper.document;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.shop.pojo.document.ClientSummary;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
-import com.shop.tools.IPageTool;
 
 @Mapper
 public interface OrderGoodsMapper {
@@ -26,13 +27,19 @@ public interface OrderGoodsMapper {
     //获得销售单总数
     int getOrderCount();
     
+    //获得销售汇总单总数
     int getGoodsDetailCount();
+    
+    //获得用户销售汇总总数
+    int getUserSellSumCount();
     
     List<OrderGoods> selectOrderGoodsAll();
     
     List<GoodsSummary> getGoodsDetailAll();
     
-    List<OrderGoods> selectByPage(@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
+    List<ClientSummary> getUserSellSumByPage(Map<String,Object> map);
     
-    List<GoodsSummary> getGoodsDetailByPage(@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
+    List<OrderGoods> selectByPage(Map<String,Object> map);
+    
+    List<GoodsSummary> getGoodsDetailByPage(Map<String,Object> map);
 }

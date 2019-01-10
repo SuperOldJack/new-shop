@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>销售明细</div>
 
 <DIV class=style1 align=center>销售明细表</DIV>
@@ -48,25 +49,29 @@
 				<TD align=middle></TD>
 				<TD align=middle></TD>
 			</TR>
+			
+		<c:forEach var="item" items="${data.pageData}">
+			<tr> 
+				<td>${item.shop.id}</td>
+				<td>${item.shop.name}</td>
+				<td>${item.specification.specificationType}</td>
+				<td>${item.goodsDocument.documentType.type_name}</td>
+				<td>${item.goodsDocument.create_time}</td>
+				<td>${item.price}</td>
+				<td>${item.goodsDocument.manageMan.name}</td>
+				<td>${item.count}</td>
+				<td>暂时没写计算金额啊}</td>
+				<td>${item.unit}</td>
+				<td>${item.goodsDocument.code}</td>
+				<td>${item.goodsDocument.manageLib.name}</td>
+				<td>${item.goodsDocument.comment}</td>
+			
+			</tr>
+			
+		</c:forEach>
 		</TBODY>
 	</TABLE>
-	<TABLE width=1351 align=center border=0>
-		<TBODY>
-			<TR>
-				<TH align=left colSpan=14><FONT style="FONT-FAMILY: Webdings">9
-						3</FONT> [1] <FONT style="FONT-FAMILY: Webdings">4 :</FONT> [页次:1/1页]
-					[共2条] [20条/页] <SCRIPT>
-function tiaozhuan(){
-var yema=document.getElementById("yema").value
-document.form1.action='#';
-document.form1.submit();
-}
-</SCRIPT> 转到第：<INPUT id=yema size=1>页<LABEL class=button1><INPUT
-						onclick=tiaozhuan() type=button value=GO></LABEL> <LABEL
-					class=button1><INPUT type=submit value=Excel></LABEL></TH>
-			</TR>
-		</TBODY>
-	</TABLE>
+	
 </FORM>
 
-<script type="text/javascript" src="/js/OrderGoodsJs/orderGoodsSelect.js"></script>
+<%@include file="/WEB-INF/jsp/page.jsp"%>
