@@ -30,5 +30,5 @@ public interface GoodsInfoMapper {
     
     int getCount();
     
-    
+    List<GoodsInfo> selectGoodsInfoByCode(String code);
 }

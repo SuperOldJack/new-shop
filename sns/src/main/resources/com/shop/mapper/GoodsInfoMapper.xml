@@ -30,6 +30,17 @@
     `code`,manage_lib_id,manage_man_id,create_time,create_man,document_type,isEffective,`comment`
   </sql>
   
+  <sql id="Goods_List">
+  	id, goods_document_code, shop_id, specification_id, price, unit, count
+  </sql>
+  
+  <select id="selectGoodsInfoByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Goods_List" />
+    from tb_goods_info
+    where goods_document_code = #{code,jdbcType=VARCHAR}
+  </select>
+  
   <select id="getCount" resultType="int">
   	select count(1) from tb_goods_info  where goods_document_code  like  'XS%' or goods_document_code  like  'XT%'
   </select>

@@ -47,6 +47,10 @@ public class GoodsInfoServiceImpl implements GoodsInfoService{
 		
 		return createPageData;
 	}
+
+	public List<GoodsInfo> queryGoodsInfoByCode(String code) {
+		return goodsInfoMapper.selectGoodsInfoByCode(code);
+	}
 	
 	
 	

@@ -46,5 +46,11 @@ public class InputLibServiceImpl extends SeveDocTemplet implements InputLibServi
 
 		return inputlibMapper.selectInLib();
 	}
+
+	@Override
+	public Inputlib queryInputLibByCode(String code) {
+		// TODO Auto-generated method stub
+		return inputlibMapper.selectInputLibByCode(code);
+	}
 	
 }
