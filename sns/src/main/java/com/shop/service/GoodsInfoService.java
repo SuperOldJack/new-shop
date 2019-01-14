@@ -24,4 +24,5 @@ public interface GoodsInfoService {
 	 * @return
 	 */
 	List<GoodsInfo> queryGoodsInfoByCode(String code);
+	
 }
