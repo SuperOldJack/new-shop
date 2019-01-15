@@ -12,6 +12,13 @@
   <sql id="Base_Column_List">
     id, linker_name, unit, address, phone, e_mail
   </sql>
+  
+  <select id="selectAllSupplier" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tb_supplier
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

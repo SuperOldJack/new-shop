@@ -22,4 +22,12 @@ public interface InputLibService {
 	int seveInputLib(Inputlib inputlib,List<GoodsInfo> goodsInfos);
 	
 	List<Inputlib> selectInLib();
+	
+	/**
+	 * 根据单号查询入库单详情
+	 * @param code
+	 * @return
+	 */
+	Inputlib queryInputLibByCode(String code);
+	
 }

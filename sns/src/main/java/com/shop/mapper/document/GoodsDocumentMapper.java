@@ -19,4 +19,13 @@ public interface GoodsDocumentMapper {
     int updateByPrimaryKeySelective(GoodsDocument record);
 
     int updateByPrimaryKey(GoodsDocument record);
+    
+    GoodsDocument selectgoodsDocByCode(String code);
+    
+    /**
+     * 根据单据类型查找相应的单据
+     * @param 单据类型id
+     * @return 单据集合
+     */
+    List<GoodsDocument> selectInputLibDocByTypeId(int typeId);
 }

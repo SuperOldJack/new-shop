@@ -21,4 +21,11 @@ public interface InputlibMapper {
     int updateByPrimaryKeySelective(Inputlib record);
 
     int updateByPrimaryKey(Inputlib record);
+    
+    /**
+     * 根据入库单号查询详情
+     * @param code
+     * @return
+     */
+    Inputlib selectInputLibByCode(String code);
 }

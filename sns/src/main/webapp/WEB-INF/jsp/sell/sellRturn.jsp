@@ -30,4 +30,17 @@ id=temp type=hidden name=temp></FORM>
 	    type="CaseInsensitiveString">供应商/客户</TH>
 	    <TH style="CURSOR: pointer" width=100 
 	  type="CaseInsensitiveString">经办人</TH></TR></THEAD>
-	</TABLE>'
+	  <c:forEach var="item" items="${data.pageData}">
+			<tr align="center">
+				<td><input type="button" value="修改"><input type="button" value="删除"></td> 
+				<td>${item.goodsDocument.code}</td>
+				<td>${item.goodsDocument.documentType.type_name}</td>
+				<td>${item.goodsDocument.create_time}</td>
+				<td>${item.client.name}</td>
+				<td>${item.goodsDocument.manageLib.name}</td>
+				<td>${item.goodsDocument.manageMan.name}</td>
+			</tr>
+			
+		</c:forEach>
+	</TABLE>
+	<%@include file="/WEB-INF/jsp/page.jsp"%>

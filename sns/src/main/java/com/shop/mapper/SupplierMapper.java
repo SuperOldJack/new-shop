@@ -1,7 +1,12 @@
 package com.shop.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
 import com.shop.pojo.Supplier;
 
+@Mapper
 public interface SupplierMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +19,6 @@ public interface SupplierMapper {
     int updateByPrimaryKeySelective(Supplier record);
 
     int updateByPrimaryKey(Supplier record);
+    
+    List<Supplier> selectAllSupplier();
 }
