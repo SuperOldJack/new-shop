@@ -10,6 +10,7 @@ import com.shop.pojo.VipInfo;
 import com.shop.service.VipInfoService;
 
 @Controller
+@RequestMapping("/hhq")
 public class HhqTestController {
 
 	
@@ -44,5 +45,35 @@ public class HhqTestController {
 	@RequestMapping("/webSocketT")
 	public String test2() {
 		return "/test/hhqTest";
+	}
+	
+	@RequestMapping("/goTest")
+	public String goTest() {
+		System.out.println("测试");
+		return "test/gg";
+	}
+	
+	@RequestMapping("/testSubmit")
+	public String submit() {
+		System.out.println("提交了");
+		return "test/father";
+	}
+	
+	@RequestMapping("/openPage")
+	public String openPage() {
+		System.out.println("打开子窗体");
+		return "test/son";
+	}
+	
+	@RequestMapping("/openNew")
+	public String openNew() {
+		System.out.println("子窗体打开新窗体");
+		return "test/newPage";
+	}
+	
+	@RequestMapping("/openFaPage")
+	public String openGgPage() {
+		System.out.println("打开一级子窗口");
+		return "test/father";
 	}
 }

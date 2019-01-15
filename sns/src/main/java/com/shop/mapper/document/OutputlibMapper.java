@@ -21,4 +21,6 @@ public interface OutputlibMapper {
     int updateByPrimaryKey(Outputlib record);
     
     List<Outputlib> selectAll();
+    
+    Outputlib selectOutputlibByCode(String code);
 }

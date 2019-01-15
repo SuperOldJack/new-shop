@@ -22,4 +22,12 @@ public interface GoodsInfoService {
 	 * @return
 	 */
 	PageData<GoodsInfo> orderGoodsSelectByPage(Map<String, Object> map);
+	
+	/**
+	 * 根据单号查询货品信息
+	 * @param code
+	 * @return
+	 */
+	List<GoodsInfo> queryGoodsInfoByCode(String code);
+	
 }

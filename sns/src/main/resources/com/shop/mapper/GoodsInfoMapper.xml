@@ -29,8 +29,7 @@
   <sql id="Goods_Column_List">
     `code`,manage_lib_id,manage_man_id,create_time,create_man,document_type,isEffective,`comment`
   </sql>
-  
-  <sql id="Count_Condition">
+   <sql id="Count_Condition">
   	<if test="_parameter.containsKey('starTime') or _parameter.containsKey('endTime')">
 			
 			and gd.create_time BETWEEN 
@@ -56,15 +55,18 @@
 			and  gi.shop_id = #{shopId}
 		</if> 
   </sql>
+  <sql id="Goods_List">
+  	id, goods_document_code, shop_id, specification_id, price, unit, count
+  </sql>
   
-  <select id="getCount" resultType="int">
-  	select count(1) from tb_goods_info as gi
-  	inner JOIN tb_order_goods    as og on gi.goods_document_code = og.goods_document_code
-  	inner JOIN tb_goods_document as gd on gi.goods_document_code = gd.`code`
-  	where gi.goods_document_code  like  'XS%' or gi.goods_document_code  like  'XT%'
-  	<include refid="Count_Condition"/>
-  	
+  <select id="selectGoodsInfoByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Goods_List" />
+    from tb_goods_info
+    where goods_document_code = #{code,jdbcType=VARCHAR}
   </select>
+  
+ 
   
   <select id="selectGoodsByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
