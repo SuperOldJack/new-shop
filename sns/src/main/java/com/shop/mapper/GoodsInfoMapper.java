@@ -28,7 +28,7 @@ public interface GoodsInfoMapper {
     
     GoodsInfo selectGoodsByPrimaryKey(Integer id);
     
-    int getCount();
+    int getCount(Map<String,Object> map);
     
     
 }

@@ -20,9 +20,14 @@ public interface OrderGoodsService {
 	
 	PageData<OrderGoods> getOrderGoodsPage(Map<String, Object> map);
 	
+	/**
+	 * 查询用户销售明细
+	 * @param map 条件映射
+	 * @return
+	 */
 	PageData<ClientSummary> getUserSellSumByPage(Map<String, Object> map);
 
 	PageData<GoodsSummary> getGoodsDetailAll(Map<String, Object> map);
 	
-
+	PageData<OrderGoods> selectRealityOrder(Map<String, Object> map);
 }

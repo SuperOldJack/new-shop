@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import com.shop.tools.ConditionParame;
+import com.shop.tools.CountFunction;
 import com.shop.tools.FindFunction;
 import com.shop.tools.PageData;
 
@@ -16,11 +17,20 @@ import com.shop.tools.PageData;
 public class TPISerTemplet<T> {
 	protected FindFunction<T> function;
 	
+	//无条件查询
 	protected Callable<Integer> countFunction;
+	
+	//有条件查询
+	protected CountFunction countFunctionByCon;
 	
 	public TPISerTemplet(FindFunction<T> function,Callable<Integer> countFunction){
 		this.function = function;
 		this.countFunction = countFunction;
+	}
+	
+	public TPISerTemplet(FindFunction<T> function,CountFunction countFunctionByCon){
+		this.function = function;
+		this.countFunctionByCon = countFunctionByCon;
 	}
 	
 	
@@ -28,7 +38,7 @@ public class TPISerTemplet<T> {
 		Object pageNo = map.get(ConditionParame.currentPageNoKey);
 		
 		int count = 0;
-		count = getCount();
+		count = getCount(map);
 		
 		PageData<T> page =createPageTool(Integer.parseInt(pageNo.toString()),count);
 		
@@ -56,6 +66,14 @@ public class TPISerTemplet<T> {
 				e.printStackTrace();
 				return 0;
 			}
+		}
+	}
+	
+	protected int getCount(Map<String, Object> map) {
+		if(map!=null && countFunctionByCon != null ) {
+			return countFunctionByCon.getCount(map);
+		}else {
+			return getCount();
 		}
 	}
 	

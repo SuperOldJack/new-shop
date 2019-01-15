@@ -27,11 +27,18 @@ public interface OrderGoodsMapper {
     //获得销售单总数
     int getOrderCount();
     
-    //获得销售汇总单总数
+    //获得销售汇总单总数 --销售明细表
     int getGoodsDetailCount();
     
     //获得用户销售汇总总数
-    int getUserSellSumCount();
+    int getUserSellSumCount(Map<String,Object> map);
+
+    /**
+     * 获得真实销售单总数         
+     * @param map 筛选条件
+     * @return 减去了退货数量的销售单总数
+     */
+    int selectRealityOrderCount(Map<String,Object> map);
     
     List<OrderGoods> selectOrderGoodsAll();
     
@@ -42,4 +49,11 @@ public interface OrderGoodsMapper {
     List<OrderGoods> selectByPage(Map<String,Object> map);
     
     List<GoodsSummary> getGoodsDetailByPage(Map<String,Object> map);
+    
+    /**
+     * 获得真实销售单
+     * @param map 筛选条件
+     * @return 减去退货数量后的销售单
+     */
+    List<OrderGoods> selectRealityOrder(Map<String,Object> map);
 }

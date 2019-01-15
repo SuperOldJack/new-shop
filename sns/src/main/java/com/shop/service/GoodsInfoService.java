@@ -16,5 +16,10 @@ public interface GoodsInfoService {
 	 */
 	List<GoodsInfo> orderGoodsSelect();
 	
+	/**
+	 * 查询销售货品明细
+	 * @param map 条件映射
+	 * @return
+	 */
 	PageData<GoodsInfo> orderGoodsSelectByPage(Map<String, Object> map);
 }

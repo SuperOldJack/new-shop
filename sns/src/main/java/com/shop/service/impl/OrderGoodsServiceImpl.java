@@ -51,7 +51,7 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 		return orderGoodsMapper.selectOrderGoodsAll();
 	}
 
-
+	
 	@Override
 	public PageData<OrderGoods> getOrderGoodsPage(Map<String,Object> map) {
 
@@ -72,6 +72,10 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 		return createPageData;
 	}
 
+	
+	/**
+	 * 查询用户销售明细
+	 */
 	@Override
 	public PageData<ClientSummary> getUserSellSumByPage(Map<String,Object> map) {
 
@@ -79,6 +83,14 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 		TPISerTemplet<ClientSummary> pageSerTemplet = new TPISerTemplet<ClientSummary>(orderGoodsMapper::getUserSellSumByPage,orderGoodsMapper::getUserSellSumCount);
 
 		PageData<ClientSummary> createPageData = pageSerTemplet.createPageData(map);
+		return createPageData;
+	}
+
+	@Override
+	public PageData<OrderGoods> selectRealityOrder(Map<String, Object> map) {
+		TPISerTemplet<OrderGoods> pageSerTemplet = new TPISerTemplet<OrderGoods>(orderGoodsMapper::selectRealityOrder,orderGoodsMapper::selectRealityOrderCount);
+
+		PageData<OrderGoods> createPageData = pageSerTemplet.createPageData(map);
 		return createPageData;
 	}
 

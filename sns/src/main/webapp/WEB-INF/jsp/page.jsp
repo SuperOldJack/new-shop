@@ -47,16 +47,9 @@
 
 		
 		
-		var subStr=new RegExp('\\?currentPageNo=\\d*');//创建正则表达式对象
+		var subStr=new RegExp('\\?currentPageNo=\\S*');//创建正则表达式对象
 		
-		
-		//判断是否带有额外条件
-		/* 
-		
-		  
-		
-		 */
-		
+		alert(str);
 		var result=str.replace(subStr,"?currentPageNo="+currentPageNo);//把页码及其参数替换为当前值
 		//console.log(result);
 

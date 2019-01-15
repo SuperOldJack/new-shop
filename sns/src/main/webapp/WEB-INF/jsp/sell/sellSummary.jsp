@@ -1,36 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div>
+<DIV class=style1 align=center>
 货品销售汇总
-</div>
+</DIV>
 
 <INPUT id=temp type=hidden name=temp>
-</FORM>
-<FORM name=excel action=../inc/excel.asp method=post target=_blank>
 	<INPUT type=hidden value=R_Goodssaledetail name=table><INPUT
 		type=hidden
 		
 		name=sql>
-	<%@include file="/WEB-INF/jsp/condition/idCondition.jsp"%>
-	<TABLE id=tbl onclick=sortColumn(event) width=1351 align=center border=0>
-		<TBODY>
-			<TR align=middle>
-				<td style="CURSOR: pointer" width=70 type="CaseInsensitiveString">货品编码</td>
-				<td style="CURSOR: pointer" width=200 type="CaseInsensitiveString">货品名称</td>
-				<td style="CURSOR: pointer" width=70 type="CaseInsensitiveString">货品规格</td>
-				<td style="CURSOR: pointer" width=60 type="Number">单价</td>
-				<td style="CURSOR: pointer" width=60 type="Number">销售数量</td>
-				<td style="CURSOR: pointer" width=80 type="Number">销售金额</td>
-				<td style="CURSOR: pointer" width=60 type="Number">退货数量</td>
-				<td style="CURSOR: pointer" width=80 type="Number">退货金额</td>
-				<td style="CURSOR: pointer" width=60 type="Number">总金额</td>
-				<td style="CURSOR: pointer" width=80 type="Number">总数量</td>
+	<%@include file="/WEB-INF/jsp/condition/allCondition.jsp"%>
+	<TABLE id=tbl  width=1351 align=center >
+		<thead>
+			<TR align=center>
+				<th style="text-align: center;" width=20 >货品编码</th>
+				<th style="text-align: center;" width=60 >货品名称</th>
+				<th style="text-align: center;" width=50 >货品规格</th>
+				<th style="text-align: center;" width=20 >单位</th>
+				<th style="text-align: center;" width=20 >销售数量</th>
+				<th style="text-align: center;" width=60 >销售金额</th>
+				<th style="text-align: center;" width=20 >退货数量</th>
+				<th style="text-align: center;" width=60 >退货金额</th>
+				<th style="text-align: center;" width=20 >总金额</th>
+				<th style="text-align: center;" width=20 >总数量</th>
 			</TR>
+		
+		
+		</thead>
+		<TBODY>
+			
 		
 			<c:forEach var="item" items="${data.pageData}">
 				
-				<tr> 
+				<tr style="text-align: center;"> 
 					<td>${item.shopInfo.shop.id}</td>
 					<td>${item.shopInfo.shop.name}</td>
 					<td>${item.shopInfo.specification.specificationType}</td>
@@ -39,7 +42,7 @@
 					<td>${item.handleMoney}</td>
 					<td>${item.returnCount}</td>
 					<td>${item.returnMoney}</td>
-					<td>${item.returnMoney - item.returnMoney} </td>
+					<td>${item.handleMoney - item.returnMoney} </td>
 					<td>${item.handleCount-item.returnCount}</td>
 				</tr>
 			</c:forEach>
@@ -49,8 +52,6 @@
 			</TR>
 		</TBODY>
 	</TABLE>
-	
-</FORM>
 
 	<%@include file="/WEB-INF/jsp/page.jsp"%>
 

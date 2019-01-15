@@ -15,6 +15,7 @@ import com.shop.pojo.GoodsInfo;
 import com.shop.pojo.document.ClientSummary;
 import com.shop.pojo.document.GoodsSummary;
 import com.shop.pojo.document.OrderGoods;
+import com.shop.pojo.document.SellReturn;
 import com.shop.pojo.info.DocTypeMap;
 import com.shop.pojo.info.FullGoodsInfoListble;
 import com.shop.service.GoodsInfoService;
@@ -48,20 +49,19 @@ public class SellController {
 	@Autowired
 	GoodsInfoService goodsInfoService;
 	
-	@RequestMapping("/sellReturnTest")
-	public String sellReturnTest() {
-		if(sellReturnService.selectByPrimaryKey(1) == null) System.out.println("OK"); 
-		return "jackUserTest"; 
-	}
-	/*
-	@RequestMapping("/orderGoodsTest")
-	public String orderGoodsTest() {
+	/**
+	 * 获得销售单(计算退货情况后的数据)
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/sellReturn")
+	@ResponseBody
+	@JSPMapper("sell/xtGetOrderGoods")
+	public PageData<OrderGoods> xtGetOrderGoods(Map<String,Object> map) {
 		
-		 * OrderGoods orderGoods = orderGoodsService.selectById(1);
-		 * System.out.println(orderGoods.getCard_id());
-		 * 
-		return "/sell/addSell"; 
-	}*/
+		PageData<OrderGoods> selectRealityOrder = orderGoodsService.selectRealityOrder(map); 
+		return selectRealityOrder;
+	}
 	
 	@RequestMapping("/showOrderGoods")
 	@ResponseBody
@@ -82,6 +82,8 @@ public class SellController {
 		return goodsDetailAll;
 		
 	}
+	
+	
 	/**
 	 * 查询销售货品明细
 	 * @return

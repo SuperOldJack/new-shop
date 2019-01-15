@@ -3,6 +3,7 @@ function loadPage(that) {
 	var mid = $(that).attr("mid");
 	var systemtype = $(that).attr("systemtype");
 	$("#main").load("/home/"+systemtype+"/"+mid,function(){
+		
 		$("#main").append("<input id='url' type='hidden' mid='"+mid+"' systemtype='"+systemtype+"'/>" );
 	});
 }

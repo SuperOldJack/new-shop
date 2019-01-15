@@ -12,14 +12,7 @@
     <result column="cause" jdbcType="VARCHAR" property="cause" />
     <result column="goodsComment" jdbcType="VARCHAR" property="comment" />
     
-    <association  column="goods_document_code" property="goodsDocument" javaType="com.shop.pojo.GoodsDocument" select="equeryGoodsDocument">   
-        <id property="code" column="code"/>
-        
-	    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
-	    <result column="isEffective" jdbcType="INTEGER" property="isEffective" />
-	    <result column="comment" jdbcType="VARCHAR" property="comment" />
-	    <association column="document_type"  property="documentType"  select="com.shop.mapper.BaseMapper.selectDocType"></association>
-    </association>
+    <association  column="goods_document_code" property="goodsDocument"  select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
   </resultMap>
   
    <!-- 查询单据 -->
@@ -43,8 +36,6 @@
 	tb_goods_document as gd ON sr.goods_document_code=gd.code 
 	where id = #{id,jdbcType=INTEGER}
   </select>
-  
- 
 	
 	
 	

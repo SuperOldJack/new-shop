@@ -5,6 +5,11 @@ import java.util.Date;
 
 import com.shop.pojo.GoodsDocument;
 
+/**
+ * 销售退款
+ * @author Administrator
+ *
+ */
 public class SellReturn implements IDoc{
     private Integer id;
 

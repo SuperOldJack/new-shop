@@ -24,7 +24,109 @@
   	<association column="id" property="user" select="com.shop.mapper.BaseMapper.selectUserById"></association>
   </resultMap>
   
+   <!-- 客户销售统计 退回 -->
+  <sql id="getUserRetuSum">
+  	
+	
+	SELECT
+		st.id,
+		sum( sgi.price * sgi.count ) AS returnMoney,
+		sum( sgi.count ) AS returnCount
+		FROM
+			
+			(
+			SELECT
+				ui.id,sr.goods_document_code as sgdc
+			FROM
+				tb_user_info AS ui
+				inner JOIN tb_sell_return AS sr ON ui.id = sr.client_id
+			<if test="_parameter.containsKey('findId') and findId != null">
+				WHERE
+				ui.id =  #{findId}
+			</if> 
+			) AS st 
+			left join tb_goods_info AS sgi on sgi.goods_document_code = st.sgdc
+			
+			left join tb_goods_document as sgd on sgd.`code` =  sgi.goods_document_code
+			
+	
+	<trim prefix="WHERE" prefixOverrides="and">
+			<if test="_parameter.containsKey('shopId') and shopId != null">
+				and sgi.shop_id = #{shopId} 
+			</if>
+			<if test="_parameter.containsKey('starTime') or _parameter.containsKey('endTime')">
+				and sgd.create_time BETWEEN 
+				<if test='starTime!=null'> #{starTime} </if>
+				<if test='starTime==null'> '' </if>
+				and
+				<if test='endTime != null'> #{endTime} </if>
+				<if test='endTime == null'> '9999-12-31' </if>
+				
+			</if> 
+			<if test="_parameter.containsKey('manageManId') and manageManId != null">
+				and sgd.manage_man_id = #{manageManId}
+			</if> 
+			
+			<if test="_parameter.containsKey('libId') and libId != null">
+				and sgd.manage_lib_id  = #{libId}
+			</if> 
+		</trim>
+				
+		GROUP BY st.id	
+	
   
+  </sql>
+  <!-- 客户销售统计 卖出 -->
+  <sql id="getUserSellSum" >
+	  
+	SELECT
+		st.id,
+		sum( ogi.price * ogi.count ) AS handleMoney,
+		sum( ogi.count ) AS handleCount 
+		FROM
+			
+			(
+			SELECT
+				ui.id,og.goods_document_code as ogdc
+			FROM
+				tb_user_info AS ui
+				inner JOIN tb_order_goods AS og ON ui.id = og.client_id
+			<if test="_parameter.containsKey('findId') and findId != null">
+				WHERE
+				ui.id =  #{findId}
+			</if> 
+			) AS st 
+			left join tb_goods_info AS ogi on st.ogdc = ogi.goods_document_code
+			
+			left join tb_goods_document as ogd on ogd.`code` =  ogi.goods_document_code
+			
+			
+		<trim prefix="WHERE" prefixOverrides="and">
+			<if test="_parameter.containsKey('shopId') and shopId != null">
+				and ogi.shop_id = #{shopId} 
+			</if>
+			<if test="_parameter.containsKey('starTime') or _parameter.containsKey('endTime')">
+				and ogd.create_time BETWEEN 
+				<if test='starTime!=null'> #{starTime} </if>
+				<if test='starTime==null'> '' </if>
+				and
+				<if test='endTime != null'> #{endTime} </if>
+				<if test='endTime == null'> '9999-12-31' </if>
+				
+			</if> 
+			<if test="_parameter.containsKey('manageManId') and manageManId != null">
+				and ogd.manage_man_id = #{manageManId}
+			</if> 
+			
+			<if test="_parameter.containsKey('libId') and libId != null">
+				and ogd.manage_lib_id  = #{libId}
+			</if> 
+		</trim>
+				
+		GROUP BY st.id		
+	  	<include refid="com.shop.mapper.BaseMapper.limit" />		
+	  </sql>
+	  
   <sql id="Base_Column_List">
     id, goods_document_code, client_id, amount_money, actual_money, card_id
   </sql>
@@ -54,6 +156,29 @@
   
   <select id="selectByPage" resultMap="EXResultMap">
   	<include refid="Select_info_eazy" />
+    
+	<trim prefix="  left JOIN tb_goods_document as gd on og.goods_document_code = gd.`code` where" suffixOverrides="and">
+  		<if test="_parameter.containsKey('findId') and findId != null">
+			client_id = #{findId}
+		</if>
+		<if test="_parameter.containsKey('starTime') or _parameter.containsKey('endTime')">
+			gd.create_time BETWEEN 
+	  		<if test='starTime!=null'>
+			  #{starTime}
+			</if>
+			<if test='starTime==null'>
+			  ''
+			</if>
+			and
+			<if test='endTime != null'>
+			  #{endTime}
+			</if>
+			<if test='endTime == null'>
+			  '9999-12-31'
+			</if>
+		</if>
+		
+  	</trim>
   	
   	<include refid="com.shop.mapper.BaseMapper.limit" />
   </select>	
@@ -77,21 +202,47 @@
   </select>
   
   
-  
+  <!-- 货品销售查询 -->
   <select id="getGoodsDetailByPage" parameterType="map"  resultMap="com.shop.mapper.GoodsInfoMapper.GoodsSummaryMap">
     
 	select xs.shop_id  ,xs.specification_id,xs.unit,xs.price*xs.count as handleMoney,
 	xt.price*xt.count as returnMoney,xs.count as handleCount,xt.count as returnCount   
-	<include refid="from_GoodsDetailAll" /><!-- 查询货品明细 -->
+	
+
+	from (select gi.shop_id  ,gi.specification_id,gi.unit ,avg(gi.price) as price,sum(gi.count) as count
+				from tb_goods_info as gi WHERE gi.goods_document_code like 'XT%' GROUP BY shop_id,specification_id,unit) as xt right join
+		 (select  gi.shop_id ,gi.specification_id,gi.unit  ,avg(gi.price) as price,sum(gi.count) as count
+			  from tb_goods_info as gi 
+				left join tb_goods_document as gd on gi.goods_document_code = gd.`code`
+				left join tb_order_goods as og on gi.goods_document_code = og.goods_document_code
+				WHERE gi.goods_document_code like 'XS%' 
+					<if test="_parameter.containsKey('findId') and findId != null">
+						and og.client_id = #{findId}
+					</if> 
+					<if test="_parameter.containsKey('shopId') and shopId != null">
+						and gi.shop_id = #{shopId}
+					</if>
+					<if test="_parameter.containsKey('starTime') or _parameter.containsKey('endTime')">
+						and gd.create_time BETWEEN 
+						<if test='starTime!=null'> #{starTime} </if>
+						<if test='starTime==null'> '' </if>
+						and
+						<if test='endTime != null'> #{endTime} </if>
+						<if test='endTime == null'> '9999-12-31' </if>
+					</if> 
+			    
+			    	<if test="_parameter.containsKey('manageManId') and manageManId != null">
+						and gd.manage_man_id = #{manageManId}
+					</if> 
+					
+					<if test="_parameter.containsKey('libId') and libId != null">
+						and gd.manage_lib_id = #{libId}
+					</if> 
+							
+				GROUP BY shop_id,specification_id,unit) as xs 
+	  on xs.specification_id = xt.specification_id and xt.unit = xs.unit and xs.shop_id = xt.shop_id
   	
   	
-  	<trim prefix="where">
-  		 <if test="_parameter.containsKey('findId') and findId != null">
-			xs.shop_id = #{findId}
-		</if>
-		
-		
-  	</trim>
   	
   	<include refid="com.shop.mapper.BaseMapper.limit" />
   	
@@ -102,29 +253,89 @@
   	<include refid="com.shop.mapper.BaseMapper.limit" />
   </select>
   
+  <!-- 客户销售记录数查询 -->
   <select id="getUserSellSumCount" resultType="int">
-  		select count(1)
-    from tb_user_info as ui right join 
-		(select  og.client_id  from tb_order_goods as og GROUP BY client_id	) as xs
-	  on ui.id = xs.client_id
-		right join 
-		(select  og.client_id  from tb_sell_return as og GROUP BY client_id	) as xt
-	  on ui.id = xt.client_id		
-					
+  	select count(1) from 
+  	(<include refid="getUserSellSum" />) as xs
+	left join 
+	(<include refid="getUserRetuSum" />) as xt
+	on xs.id = xt.id
   </select>
+  
+  <!-- 客户销售查询 -->
   <select id="getUserSellSumByPage" resultMap="ClientSummaryMap">
-	select ui.id,xs.count as handleCount,xs.money as handleMoney,xt.count as returnCount,xt.money as returnMoney
-    from tb_user_info as ui right join 
-		(select  og.client_id,sum(gi.price*gi.count) as money,sum(gi.count) as count  from tb_goods_info as gi inner JOIN tb_order_goods as og 
-		on gi.goods_document_code = og.goods_document_code group by og.client_id) as xs
-	  on ui.id = xs.client_id
-		left join 
-		(select  og.client_id,sum(gi.price*gi.count) as money,sum(gi.count) as count from tb_goods_info as gi inner JOIN tb_sell_return as og 
-		on gi.goods_document_code = og.goods_document_code ) as xt
-	  on ui.id = xt.client_id			
-					
+  	select xs.id,xs.handleMoney,xs.handleCount,xt.returnMoney,xt.returnCount from 
+  	(<include refid="getUserSellSum" />) as xs
+	left join 
+	(<include refid="getUserRetuSum" />) as xt
+	on xs.id = xt.id
   	<include refid="com.shop.mapper.BaseMapper.limit" />		
   </select>
+  
+  <!-- 查询销售实际数量大于0的销售单总数 -->
+  <select id="selectRealityOrderCount" resultType="int">
+  SELECT count(1)
+FROM
+	(
+	SELECT
+		gi.goods_document_code,
+		gi.shop_id,
+		gi.specification_id,
+		gi.unit,
+		gi.price,
+		gi.count 
+	FROM
+		tb_order_goods AS og
+		INNER JOIN tb_goods_info AS gi ON og.goods_document_code = gi.goods_document_code 
+	) AS xs
+	LEFT JOIN (
+	SELECT
+		sr.goods_document_code,
+		sr.sell_gdc,
+		gi.shop_id,
+		gi.specification_id,
+		gi.unit,
+		gi.price,
+		gi.count 
+	FROM
+		tb_sell_return AS sr
+		INNER JOIN tb_goods_info AS gi ON sr.goods_document_code = gi.goods_document_code 
+	) AS xt ON xs.goods_document_code = xt.sell_gdc 
+	AND xt.shop_id = xs.shop_id 
+	AND xt.specification_id = xs.specification_id 
+	AND xt.unit = xs.unit 
+WHERE
+	xs.count - xt.count > 0 
+	OR ( xt.count IS NULL ) GROUP BY xs.goods_document_code
+  </select>
+ 
+  <!-- 查询销售实际数量大于0的销售单(销售数>退货数) 暂不使用-->
+  <select id="selectRealityOrder" resultMap="EXResultMap" >
+ SELECT
+	xs.id,xs.goods_document_code,xs.client_id,xs.amount_money,xs.actual_money,xs.card_id
+FROM
+	(
+	SELECT gi.goods_document_code,gi.shop_id,gi.specification_id,gi.unit,gi.price,gi.count ,og.client_id,og.id,
+		og.amount_money,og.actual_money,og.card_id
+	FROM
+		tb_order_goods AS og
+		INNER JOIN tb_goods_info AS gi 
+		ON og.goods_document_code = gi.goods_document_code 
+	) AS xs
+	LEFT JOIN (
+	SELECT
+		sr.goods_document_code,sr.sell_gdc,gi.shop_id,gi.specification_id,gi.unit,gi.price,gi.count 
+	FROM
+		tb_sell_return AS sr
+		INNER JOIN tb_goods_info AS gi ON sr.goods_document_code = gi.goods_document_code 
+	) AS xt ON xs.goods_document_code = xt.sell_gdc 
+	AND xt.shop_id = xs.shop_id AND xt.specification_id = xs.specification_id AND xt.unit = xs.unit 
+WHERE
+	xs.count - xt.count > 0 OR ( xt.count IS NULL )
+	GROUP BY xs.goods_document_code
+  <include refid="com.shop.mapper.BaseMapper.limit" />
+  </select>
+  
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_order_goods

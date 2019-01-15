@@ -13,23 +13,24 @@
 		
 		name=sql>
 		
-	<%@include file="/WEB-INF/jsp/condition/timeCondition.jsp"%>
-	<TABLE id=tbl onclick=sortColumn(event) width=1351 align=center
-		border=0>
-		<TBODY>
-			<TR align=middle>
-				<td style="CURSOR: pointer" width=70 type="CaseInsensitiveString">客户名称</td>
-				<td style="CURSOR: pointer" width=70 type="CaseInsensitiveString">销售金额</td>
+	<%@include file="/WEB-INF/jsp/condition/allCondition.jsp"%>
+	<TABLE id=tbl  width=100% align=center>
+		<thead>
+			<TR align=center>
+				<th style="text-align: center;" width=70 >客户名称</th>
+				<th style="text-align: center;" width=70 >销售金额</th>
 				
-				<td style="CURSOR: pointer" width=70 type="CaseInsensitiveString">销售数量</td>
-				<td style="CURSOR: pointer" width=81 type="CaseInsensitiveString">退货金额</td>
-				<td style="CURSOR: pointer" width=81 type="CaseInsensitiveString">退货数量</td>
-				<td style="CURSOR: pointer" width=81 type="CaseInsensitiveString">合计金额</td>
+				<th style="text-align: center;" width=70 >销售数量</th>
+				<th style="text-align: center;" width=81 >退货金额</th>
+				<th style="text-align: center;" width=81 >退货数量</th>
+				<th style="text-align: center;" width=81 >合计金额</th>
 			</TR>
-			<tr>
+		</thead>
+		<TBODY>
+			
 				<c:forEach var="item" items="${data.pageData}">
 				
-					<tr> 
+					<tr align=center> 
 						<td>${item.user.name}</td>
 						<td>${item.handleMoney}</td>
 						<td>${item.handleCount}</td>
@@ -38,25 +39,21 @@
 						<td>${item.handleMoney-item.returnMoney}</td>
 					</tr>
 				</c:forEach>
-			</tr>
-			
-		</TBODY>
-		<TBODY>
 			<TR onmouseover=over() onclick=change() onmouseout=out()>
-				<TD align=middle>小计</TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle>2</TD>
-				<TD align=middle>0</TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
-				<TD align=middle></TD>
+				<TD align=center>小计</TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center>2</TD>
+				<TD align=center>0</TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
+				<TD align=center></TD>
 			</TR>
 		</TBODY>
 	</TABLE>

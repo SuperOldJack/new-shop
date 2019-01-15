@@ -3,9 +3,9 @@
 <!-- 条件查找页面 仅时间 依赖于page页面-->
 
 
-	<input type="text" id="starTime" value="">
-	<input type="text" id="endTime" value="">  
-	<input type="button" id="find" onclick="findData(${data.currentPageNo})">
+	<input class="condition" type="text" id="starTime" value="">
+	<input class="condition" type="text" id="endTime" value="">  
+	<input type="button" id="find" value="查询" onclick="findData(${data.currentPageNo})">
 	
 	
 	
@@ -14,19 +14,18 @@
 		function findData(currentPageNo){
 			if(currentPageNo != "" || currentPageNo != null){
 				
-				var starTime = $("#starTime").get(0);
-				if(starTime != null){
-					var value = $(starTime).val()
-					if(value != "") currentPageNo += "&starTime="+value;
-				}
+				var currentPage=parseInt(currentPageNo);//去除页码的多余数据
 				
-				var endTime = $("#endTime").get(0);
-				if(endTime != null){
-					var value = $(endTime).val()
-					if(value != "") currentPageNo += "&endTime="+value;
-				}
+				$(".condition").each(function(data){
+					var node = $(this);
+					
+					var id = node.attr('id');
+					var value = node.val();
+					if(value != "") currentPage += "&"+id+"="+value;
+					
+				});
 				
-				loadDocment(currentPageNo);
+				loadDocment(currentPage);
 			}
 			
 		}
