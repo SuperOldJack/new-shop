@@ -56,13 +56,13 @@
 		</if> 
   </sql>
   <sql id="Goods_List">
-  	id, goods_document_code, shop_id, specification_id, price, unit, count
+  	gi.id, goods_document_code, shop_id, specification_id, price, unit, count
   </sql>
   
   <select id="selectGoodsInfoByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
   	select 
-    <include refid="Goods_List" />
-    from tb_goods_info
+    <include refid="Base_Column_List" />
+    from tb_goods_info as gi inner join tb_count_unity as cu on gi.unit = cu.id
     where goods_document_code = #{code,jdbcType=VARCHAR}
   </select>
   
@@ -75,12 +75,6 @@
   	
   </select>
   
-  <select id="selectGoodsByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Goods_Column_List" />
-    from tb_goods_document
-    where id = #{id,jdbcType=INTEGER}
-  </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

@@ -17,4 +17,11 @@ public interface GoodsDocService {
 	 * @return
 	 */
 	List<GoodsDocument> queryDocByTypeId(Integer typeId);
+	
+	/**
+	 * 获得该类型最后一个创建的单据编号
+	 * @param type
+	 * @return
+	 */
+	String getLastCodeByType(String type);
 }

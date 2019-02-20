@@ -57,7 +57,7 @@ public class OrderGoodsSocket {
 	public void onOpen(Session session){
 		this.session = session;
 		webSocketSet.add(this);    
-		System.out.println("有新连接加入!");
+		//System.out.println("有新连接加入!");
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class OrderGoodsSocket {
 	@OnClose
 	public void onClose(){
 		webSocketSet.remove(this);  
-		System.out.println("有一连接关闭!");
+		//System.out.println("有一连接关闭!");
 	}
 
 	/**

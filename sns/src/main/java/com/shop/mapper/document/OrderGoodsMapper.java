@@ -38,7 +38,7 @@ public interface OrderGoodsMapper {
      * @param map 筛选条件
      * @return 减去了退货数量的销售单总数
      */
-    int selectRealityOrderCount(Map<String,Object> map);
+    int selectROCount(Map<String,Object> map);
     
     List<OrderGoods> selectOrderGoodsAll();
     

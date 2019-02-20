@@ -88,7 +88,7 @@ public class OrderGoodsServiceImpl extends SeveDocTemplet implements OrderGoodsS
 
 	@Override
 	public PageData<OrderGoods> selectRealityOrder(Map<String, Object> map) {
-		TPISerTemplet<OrderGoods> pageSerTemplet = new TPISerTemplet<OrderGoods>(orderGoodsMapper::selectRealityOrder,orderGoodsMapper::selectRealityOrderCount);
+		TPISerTemplet<OrderGoods> pageSerTemplet = new TPISerTemplet<OrderGoods>(orderGoodsMapper::selectRealityOrder,orderGoodsMapper::selectROCount);
 
 		PageData<OrderGoods> createPageData = pageSerTemplet.createPageData(map);
 		return createPageData;

@@ -30,8 +30,18 @@ public class SellReturn implements IDoc{
     private String cause;
 
     private String comment;
+    
+    private String sell_gdc;
+    
+    public String getSell_gdc() {
+		return sell_gdc;
+	}
 
-    public Integer getId() {
+    public void setSell_gdc(String sell_gdc) {
+		this.sell_gdc = sell_gdc;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -19,4 +19,10 @@ public class GoodsDocServiceImpl implements GoodsDocService {
 		return goodsDocumentMapper.selectInputLibDocByTypeId(typeId);
 	}
 
+	@Override
+	public String getLastCodeByType(String type) {
+		String lastCodeByType = goodsDocumentMapper.getLastCodeByType(type);
+		return lastCodeByType;
+	}
+
 }

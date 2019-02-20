@@ -11,6 +11,7 @@
     <result column="manage_work_id" jdbcType="INTEGER" property="manage_work_id" />
     <result column="cause" jdbcType="VARCHAR" property="cause" />
     <result column="goodsComment" jdbcType="VARCHAR" property="comment" />
+    <result column="sell_gdc" jdbcType="VARCHAR" property="sell_gdc"/>
     
     <association  column="goods_document_code" property="goodsDocument"  select="com.shop.mapper.document.GoodsDocumentMapper.selectByPrimaryKey"></association>
   </resultMap>
@@ -59,7 +60,7 @@
       <if test="id != null">
         id,
       </if>
-      <if test="goods_document_code != null">
+      <if test="goodsDocument.code != null">
         goods_document_code,
       </if>
       <if test="client_id != null">
@@ -77,7 +78,7 @@
       <if test="card_id != null">
         card_id,
       </if>
-      <if test="manage_work_id != null">
+      <if test="goodsDocument.manageMan.id != null">
         manage_work_id,
       </if>
       <if test="cause != null">
@@ -86,13 +87,16 @@
       <if test="comment != null">
         comment,
       </if>
+      <if test="sell_gdc != null">
+        sell_gdc,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="goods_document_code != null">
-        #{goods_document_code,jdbcType=VARCHAR},
+      <if test="goodsDocument.code != null">
+        #{goodsDocument.code,jdbcType=VARCHAR},
       </if>
       <if test="client_id != null">
         #{client_id,jdbcType=INTEGER},
@@ -109,14 +113,17 @@
       <if test="card_id != null">
         #{card_id,jdbcType=INTEGER},
       </if>
-      <if test="manage_work_id != null">
-        #{manage_work_id,jdbcType=INTEGER},
+      <if test="goodsDocument.manageMan.id != null">
+        #{goodsDocument.manageMan.id,jdbcType=INTEGER},
       </if>
       <if test="cause != null">
         #{cause,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="sell_gdc != null">
+        #{sell_gdc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

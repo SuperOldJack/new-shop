@@ -3,6 +3,7 @@ package com.shop.mapper.document;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.shop.pojo.GoodsDocument;
 
@@ -21,6 +22,13 @@ public interface GoodsDocumentMapper {
     int updateByPrimaryKey(GoodsDocument record);
     
     GoodsDocument selectgoodsDocByCode(String code);
+    
+    /**
+     * 根据表单类型获得最后一个创建的单号
+     * @param type
+     * @return
+     */
+    String getLastCodeByType(String type);
     
     /**
      * 根据单据类型查找相应的单据

@@ -37,10 +37,16 @@ public class TPISerTemplet<T> {
 	public final PageData<T> createPageData(Map<String,Object> map) {
 		Object pageNo = map.get(ConditionParame.currentPageNoKey);
 		
+		//获得数据总数
 		int count = 0;
 		count = getCount(map);
 		
 		PageData<T> page =createPageTool(Integer.parseInt(pageNo.toString()),count);
+		
+		//修改页码大小
+		Object pageSize = map.get(ConditionParame.PageSizeKey);
+		if(pageSize != null) page.setPageSize(Integer.parseInt(pageSize.toString()));
+		
 		
 		map.put(ConditionParame.CurrentPageIndexKey, page.getCurrentPageIndex());
 		map.put(ConditionParame.PageSizeKey, page.getPageSize());

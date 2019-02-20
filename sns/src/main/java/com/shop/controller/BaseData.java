@@ -19,6 +19,8 @@ public class BaseData {
 	
 	private static List<DocumentType> documentType; 
 
+	
+	
 	public static List<DocumentType> getDocumentType() {
 		if(documentType == null) {
 			documentType = BaseServiceImpl.baseMapper.selectDocType();

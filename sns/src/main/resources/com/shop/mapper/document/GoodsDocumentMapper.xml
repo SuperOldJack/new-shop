@@ -18,6 +18,9 @@
     `comment`
   </sql>
   
+  <select id="getLastCodeByType" parameterType="java.lang.String" resultType="java.lang.String">
+  	SELECT `code` FROM `tb_goods_document` where `code` like CONCAT(#{type,jdbcType=VARCHAR},'-%') and to_days(create_time) = to_days(now())  ORDER BY create_time DESC limit 1
+  </select>
   <select id="selectInputLibDocByTypeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select 
     <include refid="Base_Column_List" />

@@ -5,7 +5,7 @@
 	
     <script type="text/javascript" src="/js/websocket/BaseSocket.js"></script>
     <script type="text/javascript">
-		function fullCode(received_msg){
+		/* function fullCode(received_msg){
 			document.getElementById('tittle_lable').innerHTML = received_msg;
 			document.getElementById('a').value = received_msg;
 		}
@@ -16,7 +16,7 @@
 			 $.post("/sellManage/getNowSellOrderCode","json",function(data){ fullCode(data);});
 			 
 			 
-		};
+		}; */
 	</script>
 	<TABLE align=center border=0>
 		<TBODY>
@@ -29,9 +29,7 @@
 						<INPUT id=rowcount type=hidden name=rowcount> <INPUT
 							id=_check type=hidden value=false name=_check>
 						<DIV align=center>
-							<SPAN class=style1><LABEL id=tittle_lable></LABEL><INPUT
-								id=a type=hidden 
-								name=goodsDocument.code></SPAN>
+							新增销售单XS
 						</DIV>
 						<BR>
 						<TABLE id=tbl style="FONT-SIZE: 12px" cellSpacing=0

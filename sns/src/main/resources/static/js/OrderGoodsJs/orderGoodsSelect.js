@@ -18,7 +18,6 @@ $.post("/sellManage/orderGoodsSelect",
 										+"<td>"+data[i].goodsDocument.code+"</td>"
 										+"<td>"+data[i].goodsDocument.manageLib.name+"</td>"
 										+"<td>"+data[i].goodsDocument.comment+"</td>"
-										
 										+"</tr>");
 
 				}

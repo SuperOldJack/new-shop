@@ -273,7 +273,7 @@
   </select>
   
   <!-- 查询销售实际数量大于0的销售单总数 -->
-  <select id="selectRealityOrderCount" resultType="int">
+  <select id="selectROCount" resultType="int">
   SELECT count(1)
 FROM
 	(
@@ -300,13 +300,14 @@ FROM
 	FROM
 		tb_sell_return AS sr
 		INNER JOIN tb_goods_info AS gi ON sr.goods_document_code = gi.goods_document_code 
+		
 	) AS xt ON xs.goods_document_code = xt.sell_gdc 
 	AND xt.shop_id = xs.shop_id 
 	AND xt.specification_id = xs.specification_id 
 	AND xt.unit = xs.unit 
 WHERE
 	xs.count - xt.count > 0 
-	OR ( xt.count IS NULL ) GROUP BY xs.goods_document_code
+	OR ( xt.count IS NULL ) 
   </select>
  
   <!-- 查询销售实际数量大于0的销售单(销售数>退货数) 暂不使用-->

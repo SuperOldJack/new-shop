@@ -31,11 +31,10 @@ public abstract class SeveDocTemplet {
 	public int seveDocInfo(IDoc doc,List<GoodsInfo> goodsInfo) {
 		
 		
-		
+		int docTypeInfoResult =addDocTypeInfo(doc);
 		int documentResult =(int)addDoc(doc.getGoodsDocument());
 		int goodsResult = goodsInfoMapper.insertList(goodsInfo);
-		int libResult =addDocTypeInfo(doc);
-		int result = result(libResult,documentResult,goodsResult);
+		int result = result(docTypeInfoResult,documentResult,goodsResult);
 		return result;
 	}
 	
